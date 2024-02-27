@@ -1,6 +1,7 @@
 
 
 
+import 'package:TShop/features/authentication/controllers.onboarding/onboarding_controller.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class OnBoardingSkip extends StatelessWidget {
         top: TDeviceUtils.getAppBarHeight(),
         right: TSizes.defaultSpace,
         child: TextButton(
-          onPressed: () {},
+          onPressed: () => OnBoardingController.instance.skipPage(),
           child: const Text('Skip'),
         )
         );

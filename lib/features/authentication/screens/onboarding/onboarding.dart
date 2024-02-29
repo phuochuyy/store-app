@@ -1,8 +1,8 @@
 import 'package:TShop/features/authentication/controllers.onboarding/onboarding_controller.dart';
-import 'package:TShop/features/authentication/screens.onboarding/widgets/onboarding_dot_navigation.dart';
-import 'package:TShop/features/authentication/screens.onboarding/widgets/onboarding_next_button.dart';
-import 'package:TShop/features/authentication/screens.onboarding/widgets/onboarding_page.dart';
-import 'package:TShop/features/authentication/screens.onboarding/widgets/onboarding_skip.dart';
+import 'package:TShop/features/authentication/screens/onboarding/widgets/onboarding_dot_navigation.dart';
+import 'package:TShop/features/authentication/screens/onboarding/widgets/onboarding_next_button.dart';
+import 'package:TShop/features/authentication/screens/onboarding/widgets/onboarding_page.dart';
+import 'package:TShop/features/authentication/screens/onboarding/widgets/onboarding_skip.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/text_string.dart';
 import 'package:flutter/material.dart';

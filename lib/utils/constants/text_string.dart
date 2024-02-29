@@ -37,9 +37,11 @@ class TTexts {
   static const String privacyPolicy = "Privacy Policy";
   static const String termsOfUse = "Terns of use"; 
   static const String verificationCode = "verificationCode";
-  static const String resendEmail = "Resend Email*"; 
+  static const String resendEmail = "Resend Email"; 
   static const String resendEmailIn = "Resend email in";
   static const String and = "and";
+  static const String tContinue = "Continue";
+  
 
 
   //--Authentications Headings Text

@@ -1,15 +1,13 @@
 import 'package:TShop/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/search_container.dart';
-import 'package:TShop/common/widgets/images/t_rounded_image.dart';
+import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:TShop/common/widgets/texts/product_title_text.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/features/authentication/shop/screens/home/widgets/home_appbar.dart';
 import 'package:TShop/features/authentication/shop/screens/home/widgets/home_categories.dart';
-import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
-import 'package:TShop/utils/constants/text_string.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -22,7 +20,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     // return const Scaffold();
-    return  const Scaffold(
+    return   Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -54,9 +52,11 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
-                  TPromoSlider(banners: [TImages.banner1, TImages.banner2, TImages.banner3]),
-                  SizedBox(height: TSizes.spaceBtwSections),
-                  TProductCardVertical(),
+                  const TPromoSlider(banners: [TImages.banner1, TImages.banner2, TImages.banner3]),
+                  const SizedBox(height: TSizes.spaceBtwSections),
+                  //Popular Products
+                  TGridLayout(itemCount: 2, itemBuilder: (_, index) => const TProductCardVertical()),
+
                 ],
               ),
             ),

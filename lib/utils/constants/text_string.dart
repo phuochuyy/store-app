@@ -55,4 +55,13 @@ class TTexts {
   static const String confirmEmailSubTittle = "Congratulations! Your account awaits: Verify your email to start shopping and experience a world of unrivaled deals and personalized offers.";
   static const String yourAccountCreatedTittle = "Your account successully created!";
   static const String yourAccountCreatedSubTittle = "Welcome to your ultimate shopping destination: Your account is created, unleash the joy of seamless online shopping!";
+
+
+//--Banners
+  static const String banner1 = "assets/images/banners/banner1.png";
+  static const String banner2 = "assets/images/banners/banner2.png";
+  static const String banner3 = "assets/images/banners/banner3.png";
+
+
+
 }

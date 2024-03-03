@@ -15,6 +15,16 @@ class TImages {
   static const String onBoardingImage1 = "assets/images/on_boarding_images/sammy-line-searching.gif";
   static const String onBoardingImage2 = "assets/images/on_boarding_images/sammy-line-shopping.gif";
 
+  // Banners
+  static const String banner1 = "assets/images/banners/banner1.png";
+  static const String banner2 = "assets/images/banners/banner2.png";
+  static const String banner3 = "assets/images/banners/banner3.png";
+
+  // Product Images
+  static const String product1 = "assets/images/products/acer_laptop_1.png";
+  static const String product2 = "assets/images/products/acer_laptop_2.png";
+  static const String product3 = "assets/images/products/Adidas_Football.png";
+  static const String product4 = "assets/images/products/iphone_14_pro.png";
 
 }
 

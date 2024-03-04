@@ -6,8 +6,8 @@ class TSectionHeading extends StatelessWidget {
     super.key,
     this.textColor,
     this.showActionButton = true,
-    required this.title, 
-    this.buttonTitle = 'Tất cả', 
+    required this.title,
+    this.buttonTitle = 'Tất cả',
     this.onPressed,
   });
 
@@ -17,17 +17,22 @@ class TSectionHeading extends StatelessWidget {
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          'Danh mục sản phẩm', 
-          style: TextStyle(
-            fontSize: 18.0, 
-            fontWeight: FontWeight.w600, 
-            color: TColors.white), 
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis),
-        if(showActionButton) TextButton(onPressed: onPressed, child: Text(buttonTitle))
+        Text(title,
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall!
+                .apply(color: textColor),
+            // style: TextStyle(
+            //   fontSize: 18.0,
+            //   fontWeight: FontWeight.w600,
+            //   color: TColors.white),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis),
+        if (showActionButton)
+          TextButton(onPressed: onPressed, child: Text(buttonTitle))
       ],
     );
   }

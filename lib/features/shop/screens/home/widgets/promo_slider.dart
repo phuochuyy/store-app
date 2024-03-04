@@ -2,13 +2,10 @@ import 'package:TShop/common/widgets/custom_shapes/containers/circular_container
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
 import 'package:TShop/features/shop/controllers/home_controller.dart';
 import 'package:TShop/utils/constants/colors.dart';
-import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 
 class TPromoSlider extends StatelessWidget {

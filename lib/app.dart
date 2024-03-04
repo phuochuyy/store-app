@@ -1,5 +1,4 @@
 import 'package:TShop/features/authentication/screens/onboarding/onboarding.dart';
-import 'package:TShop/features/shop/screens/home/home.dart';
 
 import 'package:TShop/utils/theme/theme.dart';
 import 'package:flutter/material.dart';

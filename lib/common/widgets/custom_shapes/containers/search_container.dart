@@ -18,8 +18,8 @@ class TSearchContainer extends StatelessWidget {
 
   final String text;
   final IconData? icon;
-  final VoidCallback? onTap;
   final bool showBackground, showBorder;
+  final VoidCallback? onTap;
   final EdgeInsetsGeometry padding;
 
   @override

@@ -4,21 +4,18 @@ import 'package:TShop/utils/constants/colors.dart';
 import '../../../../utils/constants/size.dart';
 
 class TRoundedContainer extends StatelessWidget {
-
-
   const TRoundedContainer({
     super.key,
     this.child,
-    this.width ,
-    this.height ,
+    this.width,
+    this.height,
+    this.margin,
     this.padding,
     this.showBorder = false,
     this.radius = TSizes.cardRadiusLg,
-    this.backgroundColor = TColors.primary,
+    this.backgroundColor = TColors.white,
     this.borderColor = TColors.borderPrimary,
-    this.margin,
   });
-
 
   final double? width;
   final double? height;
@@ -35,12 +32,12 @@ class TRoundedContainer extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      padding:  padding,
+      padding: padding,
       margin: margin,
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(radius),
-        border: showBorder ? Border.all(color: borderColor): null,
+        border: showBorder ? Border.all(color: borderColor) : null,
       ),
       child: child,
     );

@@ -1,6 +1,6 @@
 import 'package:TShop/common/widgets/appbar/appbar.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/search_container.dart';
-import 'package:TShop/common/widgets/product_card/card_menu_icon.dart';
+import 'package:TShop/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
@@ -19,9 +19,7 @@ class StoreScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         actions: [
-          TCartCounterIcon(
-            onPressed: () {}
-          ),
+          TCartCounterIcon(onPressed: () {}),
         ],
       ),
       body: NestedScrollView(

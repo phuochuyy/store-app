@@ -5,12 +5,12 @@ import 'package:iconsax/iconsax.dart';
 class TCartCounterIcon extends StatelessWidget {
   const TCartCounterIcon({
     super.key,
-    required this.iconColor,
-    this.onPressed,
+    this.iconColor,
+    required this.onPressed,
   });
 
-  final Color iconColor;
-  final VoidCallback? onPressed;
+  final Color? iconColor;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,12 @@ class TCartCounterIcon extends StatelessWidget {
                 color: TColors.black,
                 borderRadius: BorderRadius.circular(100),
               ),
-              child: const Center(
-                child: Text('2', style: TextStyle(color: TColors.white)),
+              child: Center(
+                child: Text('2',
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .apply(color: TColors.white, fontSizeFactor: 0.8)),
               )),
         )
       ],

@@ -2,19 +2,22 @@ import 'package:TShop/common/styles/shadows.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:TShop/common/widgets/icons/t_circular_icon.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
+import 'package:TShop/common/widgets/texts/product_price_text.dart';
 import 'package:TShop/common/widgets/texts/product_title_text.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 
 class TProductCardVertical extends StatelessWidget {
   const TProductCardVertical({super.key});
+
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
+
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -27,14 +30,14 @@ class TProductCardVertical extends StatelessWidget {
         ),
         child: Column(
           children: [
-            //Thumbnail, Wishlist button, Discount Tag
+            /// Thumbnail, Wishlist button, Discount Tag
             TRoundedContainer(
               height: 180,
               padding: const EdgeInsets.all(TSizes.sm),
               backgroundColor: dark ? TColors.dark : TColors.light,
               child: Stack(
                 children: [
-                  //-- Thumbnail Image
+                  /// -- Thumbnail Image
                   const TRoundedImage(
                       imageUrl: TImages.product1, applyImageRadius: true),
                   //-- Sale Tag
@@ -54,12 +57,13 @@ class TProductCardVertical extends StatelessWidget {
                       ),
                     ),
                   ),
-                  //--Favourite Icon Button
+
+                  /// -- Favourite Icon Button
                   const Positioned(
                       right: 0,
                       top: 0,
                       child: TCircularIcon(
-                        icon: Icons.favorite,
+                        icon: Iconsax.heart5,
                         color: Colors.red,
                       )),
                 ],
@@ -67,7 +71,8 @@ class TProductCardVertical extends StatelessWidget {
             ),
 
             const SizedBox(height: TSizes.spaceBtwItems / 2),
-            //Details
+
+            /// -- Details
             Padding(
               padding: const EdgeInsets.only(left: TSizes.sm),
               child: Column(
@@ -80,35 +85,31 @@ class TProductCardVertical extends StatelessWidget {
                       children: [
                         Text(
                           'Brand name',
+                          style: Theme.of(context).textTheme.labelMedium,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
-                          style: Theme.of(context).textTheme.labelMedium,
+                          // textAlign: TextAlign.left,
                         ),
                         const SizedBox(width: TSizes.xs),
                         const Icon(
-                          Icons.verified,
+                          Iconsax.verify5,
                           color: TColors.primary,
                           size: TSizes.iconXs,
                         ),
                       ],
                     ),
 
-                    const Spacer(),
+                    // const Spacer(),
+
                     /// Price Row
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // Price
-                        // Text('\$100',
-                        //     overflow: TextOverflow.ellipsis,
-                        //     maxLines: 1,
-                        //     style: Theme.of(context).textTheme.headlineMedium!),
                         const Padding(
-                          padding: EdgeInsets.only(left: TSizes.sm),
-                          child: TProductPriceText(price: '35.0'),
-                        );
-                        /// Add to Cart Button
+                            padding: EdgeInsets.only(left: TSizes.sm),
+                            child: TProductPriceText(price: '35.0')),
                         Container(
                           decoration: const BoxDecoration(
                             color: TColors.dark,
@@ -121,7 +122,9 @@ class TProductCardVertical extends StatelessWidget {
                           child: const SizedBox(
                               width: TSizes.iconLg * 1.2,
                               height: TSizes.iconLg * 1.2,
-                              child: Icon(Icons.add, color: TColors.white)),
+                              child: Center(
+                                  child:
+                                      Icon(Iconsax.add, color: TColors.white))),
                         )
                       ],
                     )

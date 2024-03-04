@@ -1,4 +1,3 @@
-
 import 'package:TShop/common/widgets/image_text_widgets/vertical_image_text.dart';
 import 'package:flutter/material.dart';
 
@@ -15,14 +14,14 @@ class THomeCategories extends StatelessWidget {
         shrinkWrap: true,
         itemCount: 6,
         scrollDirection: Axis.horizontal,
-        itemBuilder: (_, index){
+        itemBuilder: (_, index) {
           return TVerticalImageText(
-            image: 'https://salt.tikicdn.com/cache/750x750/ts/product/f7/c5/fd/6abf8e825361fed5de0f9a6f1252af35.jpg.webp',
-            title: 'Laptop', 
-            onTap:(){});
+              image:
+                  'https://salt.tikicdn.com/cache/750x750/ts/product/f7/c5/fd/6abf8e825361fed5de0f9a6f1252af35.jpg.webp',
+              title: 'Laptop',
+              onTap: () {});
         },
       ),
     );
   }
 }
-

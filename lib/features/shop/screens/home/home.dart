@@ -2,16 +2,12 @@ import 'package:TShop/common/widgets/custom_shapes/containers/primary_header_con
 import 'package:TShop/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
-import 'package:TShop/common/widgets/texts/product_title_text.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:TShop/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-
 import 'widgets/promo_slider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,29 +15,34 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return const Scaffold();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TPrimaryHeaderContainer(
+            /// Header
+            const TPrimaryHeaderContainer(
                 child: Column(
               children: [
-                // App bar
+                /// App bar
                 THomeAppBar(),
-                // Search bar
+
+                /// Search bar
                 TSearchContainer(text: "Nhập sản phẩm..."),
                 SizedBox(height: TSizes.spaceBtwSections),
-                // Categories
+
+                /// Categories
                 Padding(
                     padding: EdgeInsets.only(left: TSizes.defaultSpace),
                     child: Column(
                       children: [
-                        // Heading_cat
+                        // Heading
                         TSectionHeading(
-                            title: 'Danh mục sản phẩm',
-                            showActionButton: false),
+                          title: 'Danh mục sản phẩm',
+                          showActionButton: false,
+                          textColor: Colors.white,
+                        ),
                         SizedBox(height: TSizes.spaceBtwItems),
+
                         // List_Categories
                         THomeCategories()
                       ],
@@ -54,14 +55,15 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
-                  ///--- Promo Slider
+                  /// --- Promo Slider
                   const TPromoSlider(banners: [
                     TImages.banner1,
                     TImages.banner2,
                     TImages.banner3
                   ]),
                   const SizedBox(height: TSizes.spaceBtwSections),
-                  //Popular Products
+
+                  /// --- Popular Products
                   TGridLayout(
                       itemCount: 2,
                       itemBuilder: (_, index) => const TProductCardVertical()),

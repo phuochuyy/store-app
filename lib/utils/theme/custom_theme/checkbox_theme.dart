@@ -21,7 +21,7 @@ class TCheckboxTheme {
     }),
   );
 
-static CheckboxThemeData dartCheckboxTheme = CheckboxThemeData(
+  static CheckboxThemeData dartCheckboxTheme = CheckboxThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
     checkColor: MaterialStateProperty.resolveWith((states) {
       if (states.contains(MaterialState.selected)) {
@@ -38,5 +38,4 @@ static CheckboxThemeData dartCheckboxTheme = CheckboxThemeData(
       }
     }),
   );
-
 }

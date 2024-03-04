@@ -34,7 +34,7 @@ class TTextFormFieldTheme {
     ),
   );
 
-    static InputDecorationTheme darkInputDecorationTheme = InputDecorationTheme(
+  static InputDecorationTheme darkInputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 2,
     prefixIconColor: Colors.grey,
     suffixIconColor: Colors.grey,
@@ -65,4 +65,3 @@ class TTextFormFieldTheme {
     ),
   );
 }
- 

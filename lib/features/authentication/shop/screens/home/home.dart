@@ -18,60 +18,59 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     // return const Scaffold();
-    return   Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             TPrimaryHeaderContainer(
-              child: Column(
-                children: [
-                  // App bar
-                   THomeAppBar(),
-                  // Search bar
-                   TSearchContainer(text: "Nhập sản phẩm..."),
-                   SizedBox(height: TSizes.spaceBtwSections),
-                  // Categories
-                  Padding(
+                child: Column(
+              children: [
+                // App bar
+                THomeAppBar(),
+                // Search bar
+                TSearchContainer(text: "Nhập sản phẩm..."),
+                SizedBox(height: TSizes.spaceBtwSections),
+                // Categories
+                Padding(
                     padding: EdgeInsets.only(left: TSizes.defaultSpace),
                     child: Column(
                       children: [
                         // Heading_cat
-                         TSectionHeading(title: 'Danh mục sản phẩm', showActionButton: false),
+                        TSectionHeading(
+                            title: 'Danh mục sản phẩm',
+                            showActionButton: false),
                         SizedBox(height: TSizes.spaceBtwItems),
                         // List_Categories
                         THomeCategories()
                       ],
-                    )
-                  )
-                ],
-              )
-              ),
+                    ))
+              ],
+            )),
+
+            /// Body
             Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
-                  const TPromoSlider(banners: [TImages.banner1, TImages.banner2, TImages.banner3]),
+                  ///--- Promo Slider
+                  const TPromoSlider(banners: [
+                    TImages.banner1,
+                    TImages.banner2,
+                    TImages.banner3
+                  ]),
                   const SizedBox(height: TSizes.spaceBtwSections),
                   //Popular Products
-                  TGridLayout(itemCount: 2, itemBuilder: (_, index) => const TProductCardVertical()),
-
+                  TGridLayout(
+                      itemCount: 2,
+                      itemBuilder: (_, index) => const TProductCardVertical()),
                 ],
               ),
             ),
           ],
-
         ),
       ),
-      
     );
   }
 }
-
-
-
-
-
-
-

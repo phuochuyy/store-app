@@ -12,7 +12,7 @@ class THomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.only(bottom: 35.0),
-      child:  TAppBar(
+      child: TAppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,12 +37,9 @@ class THomeAppBar extends StatelessWidget {
               ),
             )
           ],
-       ),
-        actions: [
-          TCartCounterIcon(onPressed: null, iconColor: TColors.white)   
-        ],
+        ),
+        actions: [TCartCounterIcon(onPressed: null, iconColor: TColors.white)],
       ),
     );
   }
 }
-

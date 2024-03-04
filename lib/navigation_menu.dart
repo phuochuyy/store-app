@@ -1,4 +1,8 @@
+import 'package:TShop/features/personalization/screens/settings.dart';
 import 'package:TShop/features/shop/screens/home/home.dart';
+import 'package:TShop/features/shop/screens/store/store.dart';
+import 'package:TShop/utils/constants/colors.dart';
+import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -9,6 +13,7 @@ class NavigationMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
+    final darkMode = THelperFunctions.isDarkMode(context);
 
     return Scaffold(
       bottomNavigationBar: Obx(
@@ -18,6 +23,8 @@ class NavigationMenu extends StatelessWidget {
           selectedIndex: controller.selectedIndex.value,
           onDestinationSelected: (index) =>
               controller.selectedIndex.value = index,
+          backgroundColor: darkMode ? TColors.dark : TColors.white,
+          indicatorColor: darkMode ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
           destinations: const [
             NavigationDestination(
               icon: Icon(Iconsax.home),
@@ -46,5 +53,12 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
-  final screens = [ const HomeScreen(), Container(color: Colors.pink,), Container(color: Colors.black12,), Container(color: Colors.red,)];
+  final screens = [
+    const HomeScreen(),
+    const StoreScreen(),
+    Container(
+      color: Colors.black12,
+    ),
+    const SettingScreen()
+  ];
 }

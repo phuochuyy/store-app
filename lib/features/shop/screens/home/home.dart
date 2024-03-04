@@ -3,8 +3,8 @@ import 'package:TShop/common/widgets/custom_shapes/containers/search_container.d
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
-import 'package:TShop/features/authentication/shop/screens/home/widgets/home_appbar.dart';
-import 'package:TShop/features/authentication/shop/screens/home/widgets/home_categories.dart';
+import 'package:TShop/features/shop/screens/home/widgets/home_appbar.dart';
+import 'package:TShop/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';

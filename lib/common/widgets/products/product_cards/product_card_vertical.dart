@@ -2,6 +2,7 @@ import 'package:TShop/common/styles/shadows.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:TShop/common/widgets/icons/t_circular_icon.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
+import 'package:TShop/common/widgets/texts/product_price_text.dart';
 import 'package:TShop/common/widgets/texts/product_title_text.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
@@ -53,7 +54,8 @@ class TProductCardVertical extends StatelessWidget {
                       (
                         right: 0,
                         top: 0,
-                        child: TCircularIcon(icon: Icons.favorite, color: Colors.red,)),
+                        child: TCircularIcon(icon: Icons.favorite, color: Colors.red,)
+                  ),
                 ],
               ),
             ),
@@ -79,12 +81,7 @@ class TProductCardVertical extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // Price
-                        Text(
-                            '\$100',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: Theme.of(context).textTheme.headlineMedium!
-                        ),
+                        const TProductPriceText(price: '100',),
                         Container(
                           decoration: const BoxDecoration(
                             color: TColors.dark,

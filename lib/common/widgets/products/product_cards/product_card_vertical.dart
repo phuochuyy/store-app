@@ -92,14 +92,23 @@ class TProductCardVertical extends StatelessWidget {
                         ),
                       ],
                     ),
+
+                    const Spacer(),
+                    /// Price Row
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // Price
-                        Text('\$100',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: Theme.of(context).textTheme.headlineMedium!),
+                        // Text('\$100',
+                        //     overflow: TextOverflow.ellipsis,
+                        //     maxLines: 1,
+                        //     style: Theme.of(context).textTheme.headlineMedium!),
+                        const Padding(
+                          padding: EdgeInsets.only(left: TSizes.sm),
+                          child: TProductPriceText(price: '35.0'),
+                        );
+                        /// Add to Cart Button
                         Container(
                           decoration: const BoxDecoration(
                             color: TColors.dark,

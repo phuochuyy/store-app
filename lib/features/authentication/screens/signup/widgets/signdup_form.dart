@@ -2,6 +2,7 @@
 
 import 'package:TShop/common/widgets/login_signup/form_devider.dart';
 import 'package:TShop/common/widgets/login_signup/social_button.dart';
+import 'package:TShop/features/authentication/screens/signup/verify_email.dart';
 import 'package:TShop/features/authentication/screens/signup/widgets/term_condition_checkbox.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/constants/text_string.dart';
@@ -104,7 +105,7 @@ class TSignupForm extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () => Get.to(() => const VerifyEmailScreen()),
             child: const Text(TTexts.createAccount),
           ),
         ),

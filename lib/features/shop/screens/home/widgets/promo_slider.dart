@@ -1,6 +1,6 @@
 import 'package:TShop/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
-import 'package:TShop/features/authentication/shop/controllers/home_controller.dart';
+import 'package:TShop/features/shop/controllers/home_controller.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';

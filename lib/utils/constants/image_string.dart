@@ -15,6 +15,11 @@ class TImages {
   static const String onBoardingImage1 = "assets/images/on_boarding_images/sammy-line-searching.gif";
   static const String onBoardingImage2 = "assets/images/on_boarding_images/sammy-line-shopping.gif";
 
+  //Login image
+  static const String deliveriedEmailIllustration = "assets/images/on_boarding_images/sammy-line-man-receives-a-mail.png";
+  static const String staticSuccessIllustration = "assets/images/on_boarding_images/sammy-line-man-and-woman-high-fiving-each-other.png";
+
+
   // Banners
   static const String banner1 = "assets/images/banners/banner1.png";
   static const String banner2 = "assets/images/banners/banner2.png";

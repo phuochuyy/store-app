@@ -2,16 +2,12 @@ import 'package:TShop/common/widgets/custom_shapes/containers/primary_header_con
 import 'package:TShop/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
-import 'package:TShop/common/widgets/texts/product_title_text.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/features/authentication/shop/screens/home/widgets/home_appbar.dart';
 import 'package:TShop/features/authentication/shop/screens/home/widgets/home_categories.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-
 import 'widgets/promo_slider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,7 +20,7 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TPrimaryHeaderContainer(
+            const TPrimaryHeaderContainer(
               child: Column(
                 children: [
                   // App bar

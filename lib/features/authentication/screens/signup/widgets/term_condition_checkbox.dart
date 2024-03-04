@@ -1,5 +1,3 @@
-
-
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/text_string.dart';
 import 'package:flutter/material.dart';
@@ -31,33 +29,23 @@ class TermConditionCheckBox extends StatelessWidget {
               style: Theme.of(context).textTheme.bodySmall),
           TextSpan(
               text: '${TTexts.privacyPolicy} ',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .apply(
+              style: Theme.of(context).textTheme.bodyMedium!.apply(
                     color: dark ? TColors.white : TColors.primary,
                     decoration: TextDecoration.underline,
-                    decorationColor:
-                        dark ? TColors.white : TColors.primary,
+                    decorationColor: dark ? TColors.white : TColors.primary,
                   )),
           TextSpan(
               text: '${TTexts.and} ',
               style: Theme.of(context).textTheme.bodySmall),
           TextSpan(
               text: '${TTexts.termsOfUse}',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .apply(
+              style: Theme.of(context).textTheme.bodyMedium!.apply(
                     color: dark ? TColors.white : TColors.primary,
                     decoration: TextDecoration.underline,
-                    decorationColor:
-                        dark ? TColors.white : TColors.primary,
+                    decorationColor: dark ? TColors.white : TColors.primary,
                   )),
         ]))
       ],
     );
   }
 }
- 
- 

@@ -1,16 +1,12 @@
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/cupertino.dart';
 
-
-
 class TGridLayout extends StatelessWidget {
-  const TGridLayout({
-    super.key,
-    required this.itemCount,
-    this.mainAxisExtent = 288,
-    required this.itemBuilder
-  });
-
+  const TGridLayout(
+      {super.key,
+      required this.itemCount,
+      this.mainAxisExtent = 288,
+      required this.itemBuilder});
 
   final int itemCount;
   final double? mainAxisExtent;
@@ -19,7 +15,7 @@ class TGridLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: 4,
+      itemCount: itemCount,
       shrinkWrap: true,
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),

@@ -6,7 +6,7 @@ import "circular_container.dart";
 
 class TPrimaryHeaderContainer extends StatelessWidget {
   const TPrimaryHeaderContainer({
-    super.key, 
+    super.key,
     required this.child,
   });
 
@@ -19,15 +19,21 @@ class TPrimaryHeaderContainer extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 0),
         height: 400,
         child: Stack(
-            children: [
-              Positioned(top: -150, right: -250, child:TCircularContainer(backgroundColor: TColors.textWhite.withOpacity(0.1))),
-              Positioned(top: 100, right: -300, child:TCircularContainer(backgroundColor: TColors.textWhite.withOpacity(0.1))),
-              child,
-            ],
-          ),
-
+          children: [
+            Positioned(
+                top: -150,
+                right: -250,
+                child: TCircularContainer(
+                    backgroundColor: TColors.textWhite.withOpacity(0.1))),
+            Positioned(
+                top: 100,
+                right: -300,
+                child: TCircularContainer(
+                    backgroundColor: TColors.textWhite.withOpacity(0.1))),
+            child,
+          ],
+        ),
       ),
     );
   }
 }
-

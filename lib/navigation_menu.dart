@@ -1,5 +1,6 @@
 import 'package:TShop/features/personalization/screens/settings.dart';
 import 'package:TShop/features/shop/screens/home/home.dart';
+import 'package:TShop/features/shop/screens/store/store.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -54,9 +55,7 @@ class NavigationController extends GetxController {
 
   final screens = [
     const HomeScreen(),
-    Container(
-      color: Colors.pink,
-    ),
+    const StoreScreen(),
     Container(
       color: Colors.black12,
     ),

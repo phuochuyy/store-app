@@ -1,5 +1,6 @@
 
 
+import 'package:TShop/common/widgets/images/t_circular_image.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class TUserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: TCicularImage(
+      leading: const TCircularImage(
         image: TImages.user,
         width: 50,
         height: 50,

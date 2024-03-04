@@ -1,4 +1,4 @@
-import 'package:TShop/features/authentication/screens.onboarding/onboarding.dart';
+import 'package:TShop/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:TShop/features/authentication/shop/screens/home/home.dart';
 
 import 'package:TShop/utils/theme/theme.dart';
@@ -14,8 +14,8 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
-      // home: const OnBoardingScreen(),
-      home: const HomeScreen(),
+      home: const OnBoardingScreen(),
+      // home: const HomeScreen(),
     );
   }
 }

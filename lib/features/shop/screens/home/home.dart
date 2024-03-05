@@ -64,7 +64,8 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// -- Heading
-                  TSectionHeading(title: 'Popular Products', onPressed: () {}),
+                  TSectionHeading(
+                      title: 'Sản phẩm thịnh hành', onPressed: () {}),
                   const SizedBox(height: TSizes.spaceBtwItems),
 
                   /// --- Popular Products

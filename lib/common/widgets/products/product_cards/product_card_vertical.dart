@@ -4,6 +4,7 @@ import 'package:TShop/common/widgets/icons/t_circular_icon.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
 import 'package:TShop/common/widgets/texts/product_price_text.dart';
 import 'package:TShop/common/widgets/texts/product_title_text.dart';
+import 'package:TShop/common/widgets/texts/t_brand_title_with_verified_icon.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
@@ -79,27 +80,9 @@ class TProductCardVertical extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const TProductTitleText(
-                        title: 'Ten san pham', smallSize: true),
+                        title: 'Acer Nitro 5', smallSize: true),
                     const SizedBox(height: TSizes.spaceBtwItems / 2),
-                    Row(
-                      children: [
-                        Text(
-                          'Brand name',
-                          style: Theme.of(context).textTheme.labelMedium,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          // textAlign: TextAlign.left,
-                        ),
-                        const SizedBox(width: TSizes.xs),
-                        const Icon(
-                          Iconsax.verify5,
-                          color: TColors.primary,
-                          size: TSizes.iconXs,
-                        ),
-                      ],
-                    ),
-
-                    // const Spacer(),
+                    const TBrandTitleWithVerifiedIcon(title: 'Acer'),
 
                     /// Price Row
 
@@ -110,6 +93,8 @@ class TProductCardVertical extends StatelessWidget {
                         const Padding(
                             padding: EdgeInsets.only(left: TSizes.sm),
                             child: TProductPriceText(price: '35.0')),
+
+                        // Add to Cart Button
                         Container(
                           decoration: const BoxDecoration(
                             color: TColors.dark,
@@ -130,6 +115,7 @@ class TProductCardVertical extends StatelessWidget {
                     )
                   ]),
             ),
+            const Spacer(),
           ],
         ),
       ),

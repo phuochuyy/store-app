@@ -25,9 +25,13 @@ class HomeScreen extends StatelessWidget {
               children: [
                 /// App bar
                 THomeAppBar(),
+                // SizedBox(height: TSizes.spaceBtwSections),
 
                 /// Search bar
-                TSearchContainer(text: "Nhập sản phẩm..."),
+                TSearchContainer(
+                  text: "Nhập sản phẩm...",
+                  showBorder: false,
+                ),
                 SizedBox(height: TSizes.spaceBtwSections),
 
                 /// Categories

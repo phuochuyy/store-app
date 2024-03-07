@@ -90,7 +90,7 @@ class TOrderListItems extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Shipiing Date', style: Theme.of(context).textTheme.labelMedium,
+                            Text('Shipping Date', style: Theme.of(context).textTheme.labelMedium,
                             ),
                             Text('10 March 2024', style: Theme.of(context).textTheme.titleMedium),
                           ],

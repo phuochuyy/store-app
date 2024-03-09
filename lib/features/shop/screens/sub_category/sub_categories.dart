@@ -1,5 +1,4 @@
 import 'package:TShop/common/widgets/appbar/appbar.dart';
-import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_horizontal.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';

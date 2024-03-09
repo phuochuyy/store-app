@@ -1,5 +1,6 @@
 import 'package:TShop/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:TShop/features/shop/screens/all_products/all_products.dart';
+import 'package:TShop/features/shop/screens/brands/all_brands.dart';
 import 'package:TShop/features/shop/screens/sub_category/sub_categories.dart';
 
 import 'package:TShop/utils/theme/theme.dart';
@@ -18,7 +19,8 @@ class App extends StatelessWidget {
       // home: const OnBoardingScreen(),
       // home: const HomeScreen(),
       // home: const SubCategoriesScreen(),
-      home: const AllProducts(),
+      // home: const AllProducts(),
+      home: const AllBrandsScreen()
 
     );
   }

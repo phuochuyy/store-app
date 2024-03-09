@@ -1,4 +1,3 @@
-import 'package:TShop/common/styles/shadows.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
 import 'package:TShop/common/widgets/texts/product_price_text.dart';

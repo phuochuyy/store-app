@@ -35,6 +35,13 @@ class TImages {
   static const String product4 = "assets/images/products/iphone_14_pro.png";
   // Payment Methods 
   static const String successpayment = "assets/icons/payment_methods/payment_success.png";
+
+
+
+  //Brands icon
+  static const String deviceIcon = "assets/icons/brands/deviceIcon.png";
+  static const String iphoneIcon = "assets/icons/brands/iphoneIcon.png";
+
 }
 
 

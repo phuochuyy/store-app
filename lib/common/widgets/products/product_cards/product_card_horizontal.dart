@@ -2,6 +2,7 @@ import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
 import 'package:TShop/common/widgets/texts/product_price_text.dart';
 import 'package:TShop/common/widgets/texts/product_title_text.dart';
+import 'package:TShop/common/widgets/texts/t_brand_title_with_verified_icon.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
@@ -61,7 +62,7 @@ class TProductCardHorizontal extends StatelessWidget {
                     SizedBox(
                       height: TSizes.spaceBtwItems / 2,
                     ),
-                    // TBrandTitleWithVerifiedIcon(title: "Nike"),
+                    TBrandTitleWithVerifiedIcon(title: "Nike"),
                   ],
                 ),
 

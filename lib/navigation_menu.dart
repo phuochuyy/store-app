@@ -1,6 +1,7 @@
 import 'package:TShop/features/personalization/screens/settings.dart';
 import 'package:TShop/features/shop/screens/home/home.dart';
 import 'package:TShop/features/shop/screens/store/store.dart';
+import 'package:TShop/features/shop/screens/wishlist/wishlist.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,9 @@ class NavigationMenu extends StatelessWidget {
           onDestinationSelected: (index) =>
               controller.selectedIndex.value = index,
           backgroundColor: darkMode ? TColors.dark : TColors.white,
-          indicatorColor: darkMode ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
+          indicatorColor: darkMode
+              ? TColors.white.withOpacity(0.1)
+              : TColors.black.withOpacity(0.1),
           destinations: const [
             NavigationDestination(
               icon: Icon(Iconsax.home),
@@ -56,9 +59,7 @@ class NavigationController extends GetxController {
   final screens = [
     const HomeScreen(),
     const StoreScreen(),
-    Container(
-      color: Colors.black12,
-    ),
+    const FavouriteScreen(),
     const SettingScreen()
   ];
 }

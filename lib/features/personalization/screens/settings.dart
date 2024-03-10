@@ -3,9 +3,12 @@ import 'package:TShop/common/widgets/custom_shapes/containers/primary_header_con
 import 'package:TShop/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:TShop/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/shop/screens/order/order.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -70,7 +73,7 @@ class SettingScreen extends StatelessWidget {
                   icon: Iconsax.bag_tick,
                   title: "My Orders",
                   subTitle: "In-process and Completed Orders",
-                  onTap: () {},
+                  onTap: () => Get.to(() => const OrderScreen())
                 ),
                 TSettingsMenuTile(
                   icon: Iconsax.bank,

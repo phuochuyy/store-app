@@ -33,6 +33,14 @@ class TImages {
   static const String product2 = "assets/images/products/acer_laptop_2.png";
   static const String product3 = "assets/images/products/Adidas_Football.png";
   static const String product4 = "assets/images/products/iphone_14_pro.png";
+  // Payment Methods 
+  static const String successpayment = "assets/icons/payment_methods/payment_success.png";
+
+
+
+  //Brands icon
+  static const String deviceIcon = "assets/icons/brands/deviceIcon.png";
+  static const String iphoneIcon = "assets/icons/brands/iphoneIcon.png";
 
 }
 

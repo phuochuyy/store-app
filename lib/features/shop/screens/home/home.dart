@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
 
                   /// --- Popular Products
                   TGridLayout(
-                      itemCount: 2,
+                      itemCount: 5,
                       itemBuilder: (_, index) => const TProductCardVertical()),
                 ],
               ),

@@ -60,6 +60,6 @@ class NavigationController extends GetxController {
     const HomeScreen(),
     const StoreScreen(),
     const FavouriteScreen(),
-    const SettingScreen()
+    const SettingsScreen()
   ];
 }

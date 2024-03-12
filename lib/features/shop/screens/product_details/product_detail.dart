@@ -9,7 +9,7 @@ import 'widgets/bottom_add_to_cart_widget.dart';
 import 'widgets/product_attributes.dart';
 import 'widgets/product_detail_image_slider.dart';
 import 'widgets/product_meta_data.dart';
-import 'widgets/rating_share _widget.dart';
+import 'widgets/rating_share_widget.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({
@@ -24,7 +24,7 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             ///1.product image slider
-            TProductImageSlider(),
+            const TProductImageSlider(),
 
             ///2.product details
             Padding(

@@ -75,7 +75,7 @@ class TProductCardVertical extends StatelessWidget {
 
           /// -- Details
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: TSizes.sm), // <-----.
+            padding: EdgeInsets.symmetric(horizontal: TSizes.sm),
             child: SizedBox(
               width: double.infinity,
               child: Column(

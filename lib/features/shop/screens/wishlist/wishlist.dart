@@ -3,6 +3,7 @@ import 'package:TShop/common/widgets/icons/t_circular_icon.dart';
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:TShop/features/shop/screens/home/home.dart';
+import 'package:TShop/navigation_menu.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ class FavouriteScreen extends StatelessWidget {
           TCircularIcon(
             icon: Iconsax.add,
             onPressed: () => Get.to(const HomeScreen()),
+            // onPressed: () => Get.to(()=>const NavigationMenu()),
           )
         ],
       ),

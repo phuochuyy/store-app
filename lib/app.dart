@@ -17,7 +17,8 @@ class App extends StatelessWidget {
       // home: const HomeScreen(),
       // home: const SubCategoriesScreen(),
       // home: const AllProducts(),
-      // home: const AllBrandsScreen()
+      // home: const AllBrandsScreen(),
+      // home: const StoreScreen(),
 
     );
   }

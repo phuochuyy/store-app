@@ -19,7 +19,7 @@ class TermConditionCheckBox extends StatelessWidget {
         SizedBox(
             width: 24,
             height: 24,
-            child: Checkbox(value: true, onChanged: (value) {})),
+            child: Checkbox(value: true, onChanged: (value) {}, activeColor: TColors.primary,)),
         const SizedBox(
           width: TSizes.spaceBtwItems,
         ),

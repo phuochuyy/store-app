@@ -2,7 +2,6 @@ import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.
 import 'package:TShop/common/widgets/images/t_circular_image.dart';
 import 'package:TShop/common/widgets/texts/product_price_text.dart';
 import 'package:TShop/common/widgets/texts/product_title_text.dart';
-import 'package:TShop/common/widgets/texts/t_brand_title_text.dart';
 import 'package:TShop/common/widgets/texts/t_brand_title_with_verified_icon.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/enums.dart';

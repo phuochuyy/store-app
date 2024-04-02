@@ -12,8 +12,8 @@ class TImages {
 
   // onboarding image
   static const String onBoardingImage3 = "assets/images/on_boarding_images/sammy-line-delivering.gif";
-  static const String onBoardingImage1 = "assets/images/on_boarding_images/sammy-line-searching.gif";
-  static const String onBoardingImage2 = "assets/images/on_boarding_images/sammy-line-shopping.gif";
+  static const String onBoardingImage1 = "assets/images/on_boarding_images/sammy-line-searching.png";
+  static const String onBoardingImage2 = "assets/images/on_boarding_images/sammy-line-shopping.png";
 
   //Login image
   static const String deliveriedEmailIllustration = "assets/images/on_boarding_images/sammy-line-man-receives-a-mail.png";

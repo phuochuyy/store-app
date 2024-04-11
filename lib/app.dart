@@ -1,3 +1,4 @@
+import 'package:TShop/bindings/general_bindings.dart';
 import 'package:TShop/features/authentication/screens/onboarding/onboarding.dart';
 
 import 'package:TShop/utils/theme/theme.dart';
@@ -13,6 +14,7 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
+      initialBinding: GeneralBindings(),
       home: const OnBoardingScreen(),
       // home: const HomeScreen(),
       // home: const SubCategoriesScreen(),

@@ -1,4 +1,9 @@
 class TValidator {
+  static String? validateEmptyText(String? fieldName, String? value) {
+    if (value == null || value.isEmpty) return '$fieldName is required';
+    return null;
+  }
+
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Email is required.';
@@ -6,7 +11,8 @@ class TValidator {
 
     // Regular expression for email validation
     final emailRegExp = RegExp(
-        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?");
+      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+    );
 
     if (!emailRegExp.hasMatch(value)) {
       return 'Invalid email address.';
@@ -26,18 +32,18 @@ class TValidator {
     }
 
     // Check for uppercase letters
-    if (!value.contains(RegExp('[A-Z]'))) {
+    if (!value.contains(RegExp(r'[A-Z]'))) {
       return "Password must contain at least one uppercase letter.";
     }
 
     // Check for numbers
-    if (!value.contains(RegExp('[0-9]'))) {
+    if (!value.contains(RegExp(r'[0-9]'))) {
       return "Password must contain at least one number.";
     }
 
     // Check for special characters
-    if (!value.contains(RegExp(r'[!@#$%^&*()\-+=<>,.?{|}~"]'))) {
-      return "Password must contain at least one special character.";
+    if (!value.contains(RegExp(r'[!@#$%^&*()\-+=<>,.?{|}~]'))) {
+      return "Mật khẩu phải chứa ít nhất một ký tự đặc biệt.";
     }
 
     return null;

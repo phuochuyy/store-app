@@ -1,5 +1,7 @@
-
-
+import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
+import 'package:TShop/data/repositories/user/user_repository.dart';
+import 'package:TShop/features/authentication/screens/signup/verify_email.dart';
+import 'package:TShop/features/personalization/models/user_model.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/helpers/network_manager.dart';
 import 'package:TShop/utils/popups/full_screen_loader.dart';
@@ -8,11 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignupController extends GetxController {
-  static SignupController get instance =>  Get.find();
+  static SignupController get instance => Get.find();
+
   ///Variable
+  final privacyPolicy = true.obs;
+  final hidePassword = true.obs;
   final email = TextEditingController();
   final lastName = TextEditingController();
-  final userName = TextEditingController();
+  final username = TextEditingController();
   final password = TextEditingController();
   final firstName = TextEditingController();
   final phoneNumber = TextEditingController();
@@ -21,33 +26,58 @@ class SignupController extends GetxController {
   Future<void> signup() async {
     try {
       //Start loading
-      TFullScreenLoader.openLoadingDialog("Đang lây lấy dữ liệu...", TImages.docerAnimation);
+      TFullScreenLoader.openLoadingDialog(
+          "Đang lấy dữ liệu...", TImages.docerAnimation);
 
-      // Check internet connection
+      // Check internet connection (chưa bắt đc)
       final isConnected = await NetworkManager.instance.isConnected();
-      if(!isConnected) {
-        TFullScreenLoader.stopLoading();
-        return;
-      }
+      if (!isConnected) return;
 
       //Form Validation
-      if(!signupFormKey.currentState!.validate()){
-        TFullScreenLoader.stopLoading();
+      if (!signupFormKey.currentState!.validate()) return;
+
+      //Privacy policy check
+      if (!privacyPolicy.value) {
+        TLoaders.warningSnackBar(
+            title: 'Chấp nhận điều khoản sử dụng',
+            message: 'Hãy chấp nhận điều khoản của chúng tôi!');
         return;
       }
-      //Privacy policy check
-      //Register user in the firebase authentication and sace user data in firebase
+
+      //Register user in the firebase authentication and save user data in firebase
+      final userCredential = await AuthenticationRepository.instance
+          .registerWithEmailAndPassword(
+              email.text.trim(), password.text.trim());
+
       //Save authenticated user datat in firebase  firestore
-      //show success screen
-      //move to verify email screen
-    } catch (e) {
-      //show some generic error to the user
-       TLoaders.errorSnackBar(title: "Hình như có vấn đề! ", message: e.toString());
-    } finally {
+      final newUser = UserModel(
+          id: userCredential.user!.uid,
+          firstName: firstName.text.trim(),
+          lastName: lastName.text.trim(),
+          username: username.text.trim(),
+          email: email.text.trim(),
+          phoneNumber: phoneNumber.text.trim(),
+          profilePicture: '');
+
+      final userRepository = Get.put(UserRepository());
+      userRepository.saveUserRecord(newUser);
+
       //Remove loader
       TFullScreenLoader.stopLoading();
+
+      //show success screen
+      TLoaders.successSnackBar(
+          title: 'Chúc mừng',
+          message:
+              'Đã tạo tài khoản thành công! Hãy xác thực Email để tiếp tục');
+      //move to verify email screen
+      Get.to(const VerifyEmailScreen());
+    } catch (e) {
+      //Remove loader
+      TFullScreenLoader.stopLoading();
+      //show some generic error to the user
+      TLoaders.errorSnackBar(
+          title: "Hệ thống đã xảy ra gì đó! ", message: e.toString());
     }
   }
- 
-  
 }

@@ -37,7 +37,8 @@ dependencies:
 
   #firebase
   firebase_core: ^2.27.0
-
+  firebase_auth: ^4.17.8
+  cloud_firestore: ^4.15.8
 
   
  
@@ -62,6 +63,7 @@ flutter:
     - assets/images/user/
     - assets/logos/
     - assets/images/banners/
+    - assets/images/loading/
     - assets/images/products/
     - assets/icons/payment_methods/
     - assets/icons/brands/

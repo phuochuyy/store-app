@@ -26,9 +26,9 @@ class SignupController extends GetxController {
   Future<void> signup() async {
     try {
       //Start loading
-      TFullScreenLoader.openLoadingDialog(
-          "Đang lấy dữ liệu...", TImages.docerAnimation);
-
+      // TFullScreenLoader.openLoadingDialog(
+      //     "Đang lấy dữ liệu...", TImages.docerAnimation);
+      // !! Dang loi FullLoader 
       // Check internet connection (chưa bắt đc)
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) return;

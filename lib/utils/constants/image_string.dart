@@ -63,6 +63,9 @@ class TImages {
   static const String ikeaLogo = "assets/icons/brands/ikea_logo.png";
   static const String acerlogo = "assets/icons/brands/acer_logo.png";
 
+
+  static const String docerAnimation = "assets/images/loading/loading.gif";
+
 }
 
 

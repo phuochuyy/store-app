@@ -68,6 +68,7 @@ flutter:
     - assets/icons/payment_methods/
     - assets/icons/brands/
     - assets/icons/categories/
+    - assets/images/verify_email/
 
 
   fonts:

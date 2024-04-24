@@ -66,6 +66,8 @@ class TImages {
 
   static const String docerAnimation = "assets/images/loading/loading.gif";
 
+  static const String successfullyRegisterAnimation = "assets/images/verify_email/succesfulluRegisterAnimation.gif";
+
 }
 
 

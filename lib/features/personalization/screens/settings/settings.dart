@@ -141,7 +141,13 @@ class SettingsScreen extends StatelessWidget {
                 SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                        onPressed: () {}, child: const Text("Logout"))),
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(
+                            color: Color.fromARGB(255, 148, 12, 2)), // Thiết lập màu của đường viền
+                      ),
+                      child: const Text("Logout"),
+                    )),
                 const SizedBox(height: TSizes.spaceBtwSections * 2.5),
               ],
             ),

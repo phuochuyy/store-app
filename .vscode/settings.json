@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "D:/Code space/HocFlutter/DoAnDiDong_DXH/linux"
+    "cmake.sourceDirectory": "D:/Code space/HocFlutter/DoAnDiDong_DXH/linux",
+    "CodeGPT.apiKey": "CodeGPT Plus Beta"
 }

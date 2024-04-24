@@ -1,6 +1,6 @@
 
 
-import 'package:TShop/features/authentication/controllers.onboarding/onboarding_controller.dart';
+import 'package:TShop/features/authentication/controllers/onboarding/onboarding_controller.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/device/device_utility.dart';

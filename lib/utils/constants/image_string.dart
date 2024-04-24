@@ -12,8 +12,8 @@ class TImages {
 
   // onboarding image
   static const String onBoardingImage3 = "assets/images/on_boarding_images/sammy-line-delivering.gif";
-  static const String onBoardingImage1 = "assets/images/on_boarding_images/sammy-line-searching.gif";
-  static const String onBoardingImage2 = "assets/images/on_boarding_images/sammy-line-shopping.gif";
+  static const String onBoardingImage1 = "assets/images/on_boarding_images/sammy-line-searching.png";
+  static const String onBoardingImage2 = "assets/images/on_boarding_images/sammy-line-shopping.png";
 
   //Login image
   static const String deliveriedEmailIllustration = "assets/images/on_boarding_images/sammy-line-man-receives-a-mail.png";
@@ -62,6 +62,11 @@ class TImages {
   static const String hermanMillerLogo = "assets/icons/brands/herman-miller-logo.png";
   static const String ikeaLogo = "assets/icons/brands/ikea_logo.png";
   static const String acerlogo = "assets/icons/brands/acer_logo.png";
+
+
+  static const String docerAnimation = "assets/images/loading/loading.gif";
+
+  static const String successfullyRegisterAnimation = "assets/images/verify_email/succesfulluRegisterAnimation.gif";
 
 }
 

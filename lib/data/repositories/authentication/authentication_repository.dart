@@ -1,5 +1,7 @@
 import 'package:TShop/features/authentication/screens/login/login.dart';
 import 'package:TShop/features/authentication/screens/onboarding/onboarding.dart';
+import 'package:TShop/features/authentication/screens/signup/verify_email.dart';
+import 'package:TShop/navigation_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -24,13 +26,24 @@ class AuthenticationRepository extends GetxController {
 
 //Fucntion show relevant sreen
   screenRedirect() async {
-    // Local storage
-    deviceStorage.writeIfNull("IsFirstTime", true);
+    final user = _auth.currentUser;
+    if (user != null) {
+      if (user.emailVerified) {
+        Get.offAll(() => const NavigationMenu());
+      } else {
+        Get.offAll(() => VerifyEmailScreen(
+              email: _auth.currentUser?.email,
+            ));
+      }
+    } else {
+      // Local storage
+      deviceStorage.writeIfNull("IsFirstTime", true);
 
-    // Check if it''s the first time lauching khong
-    deviceStorage.read("IsFisrtTime") != true
-        ? Get.offAll(() => const LoginScreen())
-        : Get.offAll(const OnBoardingScreen());
+      // Check if it''s the first time lauching khong
+      deviceStorage.read("IsFisrtTime") != true
+          ? Get.offAll(() => const LoginScreen())
+          : Get.offAll(const OnBoardingScreen());
+    }
   }
 
 //---Email Password sign in
@@ -47,20 +60,31 @@ class AuthenticationRepository extends GetxController {
     } on FirebaseException catch (e) {
       // throw TFirebaseException(e.code).message;
       throw e.toString();
-
     } on FormatException catch (e) {
       // throw TFormatException();
       throw e.toString();
-
     } on PlatformException catch (e) {
       // throw TPlatformException(e.code).message;
       throw e.toString();
-
     } catch (e) {
       throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }
   }
-// Mail Vertify
+
+// Mail Verification
+  Future<void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      throw e.toString();
+    } on FirebaseException catch (e) {
+      throw e.toString();
+    } on FormatException catch (e) {
+      throw e.toString();
+    } on PlatformException catch (e) {
+      throw e.toString();
+    }
+  }
 // Reautheticate user
 // Forget password
 
@@ -70,6 +94,20 @@ class AuthenticationRepository extends GetxController {
 
 //--Logout
 // Valid for any authentication (logout user)
+  Future<void> logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(() => const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw e.toString();
+    } on FirebaseException catch (e) {
+      throw e.toString();
+    } on FormatException catch (e) {
+      throw e.toString();
+    } on PlatformException catch (e) {
+      throw e.toString();
+    }
+  }
 // Remove user auth and firestore account (delete user)
 }
 

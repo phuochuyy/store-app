@@ -2,7 +2,6 @@ import 'package:TShop/data/repositories/authentication/authentication_repository
 import 'package:TShop/data/repositories/user/user_repository.dart';
 import 'package:TShop/features/authentication/screens/signup/verify_email.dart';
 import 'package:TShop/features/personalization/models/user_model.dart';
-import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/helpers/network_manager.dart';
 import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
@@ -63,7 +62,7 @@ class SignupController extends GetxController {
       userRepository.saveUserRecord(newUser);
 
       //Remove loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
 
       //show success screen
       TLoaders.successSnackBar(
@@ -71,7 +70,7 @@ class SignupController extends GetxController {
           message:
               'Đã tạo tài khoản thành công! Hãy xác thực Email để tiếp tục');
       //move to verify email screen
-      Get.to(const VerifyEmailScreen());
+      Get.to(VerifyEmailScreen(email: email.text.trim()));
     } catch (e) {
       //Remove loader
       TFullScreenLoader.stopLoading();

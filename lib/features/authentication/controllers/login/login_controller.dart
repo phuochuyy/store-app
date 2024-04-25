@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class LoginControILer extends GetxController {
+class LoginController extends GetxController {
   /// Variables
   final rememberMe = false.obs;
   final hidePassword = true.obs;
@@ -20,13 +20,15 @@ class LoginControILer extends GetxController {
 
   @override
   void onInit() {
-    email.text = localStorage.read('REMEMBER_ME_EMAIL');
-    password.text = localStorage.read('REMEMBER_ME_PASSWORD');
+    email.text = localStorage.read('REMEMBER_ME_EMAIL') ?? '';
+    password.text = localStorage.read('REMEMBER_ME_PASSWORD') ?? '';
     super.onInit();
   }
 
   // Email and Password SignIn
-  Future<void> emailAndPasswordSignIn() async {}
+  Future<void> emailAndPasswordSignIn() async {
+    // try {}
+  }
 
   // Google SignIn Authentication
   Future<void> googleSignIn() async {

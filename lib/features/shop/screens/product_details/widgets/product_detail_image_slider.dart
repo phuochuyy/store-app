@@ -1,4 +1,3 @@
-
 import 'package:TShop/common/widgets/appbar/appbar.dart';
 import 'package:TShop/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:TShop/common/widgets/icons/t_circular_icon.dart';
@@ -17,7 +16,7 @@ class TProductImageSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark  = THelperFunctions.isDarkMode(context);
+    final dark = THelperFunctions.isDarkMode(context);
     return TCurvedEdgeWidget(
       child: Container(
           color: dark ? TColors.darkGrey : TColors.light,
@@ -27,16 +26,14 @@ class TProductImageSlider extends StatelessWidget {
               const SizedBox(
                   height: 400,
                   child: Padding(
-                    padding:
-                    EdgeInsets.all(TSizes.productImageRadius * 2),
+                    padding: EdgeInsets.all(TSizes.productImageRadius * 2),
                     child: Center(
-                        child:
-                        Image(image: AssetImage(TImages.product1))),
+                        child: Image(image: AssetImage(TImages.product1))),
                   )),
 
               /// image slider
               Positioned(
-                right:0,
+                right: 0,
                 bottom: 30,
                 left: TSizes.defaultSpace,
                 child: SizedBox(
@@ -47,17 +44,18 @@ class TProductImageSlider extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       physics: const AlwaysScrollableScrollPhysics(),
                       separatorBuilder: (_, __) =>
-                      const SizedBox(width: TSizes.spaceBtwItems),
+                          const SizedBox(width: TSizes.spaceBtwItems),
                       itemBuilder: (_, index) => TRoundedImage(
-                        width: 80,
-                        backgroundColor:
-                        dark ? TColors.dark : TColors.light,
-                        border: Border.all(color: TColors.primary),
-                        padding: const EdgeInsets.all(TSizes.sm),
-                        imageUrl: TImages.product3,
-                      )),
+                            width: 80,
+                            backgroundColor:
+                                dark ? TColors.dark : TColors.light,
+                            border: Border.all(color: TColors.primary),
+                            padding: const EdgeInsets.all(TSizes.sm),
+                            imageUrl: TImages.product3,
+                          )),
                 ),
               ),
+
               ///app bar
               const TAppBar(
                 showBackArrow: true,

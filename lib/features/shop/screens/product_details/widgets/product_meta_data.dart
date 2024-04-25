@@ -67,14 +67,13 @@ class TProductMetaData extends StatelessWidget {
       const SizedBox(height: TSizes.spaceBtwItems / 1.5),
 
       /// Brand
-       Row(
+      Row(
         children: [
           TCircularImage(
-            image: TImages.sportIcon,
-            width: 32,
-            height: 32,
-            overlayColor: darkMode ? TColors.white : TColors.black
-          ),
+              image: TImages.sportIcon,
+              width: 32,
+              height: 32,
+              overlayColor: darkMode ? TColors.white : TColors.black),
           const SizedBox(width: TSizes.spaceBtwItems / 2),
           const TBrandTitleWithVerifiedIcon(
             title: 'Acer',

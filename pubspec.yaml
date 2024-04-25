@@ -1,12 +1,12 @@
 name: TShop
 description: "A new Flutter project."
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.6 <4.0.0' 
+  sdk: ">=3.2.6 <4.0.0"
 
 dependencies:
   flutter:
@@ -21,7 +21,6 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   connectivity_plus: ^6.0.2
   lottie: ^3.1.0
-
 
   #Icons
   iconsax: ^0.0.8
@@ -39,19 +38,16 @@ dependencies:
   firebase_core: ^2.27.0
   firebase_auth: ^4.17.8
   cloud_firestore: ^4.15.8
+  google_sign_in: ^6.2.1
 
-  
- 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
 
-
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -69,7 +65,6 @@ flutter:
     - assets/icons/brands/
     - assets/icons/categories/
     - assets/images/verify_email/
-
 
   fonts:
     - family: Poppins

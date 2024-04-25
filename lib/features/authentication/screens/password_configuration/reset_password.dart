@@ -1,13 +1,16 @@
+import 'package:TShop/features/authentication/controllers/forget_password/forget_password_controller.dart';
+import 'package:TShop/features/authentication/screens/login/login.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/constants/text_string.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ResetPassword extends StatelessWidget {
-  const ResetPassword({super.key});
-
+  const ResetPassword({super.key, required this.email});
+  final String email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +33,15 @@ class ResetPassword extends StatelessWidget {
               height: TSizes.spaceBtwSections,
             ),
 
-            ///Tittle and subtittle
+            ///Email, Tittle and subtittle
+            Text(
+              email,
+              style: Theme.of(context).textTheme.headlineMedium,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: TSizes.spaceBtwItems,
+            ),
             Text(
               TTexts.changeYourPasswordTitle,
               style: Theme.of(context).textTheme.headlineMedium,
@@ -53,7 +64,7 @@ class ResetPassword extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Get.offAll(() => const LoginScreen()),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       const Color.fromARGB(
@@ -74,7 +85,7 @@ class ResetPassword extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () => ForgetPasswordController.instance.resendPasswordResetEmail(email),
                 child: const Text(TTexts.resendEmail),
               ),
             ),

@@ -23,5 +23,6 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   ).then((FirebaseApp value) => Get.put(AuthenticationRepository()));
 
+  // Load all the Material Design / Themes / Localizations / Bindings
   runApp(const App());
 }

@@ -2,11 +2,17 @@ import 'package:TShop/features/authentication/screens/login/login.dart';
 import 'package:TShop/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:TShop/features/authentication/screens/signup/verify_email.dart';
 import 'package:TShop/navigation_menu.dart';
+import 'package:TShop/utils/exceptions/firebase_auth_exceptions.dart';
+import 'package:TShop/utils/exceptions/firebase_exceptions.dart';
+import 'package:TShop/utils/exceptions/format_exceptions.dart';
+import 'package:TShop/utils/exceptions/platform_exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
@@ -25,7 +31,7 @@ class AuthenticationRepository extends GetxController {
   }
 
 //Fucntion show relevant sreen
-  screenRedirect() async {
+  void screenRedirect() async {
     final user = _auth.currentUser;
     if (user != null) {
       if (user.emailVerified) {
@@ -55,17 +61,13 @@ class AuthenticationRepository extends GetxController {
       return await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      // throw TFirebaseAuthException(e.code).message;
-      throw e.toString();
+      throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
-      // throw TFirebaseException(e.code).message;
-      throw e.toString();
-    } on FormatException catch (e) {
-      // throw TFormatException();
-      throw e.toString();
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
     } on PlatformException catch (e) {
-      // throw TPlatformException(e.code).message;
-      throw e.toString();
+      throw TPlatformException(e.code).message;
     } catch (e) {
       throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }
@@ -76,36 +78,86 @@ class AuthenticationRepository extends GetxController {
     try {
       await _auth.currentUser?.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
-      throw e.toString();
+      throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
-      throw e.toString();
-    } on FormatException catch (e) {
-      throw e.toString();
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
     } on PlatformException catch (e) {
-      throw e.toString();
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }
   }
-// Reautheticate user
 // Forget password
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Đã xảy ra lỗi. Hãy thử lại sau";
+    }
+  }
+// Re autheticate user
+
 
 //--Social sign in
 // google
+  Future<UserCredential?> signInWithGoogle() async {
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+
+      // Obtain the auth details fromt the request
+      final GoogleSignInAuthentication? googleAuth =
+          await userAccount?.authentication;
+
+      // Create a new credential
+      final credentials = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+      // Once signed in, return the UserCredential
+      return await _auth.signInWithCredential(credentials);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      if (kDebugMode) print("Đã xảy ra lỗi. Hãy thử lại sau $e");
+      return null;
+    }
+  }
+
 // facebook
 
 //--Logout
 // Valid for any authentication (logout user)
   Future<void> logout() async {
     try {
+      await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
-      throw e.toString();
+      throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
-      throw e.toString();
-    } on FormatException catch (e) {
-      throw e.toString();
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
     } on PlatformException catch (e) {
-      throw e.toString();
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }
   }
 // Remove user auth and firestore account (delete user)

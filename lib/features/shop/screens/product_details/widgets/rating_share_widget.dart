@@ -29,13 +29,16 @@ class TRatingAndShare extends StatelessWidget {
                   text: '5.0 ',
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                const TextSpan(text:'(199)')
+                const TextSpan(text: '(199)')
               ]),
             ),
           ],
         ),
+
         /// -- Share Button
-        IconButton(onPressed: (){}, icon: const Icon(Icons.share, size:TSizes.iconMd )),
+        IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.share, size: TSizes.iconMd)),
       ],
     );
   }

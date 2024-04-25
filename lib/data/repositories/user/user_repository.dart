@@ -1,4 +1,7 @@
 import 'package:TShop/features/personalization/models/user_model.dart';
+import 'package:TShop/utils/exceptions/firebase_exceptions.dart';
+import 'package:TShop/utils/exceptions/format_exceptions.dart';
+import 'package:TShop/utils/exceptions/platform_exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -16,14 +19,11 @@ class UserRepository extends GetxController {
     } on FirebaseAuthException catch (e) {
       throw e.toString();
     } on FirebaseException catch (e) {
-      // throw TFirebaseException(e.code).message;
-      throw e.toString();
-    } on FormatException catch (e) {
-      // throw TFormatException();
-      throw e.toString();
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
     } on PlatformException catch (e) {
-      // throw TPlatformException(e.code).message;
-      throw e.toString();
+      throw TPlatformException(e.code).message;
     } catch (e) {
       throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }

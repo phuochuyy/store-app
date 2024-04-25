@@ -1,13 +1,15 @@
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/shop/screens/products_reviews/product_reviews.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
-import 'widget/bottom_add_to_cart_widget.dart';
-import 'widget/product_attributes.dart';
-import 'widget/product_detail_image_slider.dart';
-import 'widget/product_meta_data.dart';
-import 'widget/rating_share _widget.dart';
+import 'widgets/bottom_add_to_cart_widget.dart';
+import 'widgets/product_attributes.dart';
+import 'widgets/product_detail_image_slider.dart';
+import 'widgets/product_meta_data.dart';
+import 'widgets/rating_share_widget.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({
@@ -39,6 +41,7 @@ class ProductDetailScreen extends StatelessWidget {
                   /// - Price, Title, Stock, & Brand
                   const TProductMetaData(),
                   const SizedBox(height: TSizes.spaceBtwItems),
+
                   /// -- Attributes
                   const TProductAttributes(),
                   const SizedBox(height: TSizes.spaceBtwSections),
@@ -72,8 +75,17 @@ class ProductDetailScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TSectionHeading(
-                          title: 'Reviews(199)', onPressed: (){}, showActionButton: false,),
-                      IconButton(icon: const Icon(Iconsax.arrow_right_3,size: 18,), onPressed: (){}, )
+                        title: 'Reviews(199)',
+                        onPressed: () {},
+                        showActionButton: false,
+                      ),
+                      IconButton(
+                          icon: const Icon(
+                            Iconsax.arrow_right_3,
+                            size: 18,
+                          ),
+                          onPressed: () =>
+                              Get.to(() => const ProductReviewsScreen())),
                     ],
                   ),
 

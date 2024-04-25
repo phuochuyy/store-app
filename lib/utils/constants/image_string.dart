@@ -11,13 +11,13 @@ class TImages {
   static const String google = "assets/logos/google_icon.png";
 
   // onboarding image
-  static const String onBoardingImage3 = "assets/images/on_boarding_images/sammy-line-delivering.gif";
+  static const String onBoardingImage3 = "assets/images/on_boarding_images/sammy-line-delivering.jpg";
   static const String onBoardingImage1 = "assets/images/on_boarding_images/sammy-line-searching.png";
-  static const String onBoardingImage2 = "assets/images/on_boarding_images/sammy-line-shopping.png";
+  static const String onBoardingImage2 = "assets/images/on_boarding_images/sammy-line-shopping.jpg";
 
   //Login image
   static const String deliveriedEmailIllustration = "assets/images/on_boarding_images/sammy-line-man-receives-a-mail.png";
-  static const String staticSuccessIllustration = "assets/images/on_boarding_images/sammy-line-man-and-woman-high-fiving-each-other.png";
+  static const String staticSuccessIllustration = "assets/images/on_boarding_images/sammy-line-complete.jpg";
 
 
   // Banners

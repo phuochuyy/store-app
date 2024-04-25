@@ -89,8 +89,24 @@ class AuthenticationRepository extends GetxController {
       throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }
   }
-// Re autheticate user
 // Forget password
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Đã xảy ra lỗi. Hãy thử lại sau";
+    }
+  }
+// Re autheticate user
+
 
 //--Social sign in
 // google
@@ -129,16 +145,19 @@ class AuthenticationRepository extends GetxController {
 // Valid for any authentication (logout user)
   Future<void> logout() async {
     try {
+      await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
-      throw e.toString();
+      throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
-      throw e.toString();
-    } on FormatException catch (e) {
-      throw e.toString();
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
     } on PlatformException catch (e) {
-      throw e.toString();
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }
   }
 // Remove user auth and firestore account (delete user)

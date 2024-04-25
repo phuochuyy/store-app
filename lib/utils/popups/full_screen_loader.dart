@@ -20,8 +20,11 @@ class TFullScreenLoader {
               height: double.infinity,
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 250,
+                  const Expanded(
+                    child: SizedBox(
+                      height: 250,
+                      // Widget children here
+                    ),
                   ),
                   TAnimationLoaderWidget(
                     text: text,

@@ -18,7 +18,7 @@ class TPlatformException implements Exception {
       case 'uid-atready-exists':
         return 'ID người dùng được cung cấp đã được người dùng khác sử dụng.';
       case 'sign_in_failed':
-        return 'Đăng nhập không thành công. PI dễ dàng thử lại.';
+        return 'Đăng nhập không thành công. Hãy thử lại.';
       case 'network-request-failed':
         return 'Yêu cầu mạng không thành công. Xin vui lòng kiểm tra kết nối Internet của bạn.';
       case 'internal-error':

@@ -1,13 +1,11 @@
 import 'package:TShop/features/authentication/controllers/login/login_controller.dart';
 import 'package:TShop/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:TShop/features/authentication/screens/signup/signup.dart';
-import 'package:TShop/navigation_menu.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/constants/text_string.dart';
 import 'package:TShop/utils/validations/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:iconsax/iconsax.dart';
 
 class TLoginForm extends StatelessWidget {
@@ -90,7 +88,8 @@ class TLoginForm extends StatelessWidget {
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () => Get.to(() => controller.emailAndPasswordSignIn()),
+                  onPressed: () =>
+                      Get.to(() => controller.emailAndPasswordSignIn()),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                         const Color.fromARGB(
@@ -120,7 +119,6 @@ class TLoginForm extends StatelessWidget {
                 child: const Text(TTexts.createAccount),
               )),
 
-          
           // const SizedBox(
           //   height: TSizes.spaceBtwItems,
           // )

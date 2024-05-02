@@ -2,6 +2,7 @@ import 'package:TShop/common/widgets/appbar/appbar.dart';
 import 'package:TShop/common/widgets/images/t_circular_image.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/features/personalization/controllers/user_controller.dart';
+import 'package:TShop/features/personalization/screens/profile/widgets/change_name.dart';
 import 'package:TShop/features/personalization/screens/profile/widgets/profile_menu.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
@@ -59,8 +60,7 @@ class ProfileScreen extends StatelessWidget {
                   TProfileMenu(
                     title: 'Name',
                     value: controller.user.value.fullName,
-                    onPressed: () {},
-                    // onPressed: () => Get.to(() => const ChangeName()),
+                    onPressed: () => Get.to(() => const ChangeName()),
                   ),
                   TProfileMenu(
                     title: 'Username',
@@ -118,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
 
                   Center(
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: () => controller.deleteAccountWarningPopup(),
                           child: const Text('Close Account',
                               style: TextStyle(color: Colors.red))))
                 ],

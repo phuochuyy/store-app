@@ -5,8 +5,8 @@ import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TSocialButton extends StatelessWidget {
-  const TSocialButton({
+class TSocialButtons extends StatelessWidget {
+  const TSocialButtons({
     super.key,
   });
 

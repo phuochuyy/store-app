@@ -1,9 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:TShop/utils/formatters/formatters.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+/// Model class representing user data
 class UserModel {
+  // Keep those values final which you do not want to update
   final String id;
   String firstName;
   String lastName;
@@ -12,6 +12,7 @@ class UserModel {
   String phoneNumber;
   String profilePicture;
 
+  /// Constructor for UserModel.
   UserModel({
     required this.id,
     required this.firstName,
@@ -72,12 +73,12 @@ class UserModel {
       final data = document.data()!;
       return UserModel(
           id: document.id,
-          firstName: data['FirstName'],
-          lastName: data['LastName'],
-          username: data['Username'],
-          email: data['Email'],
-          phoneNumber: data['PhoneNumber'],
-          profilePicture: data['ProfilePicture']);
+          firstName: data['FirstName'] ?? '',
+          lastName: data['LastName'] ?? '',
+          username: data['Username'] ?? '',
+          email: data['Email'] ?? '',
+          phoneNumber: data['PhoneNumber'] ?? '',
+          profilePicture: data['ProfilePicture'] ?? '');
     } else {
       return UserModel.empty();
     }

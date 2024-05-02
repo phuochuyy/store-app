@@ -21,8 +21,11 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
-       appBar: TAppBar(showBackArrow: true, title: Text('Order Review', style: Theme.of(context).textTheme.headlineSmall)),
-       body: SingleChildScrollView(
+      appBar: TAppBar(
+          showBackArrow: true,
+          title: Text('Order Review',
+              style: Theme.of(context).textTheme.headlineSmall)),
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
@@ -31,7 +34,7 @@ class CheckoutScreen extends StatelessWidget {
               const TCartItems(showAddRemoveButtons: true),
               const SizedBox(height: TSizes.spaceBtwSections),
 
-              // Coupon TextFeild 
+              // Coupon TextFeild
               const TCouponCode(),
               const SizedBox(height: TSizes.spaceBtwSections),
 
@@ -39,7 +42,7 @@ class CheckoutScreen extends StatelessWidget {
               TRoundedContainer(
                 showBorder: true,
                 padding: const EdgeInsets.all(TSizes.md),
-                backgroundColor: dark ? TColors.black: TColors.white,
+                backgroundColor: dark ? TColors.black : TColors.white,
                 child: const Column(
                   children: [
                     // Pricing
@@ -54,36 +57,35 @@ class CheckoutScreen extends StatelessWidget {
                     // Address
                     TBillingAddressSection(),
                     SizedBox(height: TSizes.spaceBtwItems),
-
                   ],
                 ),
               ),
             ],
           ),
         ),
-       ),
-       bottomNavigationBar: Padding(
-         padding: const EdgeInsets.all(TSizes.defaultSpace),
-         child: ElevatedButton(
-          onPressed: () => Get.to(
-            () => SuccessScreen(
-                image: TImages.successpayment,
-                tittle: 'Payment Success!',
-                subtTittle: 'Your item will be shipped soon',
-                onPressed: () => Get.offAll(() => const NavigationMenu()),
-              ), 
-          ),
-          style: ButtonStyle(
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(TSizes.defaultSpace),
+        child: ElevatedButton(
+            onPressed: () => Get.to(
+                  () => SuccessScreen(
+                    image: TImages.successpayment,
+                    title: 'Payment Success!',
+                    subtTitle: 'Your item will be shipped soon',
+                    onPressed: () => Get.offAll(() => const NavigationMenu()),
+                  ),
+                ),
+            style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
                   const Color.fromARGB(255, 145, 14, 4)), // Thiết lập màu nền
               overlayColor: MaterialStateProperty.all<Color>(
                   Colors.red.shade200), // Thiết lập màu overlay khi nhấn
-              side: MaterialStateProperty.all<BorderSide>(
-                  const BorderSide(color: Color.fromARGB(255, 137, 13, 4))), // Thiết lập màu viền
+              side: MaterialStateProperty.all<BorderSide>(const BorderSide(
+                  color:
+                      Color.fromARGB(255, 137, 13, 4))), // Thiết lập màu viền
             ),
-          child: const Text('Checkout \$590')),
-       ),
+            child: const Text('Checkout \$590')),
+      ),
     );
   }
 }
-

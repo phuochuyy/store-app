@@ -1,8 +1,12 @@
 import 'package:TShop/common/widgets/appbar/appbar.dart';
 import 'package:TShop/common/widgets/products/cart/cart_menu_icon.dart';
+import 'package:TShop/features/personalization/controllers/user_controller.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/text_string.dart';
+import 'package:TShop/utils/custom_shimmer/TShimmerEffect.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class THomeAppBar extends StatelessWidget {
   const THomeAppBar({
@@ -11,6 +15,7 @@ class THomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(UserController());
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TAppBar(
@@ -22,29 +27,18 @@ class THomeAppBar extends StatelessWidget {
                     .textTheme
                     .labelMedium!
                     .apply(color: TColors.grey)),
-            Text(TTexts.homeAppBarSubTitle,
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall!
-                    .apply(color: TColors.white)),
-            // Text(
-            //   'Xin chào, Tuấn!',
-            //   // textAlign: TextAlign.left,
-            //   style: TextStyle(
-            //     fontSize: 12.0,
-            //     fontWeight: FontWeight.w400,
-            //     color: TColors.grey,
-            //   ),
-            // ),
-            // Text(
-            //   'Trải nghiệm TechnoShop nhé',
-            //   // textAlign: TextAlign.left,
-            //   style: TextStyle(
-            //     fontSize: 14.0,
-            //     fontWeight: FontWeight.w500,
-            //     color: TColors.white,
-            //   ),
-            // )
+            Obx(() {
+              if (controller.profileLoading.value) {
+                // Display a shimmer loader while user profile is being loaded
+                return const TShimmerEffect(width: 80, height: 15);
+              } else {
+                return Text(controller.user.value.fullName,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall!
+                        .apply(color: TColors.white));
+              }
+            }),
           ],
         ),
         actions: [TCartCounterIcon(onPressed: () {}, iconColor: TColors.white)],

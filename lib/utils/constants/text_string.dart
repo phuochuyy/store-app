@@ -15,7 +15,6 @@ class TTexts {
       "From Our Doorstep to Yours Swift, Secure, and Contactless Delivery!";
 
   // Home
-
   static const String homeAppBarTitle = "Chào bạn!";
   static const String homeAppBarSubTitle = "Đoàn Ngọc Tuấn";
 
@@ -49,18 +48,18 @@ class TTexts {
   static const String loginSubTittle =
       "Discover Limissless Choices and Unmatched Convenience";
   static const String signupTittle = "Let's create your account";
-  static const String forgetPasswordTittle = "Forgot password";
-  static const String forgetPasswordSubTittle =
+  static const String forgetPasswordTitle = "Forgot password";
+  static const String forgetPasswordSubTitle =
       "Don't worry sometimes people can't forget too, enter your email and we will send you a password reset link";
   static const String changeYourPasswordTitle = "Password reset email sent";
-  static const String changeYourPasswordSubTittle =
+  static const String changeYourPasswordSubTitle =
       "Your account security is our priority! We've sent you a secure link to safely change your password and keep your account protected";
   static const String confirmEmail = "Verify your email address!";
   static const String confirmEmailSubTittle =
       "Congratulations! Your account awaits: Verify your email to start shopping and experience a world of unrivaled deals and personalized offers.";
-  static const String yourAccountCreatedTittle =
+  static const String yourAccountCreatedTitle =
       "Your account successully created!";
-  static const String yourAccountCreatedSubTittle =
+  static const String yourAccountCreatedSubTitle =
       "Welcome to your ultimate shopping destination: Your account is created, unleash the joy of seamless online shopping!";
 
 //--Banners

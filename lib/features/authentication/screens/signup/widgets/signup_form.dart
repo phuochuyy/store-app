@@ -84,7 +84,7 @@ class TSignupForm extends StatelessWidget {
               height: TSizes.spaceBtwInputFields,
             ),
 
-            ///Phone number
+            /// Phone number
             TextFormField(
               controller: controller.phoneNumber,
               validator: (value) => TValidator.validatePhoneNumber(value),
@@ -96,17 +96,19 @@ class TSignupForm extends StatelessWidget {
               height: TSizes.spaceBtwInputFields,
             ),
 
-            ///Password
+            /// Password
             Obx(
               () => TextFormField(
-                controller: controller.password,
                 validator: (value) => TValidator.validatePassword(value),
+                controller: controller.password,
                 obscureText: controller.hidePassword.value,
                 decoration: InputDecoration(
-                    prefixIcon: const Icon(Iconsax.password_check),
                     labelText: TTexts.password,
+                    prefixIcon: const Icon(Iconsax.password_check),
                     suffixIcon: IconButton(
-                      icon:  Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye),
+                      icon: Icon(controller.hidePassword.value
+                          ? Iconsax.eye_slash
+                          : Iconsax.eye),
                       onPressed: () => controller.hidePassword.value =
                           !controller.hidePassword.value,
                     )),
@@ -145,13 +147,13 @@ class TSignupForm extends StatelessWidget {
             ),
 
             ///Divider
-            TFormDevider(dividerText: TTexts.orSignInwith.capitalize!),
+            TFormDivider(dividerText: TTexts.orSignInwith.capitalize!),
             const SizedBox(
               height: TSizes.spaceBtwSections,
             ),
 
             ///Social buttons
-            const TSocialButton()
+            const TSocialButtons()
           ],
         ));
   }

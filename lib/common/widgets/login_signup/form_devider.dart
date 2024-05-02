@@ -1,10 +1,8 @@
-
-
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-class TFormDevider extends StatelessWidget {
-  const TFormDevider({
+class TFormDivider extends StatelessWidget {
+  const TFormDivider({
     super.key,
     required this.dividerText,
   });
@@ -19,20 +17,19 @@ class TFormDevider extends StatelessWidget {
       children: [
         const Flexible(
           child: Divider(
-            color:TColors.darkGrey,
+            color: TColors.darkGrey,
             thickness: 0.5,
             indent: 60,
             endIndent: 5,
           ),
         ),
         Text(
-          dividerText
-          ,
+          dividerText,
           style: Theme.of(context).textTheme.labelMedium,
         ),
         const Flexible(
           child: Divider(
-            color:TColors.darkGrey,
+            color: TColors.darkGrey,
             thickness: 0.5,
             indent: 5,
             endIndent: 60,

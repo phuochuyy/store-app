@@ -21,7 +21,6 @@ class App extends StatelessWidget {
       // home: const AllProducts(),
       // home: const AllBrandsScreen(),
       // home: const StoreScreen(),
-
     );
   }
 }

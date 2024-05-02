@@ -9,10 +9,10 @@ class SuccessScreen extends StatelessWidget {
   const SuccessScreen(
       {super.key,
       required this.image,
-      required this.tittle,
-      required this.subtTittle,
+      required this.title,
+      required this.subtTitle,
       required this.onPressed});
-  final String image, tittle, subtTittle;
+  final String image, title, subtTitle;
   final VoidCallback onPressed;
 
   @override
@@ -34,7 +34,7 @@ class SuccessScreen extends StatelessWidget {
 
               ///Tittle and subtittle
               Text(
-                tittle,
+                title,
                 style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
@@ -43,7 +43,7 @@ class SuccessScreen extends StatelessWidget {
               ),
 
               Text(
-                subtTittle,
+                subtTitle,
                 style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),

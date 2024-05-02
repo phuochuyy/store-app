@@ -27,13 +27,16 @@ class SignupController extends GetxController {
       //Start loading
       // TFullScreenLoader.openLoadingDialog(
       //     "Đang lấy dữ liệu...", TImages.docerAnimation);
-      // !! Dang loi FullLoader 
+      // !! Dang loi FullLoader
       // Check internet connection (chưa bắt đc)
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) return;
 
       //Form Validation
-      if (!signupFormKey.currentState!.validate()) return;
+      if (!signupFormKey.currentState!.validate()) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
 
       //Privacy policy check
       if (!privacyPolicy.value) {
@@ -59,10 +62,10 @@ class SignupController extends GetxController {
           profilePicture: '');
 
       final userRepository = Get.put(UserRepository());
-      userRepository.saveUserRecord(newUser);
+      await userRepository.saveUserRecord(newUser);
 
       //Remove loader
-      // TFullScreenLoader.stopLoading();
+      TFullScreenLoader.stopLoading();
 
       //show success screen
       TLoaders.successSnackBar(

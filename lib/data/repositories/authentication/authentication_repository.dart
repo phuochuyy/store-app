@@ -21,22 +21,29 @@ class AuthenticationRepository extends GetxController {
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
 
+  /// Get Authenticated User Data
+  User? get authUser => _auth.currentUser;
+
   /// Called from main.dart on app launch
   @override
   void onReady() {
-    //remove native splash screen
+    // Remove native splash screen
     FlutterNativeSplash.remove();
-    //redirect to appropriate screen
+    // Redirect to appropriate screen
     screenRedirect();
   }
 
-//Fucntion show relevant sreen
+// Fucntion to determine the relevant screen and redirect accordingly
   void screenRedirect() async {
     final user = _auth.currentUser;
+
     if (user != null) {
+      // If the user is logged in
       if (user.emailVerified) {
+        // If the user's email is verified, navigate to the main Navigation Menu
         Get.offAll(() => const NavigationMenu());
       } else {
+        // If the user's email is not verified, navigate to the VerifyEmailScreen
         Get.offAll(() => VerifyEmailScreen(
               email: _auth.currentUser?.email,
             ));
@@ -45,16 +52,36 @@ class AuthenticationRepository extends GetxController {
       // Local storage
       deviceStorage.writeIfNull("IsFirstTime", true);
 
-      // Check if it''s the first time lauching khong
+      // Check if it''s the first time lauching the app
       deviceStorage.read("IsFisrtTime") != true
-          ? Get.offAll(() => const LoginScreen())
-          : Get.offAll(const OnBoardingScreen());
+          ? Get.offAll(() =>
+              const LoginScreen()) // Redirect to Login Screen if not first time
+          : Get.offAll(
+              const OnBoardingScreen()); // Redirect to OnBoarding Screen if it's the first time
     }
   }
 
-//---Email Password sign in
-// Sign in
-// Register
+// -- Email & Password sign-in
+// [EmailAuthentication] - LOGIN
+  Future<UserCredential> loginWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Đã xảy ra lỗi. Hãy thử lại sau";
+    }
+  }
+
+// [EmailAuthentication] - REGISTER
   Future<UserCredential> registerWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -73,7 +100,9 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-// Mail Verification
+// [ReAuthenticate] - ReAuthenticate User
+
+// [EmailVerification] - MAIL VERIFICATION
   Future<void> sendEmailVerification() async {
     try {
       await _auth.currentUser?.sendEmailVerification();
@@ -89,7 +118,8 @@ class AuthenticationRepository extends GetxController {
       throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }
   }
-// Forget password
+
+// [EmailAuthentication] - FORGET PASSWORD
   Future<void> sendPasswordResetEmail(String email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
@@ -105,11 +135,9 @@ class AuthenticationRepository extends GetxController {
       throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }
   }
-// Re autheticate user
 
-
-//--Social sign in
-// google
+// -- Federated identity & social sign-in
+// [GoogleAuthentication] - GOOGLE
   Future<UserCredential?> signInWithGoogle() async {
     try {
       // Trigger the authentication flow
@@ -139,10 +167,9 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-// facebook
+// [FacebookAuthentication] - FACEBOOK
 
-//--Logout
-// Valid for any authentication (logout user)
+// [LogoutUser] - Valid for any authentication
   Future<void> logout() async {
     try {
       await GoogleSignIn().signOut();
@@ -160,7 +187,7 @@ class AuthenticationRepository extends GetxController {
       throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }
   }
-// Remove user auth and firestore account (delete user)
+// [DeleteUser] - Remove user Auth and Firestore Account
 }
 
 // class TPlatformException {

@@ -14,6 +14,7 @@ class ForgetPasswordController extends GetxController {
   final email = TextEditingController();
   GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
 
+  // Send Reset Password Email
   sendPasswordResetEmail() async {
     try {
       // Start Loading
@@ -30,6 +31,7 @@ class ForgetPasswordController extends GetxController {
       // Form Validation
       if (!forgetPasswordFormKey.currentState!.validate()) {
         TFullScreenLoader.stopLoading();
+        return;
       }
 
       // Send Email to Reset Password
@@ -45,7 +47,7 @@ class ForgetPasswordController extends GetxController {
           message: 'Email Link Sent to Reset your Password.'.tr);
 
       // Redirect
-      Get.to(() => ResetPassword(email: email.text.trim()));
+      Get.to(() => ResetPasswordScreen(email: email.text.trim()));
     } catch (e) {
       // Remove Loader
       TFullScreenLoader.stopLoading();
@@ -53,6 +55,7 @@ class ForgetPasswordController extends GetxController {
     }
   }
 
+  // Resend Reset Password Email
   resendPasswordResetEmail(String email) async {
     try {
       // Start Loading

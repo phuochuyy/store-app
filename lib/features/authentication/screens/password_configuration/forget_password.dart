@@ -1,43 +1,42 @@
+import 'package:TShop/common/widgets/appbar/appbar.dart';
 import 'package:TShop/features/authentication/controllers/forget_password/forget_password_controller.dart';
-import 'package:TShop/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/constants/text_string.dart';
 import 'package:TShop/utils/validations/validation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-class FogetPassword extends StatelessWidget {
-  const FogetPassword({super.key});
+class ForgetPassword extends StatelessWidget {
+  const ForgetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ForgetPasswordController());
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const TAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(TSizes.defaultSpace),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ///heading
+            /// Headings
             Text(
-              TTexts.forgetPassword,
+              TTexts.forgetPasswordTitle,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(
               height: TSizes.spaceBtwItems,
             ),
             Text(
-              TTexts.forgetPasswordSubTittle,
+              TTexts.forgetPasswordSubTitle,
               style: Theme.of(context).textTheme.labelMedium,
             ),
             const SizedBox(
-              height: TSizes.spaceBtwItems,
+              height: TSizes.spaceBtwItems * 2,
             ),
 
-            ///Text field
+            /// Text field
             Form(
               key: controller.forgetPasswordFormKey,
               child: TextFormField(
@@ -49,7 +48,7 @@ class FogetPassword extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: TSizes.spaceBtwItems,
+              height: TSizes.spaceBtwSections,
             ),
 
             ///Submit button

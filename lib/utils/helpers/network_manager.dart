@@ -10,6 +10,7 @@ class NetworkManager extends GetxController {
 
   final Connectivity _connectivity = Connectivity();
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubcription;
+
   final Rx<ConnectivityResult> _connectionStatus = ConnectivityResult.none.obs;
 
 //initialize the network manager  and set up the stream to check the connection status
@@ -25,7 +26,8 @@ class NetworkManager extends GetxController {
     _connectionStatus.value =
         results.isNotEmpty ? results.first : ConnectivityResult.none;
     if (_connectionStatus.value == ConnectivityResult.none) {
-      TLoaders.warningSnackBar(title: "No internet connection");
+      // TLoaders.warningSnackBar(title: "No internet connection");
+      TLoaders.customToast(message: "No internet connection");
     }
   }
 

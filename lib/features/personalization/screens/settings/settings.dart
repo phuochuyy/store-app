@@ -3,6 +3,7 @@ import 'package:TShop/common/widgets/custom_shapes/containers/primary_header_con
 import 'package:TShop/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:TShop/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/features/personalization/screens/address/address.dart';
 import 'package:TShop/features/personalization/screens/profile/profile.dart';
 import 'package:TShop/features/shop/screens/order/order.dart';
@@ -141,10 +142,12 @@ class SettingsScreen extends StatelessWidget {
                 SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          AuthenticationRepository.instance.logout(),
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(
-                            color: Color.fromARGB(255, 148, 12, 2)), // Thiết lập màu của đường viền
+                            color: Color.fromARGB(255, 148, 12,
+                                2)), // Thiết lập màu của đường viền
                       ),
                       child: const Text("Logout"),
                     )),

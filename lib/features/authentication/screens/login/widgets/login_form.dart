@@ -1,13 +1,11 @@
 import 'package:TShop/features/authentication/controllers/login/login_controller.dart';
 import 'package:TShop/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:TShop/features/authentication/screens/signup/signup.dart';
-import 'package:TShop/navigation_menu.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/constants/text_string.dart';
 import 'package:TShop/utils/validations/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:iconsax/iconsax.dart';
 
 class TLoginForm extends StatelessWidget {
@@ -38,19 +36,21 @@ class TLoginForm extends StatelessWidget {
           ),
 
           ///Password
-          TextFormField(
-            controller: controller.password,
-            validator: (value) =>
-                TValidator.validateEmptyText('Password', value),
-            decoration: InputDecoration(
-                prefixIcon: const Icon(Iconsax.password_check),
-                labelText: TTexts.password,
-                suffixIcon: IconButton(
-                    onPressed: () => controller.hidePassword.value =
-                        !controller.hidePassword.value,
-                    icon: Icon(controller.hidePassword.value
-                        ? Iconsax.eye_slash
-                        : Iconsax.eye))),
+          Obx(
+            () => TextFormField(
+              validator: (value) => TValidator.validatePassword(value),
+              controller: controller.password,
+              obscureText: controller.hidePassword.value,
+              decoration: InputDecoration(
+                  labelText: TTexts.password,
+                  prefixIcon: const Icon(Iconsax.password_check),
+                  suffixIcon: IconButton(
+                      onPressed: () => controller.hidePassword.value =
+                          !controller.hidePassword.value,
+                      icon: Icon(controller.hidePassword.value
+                          ? Iconsax.eye_slash
+                          : Iconsax.eye))),
+            ),
           ),
           const SizedBox(
             height: TSizes.spaceBtwInputFields / 2,
@@ -69,8 +69,6 @@ class TLoginForm extends StatelessWidget {
                       value: controller.rememberMe.value,
                       onChanged: (value) => controller.rememberMe.value =
                           !controller.rememberMe.value,
-                      // activeColor: const Color.fromARGB(255, 163, 14, 4),
-                      // checkColor: Colors.white,
                     ),
                   ),
                   const Text(TTexts.rememberMe)
@@ -90,7 +88,7 @@ class TLoginForm extends StatelessWidget {
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () => Get.to(() => controller.emailAndPasswordSignIn()),
+                  onPressed: () => controller.emailAndPasswordSignIn(),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                         const Color.fromARGB(
@@ -120,7 +118,6 @@ class TLoginForm extends StatelessWidget {
                 child: const Text(TTexts.createAccount),
               )),
 
-          
           // const SizedBox(
           //   height: TSizes.spaceBtwItems,
           // )

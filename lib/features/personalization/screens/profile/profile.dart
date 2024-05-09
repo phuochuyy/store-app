@@ -6,7 +6,7 @@ import 'package:TShop/features/personalization/screens/profile/widgets/change_na
 import 'package:TShop/features/personalization/screens/profile/widgets/profile_menu.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
-import 'package:TShop/utils/custom_shimmer/TShimmerEffect.dart';
+import 'package:TShop/utils/custom_shimmer/t_shimmer_effect.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';

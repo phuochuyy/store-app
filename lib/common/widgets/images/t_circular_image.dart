@@ -1,6 +1,6 @@
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
-import 'package:TShop/utils/custom_shimmer/TShimmerEffect.dart';
+import 'package:TShop/utils/custom_shimmer/t_shimmer_effect.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

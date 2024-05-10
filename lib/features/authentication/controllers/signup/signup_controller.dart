@@ -6,7 +6,9 @@ import 'package:TShop/utils/helpers/network_manager.dart';
 import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 
 class SignupController extends GetxController {
   static SignupController get instance => Get.find();
@@ -26,8 +28,9 @@ class SignupController extends GetxController {
     try {
       //Start loading
       // TFullScreenLoader.openLoadingDialog(
-      //     "Đang lấy dữ liệu...", TImages.docerAnimation);
+      //     "Đang lấy dữ liệu...", TImages.successfullyRegisterAnimation);
       // !! Dang loi FullLoader
+
       // Check internet connection (chưa bắt đc)
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) return;

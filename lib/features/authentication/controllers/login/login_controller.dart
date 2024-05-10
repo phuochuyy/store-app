@@ -1,6 +1,5 @@
 import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/features/personalization/controllers/user_controller.dart';
-import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/helpers/network_manager.dart';
 import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
@@ -82,6 +81,41 @@ class LoginController extends GetxController {
       // Google Authentication
       final userCredentials =
           await AuthenticationRepository.instance.signInWithGoogle();
+
+      // Save User Record
+      await userController.saveUserRecord(userCredentials);
+
+      // Remove Loader
+      // TFullScreenLoader.stopLoading();
+
+      // Redirect
+      AuthenticationRepository.instance.screenRedirect();
+    } catch (e) {
+      // Remove Loader
+      // TFullScreenLoader.stopLoading();
+
+      TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+    }
+  }
+
+
+
+  Future<void> facebookSignIn() async {
+    try {
+      // Start Loading
+      // TFullScreenLoader.openLoadingDialog(
+      //     'Logging you in...', TImages.docerAnimation);
+
+      // Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Facebook Authentication
+      final userCredentials =
+          await AuthenticationRepository.instance.signInWithFacebook();
 
       // Save User Record
       await userController.saveUserRecord(userCredentials);

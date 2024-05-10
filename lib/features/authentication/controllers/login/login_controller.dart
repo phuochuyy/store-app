@@ -29,8 +29,8 @@ class LoginController extends GetxController {
   Future<void> emailAndPasswordSignIn() async {
     try {
       // Start Loading
-      TFullScreenLoader.openLoadingDialog(
-          'Logging you in...', TImages.docerAnimation);
+      // TFullScreenLoader.openLoadingDialog(
+      //     'Logging you in...', TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -55,12 +55,12 @@ class LoginController extends GetxController {
           .loginWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       // Remove Loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
 
       // Redirect
       AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
     }
   }
@@ -69,8 +69,8 @@ class LoginController extends GetxController {
   Future<void> googleSignIn() async {
     try {
       // Start Loading
-      TFullScreenLoader.openLoadingDialog(
-          'Logging you in...', TImages.docerAnimation);
+      // TFullScreenLoader.openLoadingDialog(
+      //     'Logging you in...', TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -87,13 +87,13 @@ class LoginController extends GetxController {
       await userController.saveUserRecord(userCredentials);
 
       // Remove Loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
 
       // Redirect
       AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
       // Remove Loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
     }
   }

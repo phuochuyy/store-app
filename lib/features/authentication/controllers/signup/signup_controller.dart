@@ -28,8 +28,8 @@ class SignupController extends GetxController {
   Future<void> signup() async {
     try {
       //Start loading
-      TFullScreenLoader.openLoadingDialog(
-          "Đang lấy dữ liệu...", TImages.successfullyRegisterAnimation);
+      // TFullScreenLoader.openLoadingDialog(
+      //     "Đang lấy dữ liệu...", TImages.successfullyRegisterAnimation);
       // !! Dang loi FullLoader
 
       // Check internet connection (chưa bắt đc)
@@ -69,7 +69,7 @@ class SignupController extends GetxController {
       await userRepository.saveUserRecord(newUser);
 
       //Remove loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
 
       //show success screen
       TLoaders.successSnackBar(
@@ -80,7 +80,7 @@ class SignupController extends GetxController {
       Get.to(VerifyEmailScreen(email: email.text.trim()));
     } catch (e) {
       //Remove loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
       //show some generic error to the user
       TLoaders.errorSnackBar(
           title: "Hệ thống đã xảy ra gì đó! ", message: e.toString());

@@ -34,8 +34,8 @@ class UpdateNameController extends GetxController {
   Future<void> updateUserName() async {
     try {
       // Start Loading
-      TFullScreenLoader.openLoadingDialog(
-          "We are updating your information...", TImages.docerAnimation);
+      // TFullScreenLoader.openLoadingDialog(
+      //     "We are updating your information...", TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -62,7 +62,7 @@ class UpdateNameController extends GetxController {
       userController.user.value.lastName = lastName.text.trim();
 
       // Remove Loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
 
       // Show Sucess Message
       TLoaders.successSnackBar(
@@ -71,7 +71,7 @@ class UpdateNameController extends GetxController {
       // Move to previous screen
       Get.off(() => const ProfileScreen());
     } catch (e) {
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
     }
   }

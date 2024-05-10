@@ -179,9 +179,9 @@ class UserController extends GetxController {
         user.value.profilePicture = imageUrl;
         user.refresh();
 
-        TLoaders.successSnackBar(
-            title: 'Congratulations',
-            message: 'Your Profile Image has been updated!');
+        // TLoaders.successSnackBar(
+        //     title: 'Congratulations',
+        //     message: 'Your Profile Image has been updated!');
       }
     } catch (e) {
       TLoaders.errorSnackBar(

@@ -34,7 +34,7 @@ class SignupController extends GetxController {
 
       //Form Validation
       if (!signupFormKey.currentState!.validate()) {
-        TFullScreenLoader.stopLoading();
+        // TFullScreenLoader.stopLoading();
         return;
       }
 
@@ -65,7 +65,7 @@ class SignupController extends GetxController {
       await userRepository.saveUserRecord(newUser);
 
       //Remove loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
 
       //show success screen
       TLoaders.successSnackBar(
@@ -76,7 +76,7 @@ class SignupController extends GetxController {
       Get.to(VerifyEmailScreen(email: email.text.trim()));
     } catch (e) {
       //Remove loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
       //show some generic error to the user
       TLoaders.errorSnackBar(
           title: "Hệ thống đã xảy ra gì đó! ", message: e.toString());

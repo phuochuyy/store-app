@@ -12,23 +12,26 @@ class THomeCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoriyController = Get.put(CategoryController());
-    return Obx(
-      (){
-        if(categoriyController.isLoading.value){
+    final categoryController = Get.put(CategoryController());
+    return Obx(()
+        {
+        if(categoryController.isLoading.value){
           return const TCategoryShimmer();
+        }
+        if(categoryController.featuredCategories.isEmpty){
+          return Center(child: Text('No data found!', style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white )));
         }
         return SizedBox(
           height: 80,
           child: ListView.builder(
             shrinkWrap: true,
-            itemCount: 6,
+            itemCount: categoryController.featuredCategories.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (_, index) {
+              final category = categoryController.featuredCategories[index];
               return TVerticalImageText(
-                  image:
-                  'https://salt.tikicdn.com/cache/750x750/ts/product/f7/c5/fd/6abf8e825361fed5de0f9a6f1252af35.jpg.webp',
-                  title: 'Laptop',
+                  image: category.image,
+                  title: category.name,
                   onTap: () => Get.to(()=> const SubCategoriesScreen()));
             },
           ),

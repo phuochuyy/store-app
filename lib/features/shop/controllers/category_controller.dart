@@ -37,6 +37,7 @@ class CategoryController extends GetxController {
         TLoaders.errorSnackBar(title: 'Oh snap!', message: e.toString());
       } finally {
         //remove loader
+        isLoading.value = false;
       }
     }
 }

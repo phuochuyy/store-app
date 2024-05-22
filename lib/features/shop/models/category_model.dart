@@ -29,7 +29,7 @@ Map<String,dynamic>toJson(){
 /// Map Json oriented document snapshot from Firebase to UserModel
 factory CategoryModel.fromSnapshot (DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() != null) {
-      final data = document.data() !;
+      final data = document.data()!;
 // Map JSON Record to the Model
       return CategoryModel(
           id: document.id,

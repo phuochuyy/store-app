@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:TShop/features/shop/models/category_model.dart';
 import 'package:TShop/utils/exceptions/firebase_exceptions.dart';
 import 'package:TShop/utils/exceptions/platform_exceptions.dart';

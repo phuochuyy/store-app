@@ -10,6 +10,7 @@ import 'package:TShop/utils/exceptions/platform_exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -102,10 +103,12 @@ class AuthenticationRepository extends GetxController {
   }
 
 // [ReAuthenticate] - ReAuthenticate User
-  Future<void> reAuthenticateWithEmailAndPassword(String email, String password) async {
+  Future<void> reAuthenticateWithEmailAndPassword(
+      String email, String password) async {
     try {
       // Create a credential
-      AuthCredential credential = EmailAuthProvider.credential(email: email, password: password);
+      AuthCredential credential =
+          EmailAuthProvider.credential(email: email, password: password);
 
       // ReAuthenticate
       await _auth.currentUser!.reauthenticateWithCredential(credential);
@@ -121,7 +124,6 @@ class AuthenticationRepository extends GetxController {
       throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }
   }
-
 
 // [EmailVerification] - MAIL VERIFICATION
   Future<void> sendEmailVerification() async {
@@ -189,6 +191,46 @@ class AuthenticationRepository extends GetxController {
   }
 
 // [FacebookAuthentication] - FACEBOOK
+  Future<UserCredential?> signInWithFacebook() async {
+    try {
+      // // Trigger the authentication flow
+      // final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+
+      // // Obtain the auth details from the request
+      // final GoogleSignInAuthentication? googleAuth =
+      //     await userAccount?.authentication;
+
+      // // Create a new credential
+      // final credentials = GoogleAuthProvider.credential(
+      //     accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+      // // Once signed in, return the UserCredential
+      // return await _auth.signInWithCredential(credentials);
+
+      // // Trigger the authentication flow
+      final LoginResult loginResult = await FacebookAuth.instance.login();
+
+
+      // // Create a new credential
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+
+      // Once signed in, return the UserCredential
+      return await _auth.signInWithCredential(facebookAuthCredential);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      if (kDebugMode) print("Đã xảy ra lỗi. Hãy thử lại sau $e");
+      return null;
+    }
+  }
 
 // [LogoutUser] - Valid for any authentication
   Future<void> logout() async {
@@ -208,8 +250,9 @@ class AuthenticationRepository extends GetxController {
       throw "Đã xảy ra lỗi. Hãy thử lại sau";
     }
   }
+
   /// [DeleteUser] - Remove user Auth and Firestore Account
-    Future<void> deleteAccount() async {
+  Future<void> deleteAccount() async {
     try {
       await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
       await _auth.currentUser?.delete();

@@ -6,7 +6,9 @@ import 'package:TShop/utils/helpers/network_manager.dart';
 import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 
 class SignupController extends GetxController {
   static SignupController get instance => Get.find();
@@ -26,15 +28,16 @@ class SignupController extends GetxController {
     try {
       //Start loading
       // TFullScreenLoader.openLoadingDialog(
-      //     "Đang lấy dữ liệu...", TImages.docerAnimation);
+      //     "Đang lấy dữ liệu...", TImages.successfullyRegisterAnimation);
       // !! Dang loi FullLoader
+
       // Check internet connection (chưa bắt đc)
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) return;
 
       //Form Validation
       if (!signupFormKey.currentState!.validate()) {
-        TFullScreenLoader.stopLoading();
+        // TFullScreenLoader.stopLoading();
         return;
       }
 
@@ -65,7 +68,7 @@ class SignupController extends GetxController {
       await userRepository.saveUserRecord(newUser);
 
       //Remove loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
 
       //show success screen
       TLoaders.successSnackBar(
@@ -76,7 +79,7 @@ class SignupController extends GetxController {
       Get.to(VerifyEmailScreen(email: email.text.trim()));
     } catch (e) {
       //Remove loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
       //show some generic error to the user
       TLoaders.errorSnackBar(
           title: "Hệ thống đã xảy ra gì đó! ", message: e.toString());

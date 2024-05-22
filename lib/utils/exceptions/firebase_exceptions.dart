@@ -76,7 +76,8 @@ class TFirebaseException implements Exception {
       case 'credential-already-in-use':
         return 'Thông tin xác thực này đã được liên kết với một tài khoản người dùng khác.';
       default:
-        return 'Đã xảy ra lỗi Firebase không mong muốn. Vui lòng thử lại.';
+        // return 'Đã xảy ra lỗi Firebase không mong muốn. Vui lòng thử lại.';
+        return code;
     }
   }
 }

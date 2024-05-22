@@ -26,12 +26,12 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   ).then((FirebaseApp value) => Get.put(AuthenticationRepository()));
   /// --- Upload Dummy Data to Firebase
-  final categoryRepo = Get.put(CategoryRepository());
-  try {
-    await categoryRepo.uploadDummyData(getDummyCategories());
-  } catch (e) {
-    print('Failed to upload dummy data: $e');
-  }
+  // final categoryRepo = Get.put(CategoryRepository());
+  // try {
+  //   await categoryRepo.uploadDummyData(getDummyCategories());
+  // } catch (e) {
+  //   print('Failed to upload dummy data: $e');
+  // }
 
   // Load all the Material Design / Themes / Localizations / Bindings
   runApp(const App());

@@ -1,5 +1,6 @@
 import 'package:TShop/bindings/general_bindings.dart';
 import 'package:TShop/features/authentication/screens/onboarding/onboarding.dart';
+import 'package:TShop/route/app_route.dart';
 
 import 'package:TShop/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class App extends StatelessWidget {
       darkTheme: TAppTheme.darkTheme,
       initialBinding: GeneralBindings(),
       home: const OnBoardingScreen(),
+      getPages:AppRoutes.pages,
       // home: const HomeScreen(),
       // home: const SubCategoriesScreen(),
       // home: const AllProducts(),

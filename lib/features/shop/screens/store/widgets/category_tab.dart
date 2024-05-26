@@ -4,11 +4,14 @@ import 'package:TShop/common/widgets/products/product_cards/product_card_vertica
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class TCategoryTab extends StatelessWidget {
-  const TCategoryTab({super.key});
+import '../../../models/category_model.dart';
 
+class TCategoryTab extends StatelessWidget {
+  const TCategoryTab({super.key, required this.category});
+  final CategoryModel category;
   @override
   Widget build(BuildContext context) {
     return ListView(

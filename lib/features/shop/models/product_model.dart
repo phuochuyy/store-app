@@ -12,7 +12,7 @@ class ProductModel {
     double salePrice;
     String thumbnail;
     bool? isFeatured;
-    // BrandModel? brand;
+    String brand;
     String? description;
     String? categoryId;
     List<String>? images;
@@ -26,6 +26,7 @@ class ProductModel {
         this.sku,
         required this.price,
         required this.title,
+        required this.brand,
         this.date,
         this.salePrice = 0.0,
         required this.thumbnail,
@@ -40,7 +41,7 @@ class ProductModel {
 
     
   /// Create Empty func for clean code
-  static ProductModel empty() => ProductModel(id: '', title: '', stock: 0, price: 0, thumbnail: '', productType: '');
+  static ProductModel empty() => ProductModel(id: '', title: '', stock: 0, price: 0, thumbnail: '', productType: '',  brand: '');
   /// Json Format
   toJson() {
     return {
@@ -53,6 +54,7 @@ class ProductModel {
       'SalePrice': salePrice,
       'IsFeatured': isFeatured,
       'CategoryId': categoryId,
+      'Branch': brand,
       // 'Brand': brand!.toJson(), 
       'Description': description,
       'ProductType': productType,
@@ -71,11 +73,12 @@ factory ProductModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> documen
     title: data['Title'],
     stock: data['Stock'] ?? 0,
     isFeatured: data['IsFeatured'] ?? false,
-    price: double.parse((data['Price'] ?? 8.8).toString()),
-    salePrice: double.parse((data['SalePrice'] ?? 8.8).toString()),
+    price: double.parse((data['Price'] ?? 0.0).toString()),
+    salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()),
     thumbnail: data['Thumbnail'] ?? '',
     categoryId: data['CategoryId'] ?? '',
     description: data['Description'] ?? '',
+    brand: data['Brand'] ?? '',
     productType: data['ProductType'] ?? '',
     // brand: data['Brand'] != null ? BrandModel.fromJson(data['Brand']) : null,
     images: data['Images'] != null ? List<String>.from(data['Images']) : [],

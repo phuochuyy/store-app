@@ -1,5 +1,6 @@
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -37,7 +38,7 @@ class TSortableProducts extends StatelessWidget {
 
         TGridLayout(
             itemCount: 8,
-            itemBuilder: (_, index) => const TProductCardVertical())
+            itemBuilder: (_, index) => TProductCardVertical(product: ProductModel.empty()))
       ],
     );
   }

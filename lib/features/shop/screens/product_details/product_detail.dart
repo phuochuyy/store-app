@@ -1,4 +1,5 @@
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/screens/products_reviews/product_reviews.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,10 @@ import 'widgets/rating_share_widget.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({
-    super.key,
+    super.key, required this.product,
   });
 
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

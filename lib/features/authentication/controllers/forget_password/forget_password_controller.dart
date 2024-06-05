@@ -18,19 +18,19 @@ class ForgetPasswordController extends GetxController {
   sendPasswordResetEmail() async {
     try {
       // Start Loading
-      TFullScreenLoader.openLoadingDialog(
-          'Processing your request...', TImages.docerAnimation);
+      // TFullScreenLoader.openLoadingDialog(
+      //     'Processing your request...', TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
-        TFullScreenLoader.stopLoading();
+        // TFullScreenLoader.stopLoading();
         return;
       }
 
       // Form Validation
       if (!forgetPasswordFormKey.currentState!.validate()) {
-        TFullScreenLoader.stopLoading();
+        // TFullScreenLoader.stopLoading();
         return;
       }
 
@@ -39,7 +39,7 @@ class ForgetPasswordController extends GetxController {
           .sendPasswordResetEmail(email.text.trim());
 
       // Remove Loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
 
       // Show Success Screen
       TLoaders.successSnackBar(
@@ -50,7 +50,7 @@ class ForgetPasswordController extends GetxController {
       Get.to(() => ResetPasswordScreen(email: email.text.trim()));
     } catch (e) {
       // Remove Loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
     }
   }
@@ -59,13 +59,13 @@ class ForgetPasswordController extends GetxController {
   resendPasswordResetEmail(String email) async {
     try {
       // Start Loading
-      TFullScreenLoader.openLoadingDialog(
-          'Processing your request...', TImages.docerAnimation);
+      // TFullScreenLoader.openLoadingDialog(
+      //     'Processing your request...', TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
-        TFullScreenLoader.stopLoading();
+        // TFullScreenLoader.stopLoading();
         return;
       }
 
@@ -73,7 +73,7 @@ class ForgetPasswordController extends GetxController {
       await AuthenticationRepository.instance.sendPasswordResetEmail(email);
 
       // Remove Loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
 
       // Show Success Screen
       TLoaders.successSnackBar(
@@ -81,7 +81,7 @@ class ForgetPasswordController extends GetxController {
           message: 'Email Link Sent to Reset your Password.'.tr);
     } catch (e) {
       // Remove Loader
-      TFullScreenLoader.stopLoading();
+      // TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
     }
   }

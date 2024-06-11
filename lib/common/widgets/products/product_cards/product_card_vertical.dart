@@ -5,7 +5,7 @@ import 'package:TShop/common/widgets/images/t_rounded_image.dart';
 import 'package:TShop/common/widgets/texts/product_price_text.dart';
 import 'package:TShop/common/widgets/texts/product_title_text.dart';
 import 'package:TShop/common/widgets/texts/t_brand_title_with_verified_icon.dart';
-import 'package:TShop/features/shop/controllers/product_controller.dart';
+import 'package:TShop/features/shop/controllers/product/product_controller.dart';
 import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/screens/product_details/product_detail.dart';
 import 'package:TShop/utils/constants/colors.dart';

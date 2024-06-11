@@ -3,14 +3,16 @@ import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.
 import 'package:TShop/common/widgets/texts/product_price_text.dart';
 import 'package:TShop/common/widgets/texts/product_title_text.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 class TProductAttributes extends StatelessWidget {
-  const TProductAttributes({super.key});
+  const TProductAttributes({super.key, required this.product});
 
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     final darkMode = THelperFunctions.isDarkMode(context);
@@ -81,58 +83,48 @@ class TProductAttributes extends StatelessWidget {
         /// Attributes
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const TSectionHeading(title: 'Color', showActionButton: false),
-            const SizedBox(height: TSizes.spaceBtwItems / 2),
-            Wrap(
-              spacing: 0,
-              children: [
-                TChoiceChip(
-                  selected: true,
-                  text: 'Green',
-                  onSelected: (value) {},
-                ),
-                TChoiceChip(
-                  selected: false,
-                  text: 'Blue',
-                  onSelected: (value) {},
-                ),
-                TChoiceChip(
-                  selected: false,
-                  text: 'Yellow',
-                  onSelected: (value) {},
-                ),
-              ],
+          children: product.productAttributes!
+          .map((attribute) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TSectionHeading(title: attribute.name ?? '', showActionButton: false),
+                  const SizedBox(height: TSizes.spaceBtwItems / 2),
+                  Wrap(
+                    spacing: 0,
+                    children: attribute.values!
+                      .map((value) => TChoiceChip( text: value,selected: true,onSelected: (value) {})).toList()
             )
           ],
+        )).toList(),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const TSectionHeading(title: 'Size', showActionButton: false),
-            const SizedBox(height: TSizes.spaceBtwItems / 2),
-            Wrap(
-              spacing: 8,
-              children: [
-                TChoiceChip(
-                  selected: true,
-                  text: 'EU 34',
-                  onSelected: (value) {},
-                ),
-                TChoiceChip(
-                  selected: false,
-                  text: 'EU 36',
-                  onSelected: (value) {},
-                ),
-                TChoiceChip(
-                  selected: false,
-                  text: 'EU 38',
-                  onSelected: (value) {},
-                ),
-              ],
-            )
-          ],
-        )
+
+        // Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: [
+        //     const TSectionHeading(title: 'Size', showActionButton: false),
+        //     const SizedBox(height: TSizes.spaceBtwItems / 2),
+        //     Wrap(
+        //       spacing: 8,
+        //       children: [
+        //         TChoiceChip(
+        //           selected: true,
+        //           text: 'EU 34',
+        //           onSelected: (value) {},
+        //         ),
+        //         TChoiceChip(
+        //           selected: false,
+        //           text: 'EU 36',
+        //           onSelected: (value) {},
+        //         ),
+        //         TChoiceChip(
+        //           selected: false,
+        //           text: 'EU 38',
+        //           onSelected: (value) {},
+        //         ),
+        //       ],
+        //     )
+        //   ],
+        // )
       ],
     );
   }

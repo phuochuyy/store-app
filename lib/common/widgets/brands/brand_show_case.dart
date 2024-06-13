@@ -1,38 +1,46 @@
 import 'package:TShop/common/widgets/brands/brand_card.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:TShop/features/shop/models/brand_model.dart';
+import 'package:TShop/features/shop/screens/brands/brand_products.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TBrandShowcase extends StatelessWidget {
-  const TBrandShowcase({super.key, required this.images});
+  const TBrandShowcase({super.key, required this.images, this.brand});
 
   final List<String> images;
+  final BrandModel? brand;
+
 
   @override
   Widget build(BuildContext context) {
-    return TRoundedContainer(
-      showBorder: true,
-      borderColor: TColors.darkGrey,
-      backgroundColor: Colors.transparent,
-      padding: const EdgeInsets.all(TSizes.md),
-      margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
-      child: Column(
-        children: [
-          ///Brand with Products Count
-          const TBrandCard(showBorder: false),
-          const SizedBox(
-            height: TSizes.spaceBtwItems,
-          ),
-
-          /// Brand Top 3 Product Images
-          Row(
-            children: images
-                .map((image) => brandTopProductImageWidget(image, context))
-                .toList(),
-          ),
-        ],
+    return InkWell(
+      onTap: () => Get.to(() => BrandProducts(brand: brand)),
+      child: TRoundedContainer(
+        showBorder: true,
+        borderColor: TColors.darkGrey,
+        backgroundColor: Colors.transparent,
+        padding: const EdgeInsets.all(TSizes.md),
+        margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
+        child: Column(
+          children: [
+            ///Brand with Products Count
+            TBrandCard(showBorder: false, brand: brand),
+            const SizedBox(  
+              height: TSizes.spaceBtwItems,
+            ),
+      
+            /// Brand Top 3 Product Images
+            Row(
+              children: images
+                  .map((image) => brandTopProductImageWidget(image, context))
+                  .toList(),
+            ),
+          ],
+        ),
       ),
     );
   }

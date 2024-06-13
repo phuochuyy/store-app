@@ -8,8 +8,10 @@ import 'package:iconsax/iconsax.dart';
 class TSortableProducts extends StatelessWidget {
   const TSortableProducts({
     super.key,
+    this.products
   });
 
+  final products;
   @override
   Widget build(BuildContext context) {
     return Column(

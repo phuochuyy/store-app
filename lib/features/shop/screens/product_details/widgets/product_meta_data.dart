@@ -83,8 +83,8 @@ class TProductMetaData extends StatelessWidget {
               overlayColor: darkMode ? TColors.white : TColors.black),
           const SizedBox(width: TSizes.spaceBtwItems / 2),
           TBrandTitleWithVerifiedIcon(
-            title: product.brand,
-            // title: product.brand != null ? product.brand : '',
+            // title: product.brand,
+            title: product.brand != null ? product.brand!.name : '',
             brandTextSize: TextSizes.medium,
           ),
         ],

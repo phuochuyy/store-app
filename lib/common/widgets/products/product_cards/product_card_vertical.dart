@@ -9,11 +9,9 @@ import 'package:TShop/features/shop/controllers/product/product_controller.dart'
 import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/screens/product_details/product_detail.dart';
 import 'package:TShop/utils/constants/colors.dart';
-import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:get/get.dart';
 
@@ -92,7 +90,7 @@ class TProductCardVertical extends StatelessWidget {
                   // TProductTitleText(title: 'Acer Nitro 5', smallSize: true),
                   TProductTitleText(title: product.title, smallSize: true),
                   const SizedBox(height: TSizes.spaceBtwItems / 2),
-                  TBrandTitleWithVerifiedIcon(title: product.brand),
+                  TBrandTitleWithVerifiedIcon(title: product.brand!.name),
                 ],
               ),
             ),

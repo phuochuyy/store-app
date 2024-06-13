@@ -10,7 +10,6 @@ import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class TProductAttributes extends StatelessWidget {
   const TProductAttributes({super.key, required this.product});

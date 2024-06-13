@@ -26,7 +26,7 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             ///1.product image slider
-            const TProductImageSlider(),
+            TProductImageSlider(product: product),
 
             ///2.product details
             Padding(
@@ -41,12 +41,12 @@ class ProductDetailScreen extends StatelessWidget {
                   const TRatingAndShare(),
 
                   /// - Price, Title, Stock, & Brand
-                  const TProductMetaData(),
+                  TProductMetaData(product: product),
                   const SizedBox(height: TSizes.spaceBtwItems),
 
                   /// -- Attributes
-                  const TProductAttributes(),
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                  if(product.productType == 'variable') TProductAttributes(product: product),
+                  if(product.productType == 'variable') const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// -- Checkout Button
                   SizedBox(
@@ -59,8 +59,8 @@ class ProductDetailScreen extends StatelessWidget {
                   const TSectionHeading(
                       title: 'Description', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwItems),
-                  const ReadMoreText(
-                      'The Nike Air Max 270 React ENG combines a full-length React foam midsole with a 270 Max Air unit for unrivaled comfort and a striking visual experience. The shoe’s upper features lightweight, no-sew materials that create a modern aesthetic that looks as good as it feels.',
+                  ReadMoreText(
+                      product.description ?? '',
                       trimLines: 3,
                       trimMode: TrimMode.Line,
                       trimCollapsedText: 'Show more',

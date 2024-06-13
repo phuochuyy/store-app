@@ -4,7 +4,6 @@ import 'package:TShop/common/widgets/icons/t_circular_icon.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
 import 'package:TShop/features/shop/controllers/product/images_product.dart';
 import 'package:TShop/utils/constants/colors.dart';
-import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:cached_network_image/cached_network_image.dart';

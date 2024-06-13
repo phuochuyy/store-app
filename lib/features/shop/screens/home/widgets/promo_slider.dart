@@ -2,7 +2,6 @@ import 'package:TShop/common/shimmer/shimmer.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
 import 'package:TShop/features/shop/controllers/banner_controller.dart';
-import 'package:TShop/features/shop/controllers/home_controller.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -30,9 +29,9 @@ class TPromoSlider extends StatelessWidget {
             );
           }
           else{
-          controller.banners.forEach((baner) {
-            print("banner url:"+baner.imageUrl);
-          });
+          for (var baner in controller.banners) {
+            print("banner url:${baner.imageUrl}");
+          }
 
             return Column(
               children: [

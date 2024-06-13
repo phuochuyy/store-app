@@ -1,6 +1,5 @@
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/custom_shimmer/t_shimmer_effect.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class TBoxesShimmer extends StatelessWidget {

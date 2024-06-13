@@ -1,7 +1,6 @@
 import 'package:TShop/data/repositories/user/user_repository.dart';
 import 'package:TShop/features/personalization/controllers/user_controller.dart';
 import 'package:TShop/features/personalization/screens/profile/profile.dart';
-import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/helpers/network_manager.dart';
 import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';

@@ -3,7 +3,6 @@ import 'package:TShop/data/repositories/product/product_repository.dart';
 import 'package:TShop/features/shop/models/brand_model.dart';
 import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/utils/popups/loaders.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class BrandController extends GetxController {

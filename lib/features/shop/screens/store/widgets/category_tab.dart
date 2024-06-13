@@ -1,16 +1,12 @@
 import 'package:TShop/common/shimmer/vertical_product_shimmer.dart';
-import 'package:TShop/common/widgets/brands/brand_show_case.dart';
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/features/shop/controllers/category_controller.dart';
-import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/screens/all_products/all_products.dart';
-import 'package:TShop/features/shop/screens/store/widgets/category_brand.dart';
-import 'package:TShop/utils/constants/image_string.dart';
+import 'package:TShop/features/shop/screens/store/widgets/category_brands.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/cloud_helper_functions.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

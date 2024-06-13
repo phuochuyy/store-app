@@ -9,16 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TBrandShowcase extends StatelessWidget {
-  const TBrandShowcase({super.key, required this.images, this.brand});
+  const TBrandShowcase({super.key, required this.images,required this.brand});
 
   final List<String> images;
-  final BrandModel? brand;
+  final BrandModel brand;
 
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(() => BrandProducts(brand: brand)),
+      onTap: () => Get.to(() => BrandProducts(brand: brand,)),
       child: TRoundedContainer(
         showBorder: true,
         borderColor: TColors.darkGrey,

@@ -33,7 +33,7 @@ class BrandProducts extends StatelessWidget {
              FutureBuilder(
                future: controller.getBrandProducts(brandId: brand.id),
                builder: (context, snapshot) {
-                 return TSortableProducts();
+                 return const TSortableProducts();
                }
              )
           ]),

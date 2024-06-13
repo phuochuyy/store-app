@@ -1,8 +1,6 @@
 import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/features/authentication/screens/password_configuration/reset_password.dart';
-import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/helpers/network_manager.dart';
-import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

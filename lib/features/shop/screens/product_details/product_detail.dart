@@ -1,4 +1,5 @@
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/screens/products_reviews/product_reviews.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,10 @@ import 'widgets/rating_share_widget.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({
-    super.key,
+    super.key, required this.product,
   });
 
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,7 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             ///1.product image slider
-            const TProductImageSlider(),
+            TProductImageSlider(product: product),
 
             ///2.product details
             Padding(
@@ -39,12 +41,12 @@ class ProductDetailScreen extends StatelessWidget {
                   const TRatingAndShare(),
 
                   /// - Price, Title, Stock, & Brand
-                  const TProductMetaData(),
+                  TProductMetaData(product: product),
                   const SizedBox(height: TSizes.spaceBtwItems),
 
                   /// -- Attributes
-                  const TProductAttributes(),
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                  if(product.productType == 'variable') TProductAttributes(product: product),
+                  if(product.productType == 'variable') const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// -- Checkout Button
                   SizedBox(
@@ -57,16 +59,16 @@ class ProductDetailScreen extends StatelessWidget {
                   const TSectionHeading(
                       title: 'Description', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwItems),
-                  const ReadMoreText(
-                      'The Nike Air Max 270 React ENG combines a full-length React foam midsole with a 270 Max Air unit for unrivaled comfort and a striking visual experience. The shoe’s upper features lightweight, no-sew materials that create a modern aesthetic that looks as good as it feels.',
+                  ReadMoreText(
+                      product.description ?? '',
                       trimLines: 3,
                       trimMode: TrimMode.Line,
                       trimCollapsedText: 'Show more',
                       trimExpandedText: 'Show less',
                       moreStyle:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                          const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                       lessStyle:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w800)),
+                          const TextStyle(fontSize: 14, fontWeight: FontWeight.w800)),
 
                   /// - Reviews
                   const Divider(),

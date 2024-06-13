@@ -3,7 +3,6 @@ import 'package:TShop/data/repositories/user/user_repository.dart';
 import 'package:TShop/features/authentication/screens/signup/verify_email.dart';
 import 'package:TShop/features/personalization/models/user_model.dart';
 import 'package:TShop/utils/helpers/network_manager.dart';
-import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 

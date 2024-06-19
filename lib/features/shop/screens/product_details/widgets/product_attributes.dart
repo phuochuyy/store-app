@@ -47,7 +47,7 @@ class TProductAttributes extends StatelessWidget {
       
                             /// Actual Price
                             if (controller.selectedVariation.value.salePrice > 0)
-                            Text('\$${controller.selectedVariation.value.price}',
+                            Text('\$${controller.selectedVariation.value.originalPrice}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleSmall!

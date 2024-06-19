@@ -19,7 +19,7 @@ class ProductRepository extends GetxController {
       final snapshot = await _db
           .collection('Products')
           .where('IsFeatured', isEqualTo: true)
-          .limit(4)
+          .limit(40)
           .get();
       return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
     } on FirebaseException catch (e) {
@@ -27,6 +27,7 @@ class ProductRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
+      print('$e');
       throw 'Something went wrong. Please try again';
     }
   }
@@ -44,6 +45,7 @@ class ProductRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
+      print('General exception: $e');
       throw 'Something went wrong. Please try again';
     }
   }

@@ -40,13 +40,13 @@ class ProductController extends GetxController{
     final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'đ');
 
     // If no variations exist, return the simple price or sale price
-    if (product.productType == 'single') {
-      double priceToConsider = product.salePrice > 0 ? product.salePrice : product.price;
+    if (product.productType == 'Single') {
+      double priceToConsider = product.salePrice > 0 ? product.salePrice : product.originalPrice;
       return formatter.format(priceToConsider);
     } else {
       // Calculate the smallest and largest prices among variations
       for (var variation in product.productVariations!) {
-        double priceToConsider = variation.salePrice > 0.0 ? variation.salePrice : variation.price;
+        double priceToConsider = variation.salePrice > 0.0 ? variation.salePrice : variation.originalPrice;
 
         // Update smallest and largest prices
         if (priceToConsider < smallestPrice) {
@@ -67,7 +67,7 @@ class ProductController extends GetxController{
 
   // Calulate Discount Percentage
   String? calculateSalePercentage(double originalPrice, double? salePrice){
-    if(salePrice == null|| salePrice <= 0) return null;
+    if(salePrice == null|| salePrice <= 0) return '0';
     if(originalPrice <= 0) return null;
 
     double percentage = ((originalPrice - salePrice) / originalPrice) * 100;

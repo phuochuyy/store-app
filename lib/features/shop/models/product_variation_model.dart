@@ -3,16 +3,16 @@ class ProductVariationModel {
   final String id; String sku;
   String image;
   String? description;
-  double price;
+  double originalPrice;
   double salePrice;
   int stock;
-  Map<String, String> attributeValues;
+  Map<String, dynamic> attributeValues;
   ProductVariationModel({
     required this.id,
     this.sku = '',
     this.image = '',
     this.description = '',
-    this.price = 0.0,
+    this.originalPrice = 0.0,
     this.salePrice = 0.0,
     this.stock = 0,
     required this.attributeValues,
@@ -27,7 +27,7 @@ class ProductVariationModel {
       'SKU': sku,
       'Image': image,
       'Description': description,
-      'Price': price,
+      'OriginalPrice': originalPrice,
       'SalePrice': salePrice,
       'Stock': stock,
       'AttributeValues': attributeValues,
@@ -40,13 +40,13 @@ class ProductVariationModel {
     final data=document;
     if(data.isEmpty) return ProductVariationModel.empty();
     return ProductVariationModel(
-      id: data['Id'] ?? '',
-      price: double.parse((data['Price'] ?? 0.0).toString()),
+      id: (data['Id'] ?? '').toString(),
+      originalPrice: double.parse((data['Price'] ?? 0.0).toString()),
       sku: data['SKU'] ?? '',
       stock: data['Stock'] ?? 0,
       salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()), 
       image: data['Image'] ?? '',
-      attributeValues: Map<String, String>.from(data['AttributeValues']),
+      attributeValues: Map<String, dynamic>.from(data['AttributeValues']),
     ); 
   }
 }

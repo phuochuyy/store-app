@@ -7,7 +7,7 @@ class ProductModel {
   String id;
   int stock;
   String? sku;
-  double price;
+  double originalPrice;
   String title;
   DateTime? date;
   double salePrice;
@@ -26,7 +26,7 @@ class ProductModel {
     required this.id,
     required this.stock,
     this.sku,
-    required this.price,
+    required this.originalPrice,
     required this.title,
     this.brand,
     this.date,
@@ -46,7 +46,7 @@ class ProductModel {
         id: '',
         title: '',
         stock: 0,
-        price: 0,
+        originalPrice: 0,
         thumbnail: '',
         productType: '',
       );
@@ -57,7 +57,7 @@ class ProductModel {
       'SKU': sku,
       'Title': title,
       'Stock': stock,
-      'Price': price,
+      'OriginalPrice': originalPrice,
       'Images': images ?? [],
       'Thumbnail': thumbnail,
       'SalePrice': salePrice,
@@ -83,16 +83,16 @@ class ProductModel {
     final data = document.data()!;
     return ProductModel(
       id: document.id,
-      sku: data['SKU'],
-      title: data['Title'],
+      sku: data['SKU'] ?? '',
+      title: data['Title'] ?? '',
       stock: data['Stock'] ?? 0,
       isFeatured: data['IsFeatured'] ?? false,
-      price: double.parse((data['Price'] ?? 0.0).toString()),
+      originalPrice: double.parse((data['OriginalPrice'] ?? 0.0).toString()),
       salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()),
       thumbnail: data['Thumbnail'] ?? '',
-      categoryId: data['CategoryId'] ?? '',
+      categoryId: (data['CategoryId'] ?? '').toString(),
       description: data['Description'] ?? '',
-      brand: data['Brand'] ?? '',
+      brand: data['Brand'] != null ? BrandModel.fromJson(data['Brand']) : null, 
       productType: data['ProductType'] ?? '',
       // brand: data['Brand'] != null ? BrandModel.fromJson(data['Brand']) : null,
       images: data['Images'] != null ? List<String>.from(data['Images']) : [],
@@ -122,7 +122,7 @@ class ProductModel {
         title: data['Title'] ?? '',
         stock: data['Stock'] ?? 0,
         isFeatured: data['IsFeatured'] ?? false,
-        price: double.parse((data['Price'] ?? 0.0).toString()),
+        originalPrice: double.parse((data['OriginalPrice'] ?? 0.0).toString()),
         salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()),
         thumbnail: data['Thumbnail'] ?? '',
         categoryId: data['CategoryId'] ?? '',

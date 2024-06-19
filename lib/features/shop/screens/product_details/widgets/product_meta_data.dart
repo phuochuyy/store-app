@@ -19,7 +19,7 @@ class TProductMetaData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
-    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
+    final salePercentage = controller.calculateSalePercentage(product.originalPrice, product.salePrice);
     final darkMode = THelperFunctions.isDarkMode(context);
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       /// Price & Sale Price
@@ -42,14 +42,14 @@ class TProductMetaData extends StatelessWidget {
           const SizedBox(width: TSizes.spaceBtwItems),
 
           ///price
-          if(product.productType == 'single' && product.salePrice > 0)
-             Text('\$${product.price}',
+          if(product.productType == 'Single' && product.salePrice > 0)
+             Text('\$${product.originalPrice}',
               style: Theme.of(context)
                   .textTheme
                   .titleSmall!
                   .apply(decoration: TextDecoration.lineThrough)),
          
-          if(product.productType == 'single' && product.salePrice > 0) const SizedBox(width: TSizes.spaceBtwItems),
+          if(product.productType == 'Single' && product.salePrice > 0) const SizedBox(width: TSizes.spaceBtwItems),
           TProductPriceText(
             price: controller.getProductPrice(product),
             isLarge: true,

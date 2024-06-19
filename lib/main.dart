@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:TShop/app.dart';
 import 'package:flutter/material.dart';
 import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
@@ -8,7 +10,17 @@ import 'package:get_storage/get_storage.dart';
 import 'firebase_options.dart';
 
 /// -- Entry point of Flutter App
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 Future<void> main() async {
+
+   HttpOverrides.global = MyHttpOverrides();
   /// Widgets binding
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
@@ -32,5 +44,6 @@ Future<void> main() async {
   // }
 
   // Load all the Material Design / Themes / Localizations / Bindings
+  
   runApp(const App());
 }

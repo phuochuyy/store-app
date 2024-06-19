@@ -22,7 +22,7 @@ class AllProducts extends StatelessWidget {
 
     return Scaffold(
       appBar: const TAppBar(
-        title: Text("Poppular Products"),
+        title: Text("Sản phẩm phổ biến"),
         showBackArrow: true,
       ),
       body: SingleChildScrollView(

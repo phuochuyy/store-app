@@ -6,7 +6,7 @@ import 'package:TShop/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 
 class BrandController extends GetxController {
-  static BrandController get instance => Get.find();
+  static BrandController get instance => Get.put(BrandController());
 
   RxBool isLoading = true.obs;
   final RxList<BrandModel> allBrands = <BrandModel>[].obs;

@@ -26,13 +26,13 @@ class TCategoryTab extends StatelessWidget {
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
-              // Brand
-              CategoryBrands(
-                category: category,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
+              // // Brand
+              // CategoryBrands(
+              //   category: category,
+              // ),
+              // const SizedBox(
+              //   height: TSizes.spaceBtwItems,
+              // ),
 
               ///-- Products
               FutureBuilder(
@@ -52,7 +52,7 @@ class TCategoryTab extends StatelessWidget {
 
                     return Column(children: [
                       TSectionHeading(
-                          title: 'You might like',
+                          title: 'Bạn có thể thích',
                           onPressed: () => Get.to(AllProducts(
                               title: category.name,
                               futureMethod: controller.getCategoryProducts(

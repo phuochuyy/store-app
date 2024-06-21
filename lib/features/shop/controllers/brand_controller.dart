@@ -41,6 +41,7 @@ class BrandController extends GetxController {
   Future<List<BrandModel>> getBrandForCategory(String categoryId) async {
     try {
       final brands = await brandRepository.getBrandForCategory(categoryId);
+      // print(brands);
       return brands;
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Lỗi  Get brands for category', message: e.toString());
@@ -53,6 +54,7 @@ class BrandController extends GetxController {
     try {
       final products =
           ProductRepository.instance.getProductsForBrand(brandId: brandId);
+      print(brandId);
       return products;
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Lỗi  Get brand products', message: e.toString());

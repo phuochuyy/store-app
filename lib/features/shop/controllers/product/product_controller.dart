@@ -39,7 +39,6 @@ class ProductController extends GetxController {
       final products = await productRepository.getAllFeaturedProducts();
       return products;
     } catch (e) {
-      print('$e');
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
       return [];
     }
@@ -55,6 +54,7 @@ class ProductController extends GetxController {
     if (product.productType == 'Single') {
       double priceToConsider =
           product.salePrice > 0 ? product.salePrice : product.originalPrice;
+      print( formatter.format(priceToConsider));
       return formatter.format(priceToConsider);
     } else {
       // Calculate the smallest and largest prices among variations

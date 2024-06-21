@@ -6,6 +6,7 @@ import 'package:TShop/common/shimmer/list_tile_shimmer.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/cloud_helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CategoryBrands extends StatelessWidget {
   const CategoryBrands({super.key, required this.category});
@@ -14,6 +15,7 @@ class CategoryBrands extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(BrandController());
     final controller = BrandController.instance;
     return FutureBuilder(
         future: controller.getBrandForCategory(category.id),
@@ -30,29 +32,34 @@ class CategoryBrands extends StatelessWidget {
               ),
             ],
           );
+          // Handle loader
           final widget = TCloudHelperFunctions.checkMultiRecordState(
               snapshot: snapshot, loader: loader);
           if (widget != null) return widget;
 
+          // Found record
           final brands = snapshot.data!;
 
-          return ListView.builder(itemBuilder: (_, index){
-            final brand = brands[index];
-            return  FutureBuilder(
-              future: controller.getBrandProducts(brandId: brand.id, limit: 3),
-              builder: (context, snapshot) {
-                
-                // Handle loader
-                final widget = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, loader: loader);
+          return Expanded(
+            child: ListView.builder(itemBuilder: (_, index){
+              final brand = brands[index];
+              return  FutureBuilder(
+                future: controller.getBrandProducts(brandId: brand.id, limit: 3),
+                builder: (context, snapshot) {
 
-                if (widget!=null) return widget;
+                  // Handle loader
+                  final widget = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, loader: loader);
 
-                // Found record 
-                final products = snapshot.data!;
-                return TBrandShowcase(brand: brand, images: products.map((e) => e.thumbnail).toList(),);
-              }
-            );
-          });
+                  if (widget!=null) return widget;
+
+                  // Found record
+                  final products = snapshot.data!;
+
+                  return  TBrandShowcase(brand: brand, images: products.map((e) => e.thumbnail).toList());
+                }
+              );
+            }),
+          );
 
           
         });

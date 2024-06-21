@@ -31,7 +31,7 @@ class BrandController extends GetxController {
           .where((brand) => brand.isFeatured ?? false)
           .take(4) as BrandModel);
     } catch (e) {
-      TLoaders.errorSnackBar(title: "Lỗi!", message: e.toString());
+      TLoaders.errorSnackBar(title: "Lỗi! when loading brands", message: e.toString());
     } finally {
       isLoading.value = false;
     }
@@ -43,7 +43,7 @@ class BrandController extends GetxController {
       final brands = await brandRepository.getBrandForCategory(categoryId);
       return brands;
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Lỗi', message: e.toString());
+      TLoaders.errorSnackBar(title: 'Lỗi  Get brands for category', message: e.toString());
       return [];
     }
   }
@@ -55,7 +55,7 @@ class BrandController extends GetxController {
           ProductRepository.instance.getProductsForBrand(brandId: brandId);
       return products;
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Lỗi', message: e.toString());
+      TLoaders.errorSnackBar(title: 'Lỗi  Get brand products', message: e.toString());
       return [];
     }
   }

@@ -39,6 +39,7 @@ class TCategoryTab extends StatelessWidget {
                   future:
                       controller.getCategoryProducts(categoryId: category.id),
                   builder: (context, snapshot) {
+
                     // Helper function handle no record, loader, or error
                     final response =
                         TCloudHelperFunctions.checkMultiRecordState(
@@ -55,7 +56,10 @@ class TCategoryTab extends StatelessWidget {
                           onPressed: () => Get.to(AllProducts(
                               title: category.name,
                               futureMethod: controller.getCategoryProducts(
-                                  categoryId: category.id, limit: -1)))),
+                                  categoryId: category.id, limit: -1),
+                            ),
+                          ),
+                      ),
                       const SizedBox(
                         height: TSizes.spaceBtwItems,
                       ),

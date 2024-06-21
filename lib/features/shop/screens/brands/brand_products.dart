@@ -5,12 +5,14 @@ import 'package:TShop/features/shop/controllers/brand_controller.dart';
 import 'package:TShop/features/shop/models/brand_model.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 
 class BrandProducts extends StatelessWidget {
   const BrandProducts({super.key,required this.brand});
 
   final BrandModel brand;
-  
+
 
   @override
   Widget build(BuildContext context) {

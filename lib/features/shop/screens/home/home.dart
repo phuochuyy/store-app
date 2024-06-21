@@ -70,23 +70,29 @@ class HomeScreen extends StatelessWidget {
                   ///Heading
                   TSectionHeading(
                     title: "Popular Products",
-                    onPressed: () => Get.to(() => const AllProducts(title: 'Popular Products',)),
+                    onPressed: () => Get.to(() => AllProducts(
+                          title: 'Sản phẩm phổ biến',
+                          futureMethod: controller.fetchAllFeaturedProducts(),
+                        )),
                   ),
                   const SizedBox(height: TSizes.spaceBtwItems),
 
                   /// --- Popular Products
-                  Obx((){
-                    if(controller.isLoading.value) return const TVerticalProductShimmer();
+                  Obx(() {
+                    if (controller.isLoading.value) {
+                      return const TVerticalProductShimmer();
+                    }
 
-                    if(controller.featureProducts.isEmpty){
-                      return Center(child: Text('Không có sản phẩm nào!', style: Theme.of(context).textTheme.bodyMedium));
+                    if (controller.featureProducts.isEmpty) {
+                      return Center(
+                          child: Text('Không có sản phẩm nào!',
+                              style: Theme.of(context).textTheme.bodyMedium));
                     }
                     return TGridLayout(
-                        itemCount: 4,
-                        itemBuilder: (_, index) => TProductCardVertical(product: controller.featureProducts[index]));
-                        
-                  }
-                  ),
+                        itemCount: 40,
+                        itemBuilder: (_, index) => TProductCardVertical(
+                            product: controller.featureProducts[index]));
+                  }),
                 ],
               ),
             ),

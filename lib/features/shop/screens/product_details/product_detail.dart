@@ -45,8 +45,8 @@ class ProductDetailScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwItems),
 
                   /// -- Attributes
-                  if(product.productType == 'variable') TProductAttributes(product: product),
-                  if(product.productType == 'variable') const SizedBox(height: TSizes.spaceBtwSections),
+                  if(product.productType == 'Variable') TProductAttributes(product: product),
+                  if(product.productType == 'Variable') const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// -- Checkout Button
                   SizedBox(

@@ -23,7 +23,7 @@ class TProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
-    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
+    final salePercentage = controller.calculateSalePercentage(product.originalPrice, product.salePrice);
     final dark = THelperFunctions.isDarkMode(context);
 
     return GestureDetector(
@@ -49,22 +49,23 @@ class TProductCardVertical extends StatelessWidget {
                 TRoundedImage(
                     imageUrl: product.thumbnail, applyImageRadius: true, isNetworkImage: true),
                 //-- Sale Tag
-                Positioned(
-                  top: 12,
-                  child: TRoundedContainer(
-                    radius: TSizes.sm,
-                    backgroundColor: TColors.secondary.withOpacity(0.8),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: TSizes.sm, vertical: TSizes.xs),
-                    child: Text(
-                      '$salePercentage%',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge!
-                          .apply(color: TColors.black),
+                if(salePercentage!=null)
+                  Positioned(
+                    top: 12,
+                    child: TRoundedContainer(
+                      radius: TSizes.sm,
+                      backgroundColor: TColors.secondary.withOpacity(0.8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: TSizes.sm, vertical: TSizes.xs),
+                      child: Text(
+                        '$salePercentage%',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge!
+                            .apply(color: TColors.black),
+                      ),
                     ),
                   ),
-                ),
 
                 /// -- Favourite Icon Button
                 const Positioned(
@@ -77,7 +78,7 @@ class TProductCardVertical extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: TSizes.spaceBtwItems / 2),
+          const SizedBox(height: TSizes.spaceBtwItems / 4),
 
           /// -- Details
           Padding(
@@ -107,17 +108,17 @@ class TProductCardVertical extends StatelessWidget {
               Flexible(
                 child: Column(
                   children: [
-                    if(product.productType == 'single' && product.salePrice > 0)
+                    if(product.productType == 'Single' && product.salePrice > 0)
                       Padding(
-                          padding: const EdgeInsets.only(left: TSizes.sm),
+                          padding: const EdgeInsets.only(left: TSizes.xs),
                           child: Text(
-                            product.price.toString(),
+                            product.originalPrice.toString(),
                             style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                           )
                       ),
                     /// Price, show sale price as main price if sale exist
                     Padding(
-                        padding: const EdgeInsets.only(left: TSizes.sm),
+                        padding: const EdgeInsets.only(left: TSizes.xs),
                         child: TProductPriceText(price: controller.getProductPrice(product))
                         ),
                   ],

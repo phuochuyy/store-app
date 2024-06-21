@@ -1,32 +1,38 @@
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:TShop/features/shop/controllers/all_products_controller.dart';
 import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
 class TSortableProducts extends StatelessWidget {
-  const TSortableProducts({
-    super.key,
-    this.products
-  });
+  const TSortableProducts({super.key, required this.products});
 
-  final products;
+  final List<ProductModel> products;
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(AllProductsController());
+    controller.assignProducts(products);
     return Column(
       children: [
         ///Drop down
         DropdownButtonFormField(
-          onChanged: (value) {},
+          value: controller.selectedSortOption.value,
+          onChanged: (value) {
+            controller.sortProducts(value!);
+          },
           decoration: const InputDecoration(icon: Icon(Iconsax.sort)),
+          
           items: [
-            'Name',
-            'High Price',
-            'Low Price',
+            'Tên',
+            'Giá gốc',
+            'Giá khuyến mãi',
             'Sale',
-            'Newest',
-            'Popularity'
+            'Mới nhất',
+            'Phổ biến'
           ]
               .map((option) => DropdownMenuItem(
                     value: option,
@@ -38,9 +44,12 @@ class TSortableProducts extends StatelessWidget {
           height: TSizes.spaceBtwSections,
         ),
 
-        TGridLayout(
-            itemCount: 8,
-            itemBuilder: (_, index) => TProductCardVertical(product: ProductModel.empty()))
+        Obx(
+          () => TGridLayout(
+              itemCount:controller.products.length,
+              itemBuilder: (_, index) =>
+                  TProductCardVertical(product: controller.products[index])),
+        )
       ],
     );
   }

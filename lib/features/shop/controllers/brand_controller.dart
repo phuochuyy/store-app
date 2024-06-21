@@ -25,11 +25,11 @@ class BrandController extends GetxController {
       // Show loader when loading brands
       isLoading.value = true;
       final brands = await brandRepository.getAllBrands();
-      allBrands.assign(brands as BrandModel);
+      allBrands.assignAll(brands);
 
-      featuredBrands.assign(allBrands
+      featuredBrands.assignAll(allBrands
           .where((brand) => brand.isFeatured ?? false)
-          .take(4) as BrandModel);
+          .take(4));
     } catch (e) {
       TLoaders.errorSnackBar(title: "Lỗi! when loading brands", message: e.toString());
     } finally {

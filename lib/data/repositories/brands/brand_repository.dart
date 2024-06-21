@@ -38,12 +38,12 @@ class BrandRepository extends GetxController {
     try {
       QuerySnapshot brandCategoryQuery = await _db
           .collection('BrandCategory')
-          .where('categoryId', isEqualTo: categoryId)
+          .where('CategoryId', isEqualTo: categoryId)
           .get();
 
       // Extract brand id from document
       List<String> brandIds = brandCategoryQuery.docs
-          .map((doc) => doc['brandId'] as String)
+          .map((doc) => doc['BrandId'] as String)
           .toList();
 
       // Query get all documents where the brand id in list brandIds, feilpath document id to query documnet in collection

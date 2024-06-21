@@ -10,11 +10,11 @@ import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 class TBrandCard extends StatelessWidget {
-  const TBrandCard({super.key, this.onTap, required this.showBorder, this.brand});
+  const TBrandCard({super.key, this.onTap, required this.showBorder, required this.brand});
 
   final bool showBorder;
   final void Function()? onTap;
-  final BrandModel? brand;
+  final BrandModel brand;
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +27,15 @@ class TBrandCard extends StatelessWidget {
           showBorder: showBorder,
           backgroundColor: Colors.transparent,
           padding: const EdgeInsets.all(TSizes.sm),
+        
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               /// -- Icon
               Flexible(
                   child: TCircularImage(
-                isNetworkImage: false,
-                image: TImages.product1,
+                isNetworkImage: true,
+                image: brand.image,
                 backgroundColor: Colors.transparent,
                 overlayColor: isDark ? TColors.white : TColors.black,
               )),
@@ -46,13 +47,13 @@ class TBrandCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TBrandTitleWithVerifiedIcon(
-                      title: 'Acer',
+                     TBrandTitleWithVerifiedIcon(
+                      title: brand.name,
                       brandTextSize: TextSizes.large,
                     ),
-                    Text('312 products',
+                    Text('${brand.productsCount ?? 0} sản phẩm',
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.labelMedium)
+                        style: Theme.of(context).textTheme.labelSmall)
                   ],
                 ),
               )

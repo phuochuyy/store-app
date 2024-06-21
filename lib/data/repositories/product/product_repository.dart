@@ -32,6 +32,27 @@ class ProductRepository extends GetxController {
     }
   }
 
+
+    /// Get limited featured products
+  
+  Future<List<ProductModel>> getAllFeaturedProducts() async {
+    try {
+      final snapshot = await _db
+          .collection('Products')
+          .where('IsFeatured', isEqualTo: true).limit(40)
+          .get();
+      return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      print('$e');
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+
 // Get products base on query
   Future<List<ProductModel>> fetchProductsByQuery(Query query) async {
     try {
@@ -57,11 +78,11 @@ class ProductRepository extends GetxController {
       final querySnapshot = limit == -1
           ? await _db
               .collection('Products')
-              .where('Brand.Id', isEqualTo: brandId)
+              .where('Brand.Id', isEqualTo: int.parse(brandId))
               .get()
           : await _db
               .collection('Products')
-              .where('Brand.Id', isEqualTo: brandId)
+              .where('Brand.Id', isEqualTo: int.parse(brandId))
               .limit(limit)
               .get();
 

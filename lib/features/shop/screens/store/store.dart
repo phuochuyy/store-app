@@ -1,3 +1,4 @@
+import 'package:TShop/common/shimmer/brand_shimmer.dart';
 import 'package:TShop/common/widgets/appbar/appbar.dart';
 import 'package:TShop/common/widgets/appbar/tabbar.dart';
 import 'package:TShop/common/widgets/brands/brand_card.dart';
@@ -5,8 +6,11 @@ import 'package:TShop/common/widgets/custom_shapes/containers/search_container.d
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/shop/controllers/brand_controller.dart';
 import 'package:TShop/features/shop/controllers/category_controller.dart';
+import 'package:TShop/features/shop/models/brand_model.dart';
 import 'package:TShop/features/shop/screens/brands/all_brands.dart';
+import 'package:TShop/features/shop/screens/brands/brand_products.dart';
 import 'package:TShop/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
@@ -19,7 +23,8 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final categories = CategoryController.instance.featuredCategories;
+    final categories = CategoryController.instance.featuredCategories;
+    final brandController = Get.put(BrandController());
     return DefaultTabController(
       length: categories.length,
       child: Scaffold(
@@ -69,25 +74,48 @@ class StoreScreen extends StatelessWidget {
                       ),
 
                       /// --- Brand GRID
-                      TGridLayout(
-                          itemCount: 4,
-                          mainAxisExtent: 80,
-                          itemBuilder: (_, index) {
-                            return const TBrandCard(showBorder: true);
-                          }),
+                      Obx(() {
+                        if (brandController.isLoading.value) {
+                          return const TBrandsShimmer();
+                        }
+
+                        if (brandController.featuredBrands.isEmpty) {
+                          return Center(
+                            child: Text(
+                              'Không có dữ liệu',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .apply(color: Colors.white),
+                            ),
+                          );
+                        }
+                        return TGridLayout(
+                            itemCount: brandController.featuredBrands.length,
+                            mainAxisExtent: 80,
+                            itemBuilder: (_, index) {
+                              final brand = brandController.featuredBrands[index];
+                              return TBrandCard(showBorder: true, brand: brand, onTap:() =>  Get.to(() => BrandProducts(brand: brand)),);
+                            });
+                      }),
                     ],
                   ),
                 ),
 
                 /// --- Tabs
-                bottom: TTabBar(tabs: categories.map((category) => Tab(text: category.name)).toList()),
+                bottom: TTabBar(
+                    tabs: categories
+                        .map((category) => Tab(text: category.name))
+                        .toList()),
               ),
             ];
           },
 
           /// --- Body
           body: TabBarView(
-            children: categories.map((category) => TCategoryTab(category: category)).toList()),
+              children: categories
+                  .map((category) => TCategoryTab(category: category))
+                  .toList()),
         ),
       ),
     );

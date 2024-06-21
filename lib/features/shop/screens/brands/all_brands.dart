@@ -1,7 +1,9 @@
+import 'package:TShop/common/shimmer/brand_shimmer.dart';
 import 'package:TShop/common/widgets/appbar/appbar.dart';
 import 'package:TShop/common/widgets/brands/brand_card.dart';
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/shop/controllers/brand_controller.dart';
 import 'package:TShop/features/shop/models/brand_model.dart';
 import 'package:TShop/features/shop/screens/brands/brand_products.dart';
 import 'package:TShop/utils/constants/size.dart';
@@ -13,6 +15,7 @@ class AllBrandsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brandController = BrandController.instance;
     return Scaffold(
         appBar: const TAppBar(
           title: Text("Brands"),
@@ -30,13 +33,27 @@ class AllBrandsScreen extends StatelessWidget {
                 ),
 
                 ///Brand
-                TGridLayout(
-                  itemCount: 10,
-                  mainAxisExtent: 80,
-                  itemBuilder: (context, index) => TBrandCard(
-                    showBorder: true,
-                    onTap: () => Get.to(() =>  BrandProducts(brand: BrandModel.empty(),)),
-                  ),
+                Obx(
+                  ()  {
+                    if(brandController.isLoading.value) return const TBrandsShimmer();
+
+                    if(brandController.allBrands.isEmpty) {
+                      return Center(child: Text('Không có dữ liệu', style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),),);
+                    }
+
+                   return TGridLayout(
+                    itemCount: brandController.allBrands.length,
+                    mainAxisExtent: 80,
+                    itemBuilder: (_, index) {
+                      final brand = brandController.allBrands[index];
+                     return TBrandCard(
+                      showBorder: true,
+                      onTap: () => Get.to(() =>  BrandProducts(brand: brand,)),
+                      brand: brand,
+                    );
+                    }
+                  );
+                  }
                 )
               ],
             ),

@@ -32,7 +32,7 @@ factory CategoryModel.fromSnapshot (DocumentSnapshot<Map<String, dynamic>> docum
       final data = document.data()!;
 // Map JSON Record to the Model
       return CategoryModel(
-          id: document.id,
+          id: document.id.toString(),
           name: data['Name'] ?? '',
           image: data['Image'] ?? '',
           parentId: data['ParentId'] ?? '',

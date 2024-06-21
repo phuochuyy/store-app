@@ -32,18 +32,19 @@ class BrandModel {
         id: data['Id'].toString(),
         name: data['Name'] ?? '',
         image: data['Image'] ?? '',
-        productsCount: data['ProductsCount'] ?? '',
+        productsCount: data['ProductsCount'] ?? 0,
         isFeatured: data['IsFeatured'] ?? false,
       );
   }
 
+// Map json oriented document snapshot from rb to brandmodel
   factory BrandModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() != null) {
       final data = document.data()!;
 // Map JSON Record to the Model
       return BrandModel(
-        id: document.id,
+        id: document.id.toString(),
         name: data['Name'] ?? '',
         image: data['Image'] ?? '',
         productsCount: data['ProductsCount'] ?? 0,

@@ -11,7 +11,7 @@ class TCloudHelperFunctions {
       return const Center(child: CircularProgressIndicator(),);
     }
 
-    if(!(snapshot.hasData) || snapshot.data==null){
+    if(!(snapshot.hasData) || snapshot.data==null ){
       return const Center(child: Text('Không có dữ liệu'),);
 
     }
@@ -29,7 +29,7 @@ class TCloudHelperFunctions {
       return const Center(child: CircularProgressIndicator(),);
     }
 
-     if(!(snapshot.hasData) || snapshot.data==null){
+     if(!(snapshot.hasData) || snapshot.data==null || snapshot.data!.isEmpty){
       return const Center(child: Text('Không có dữ liệu'),);
 
     }

@@ -15,11 +15,12 @@ class CategoryBrands extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(BrandController());
+    // final controller = Get.put(BrandController());
     final controller = BrandController.instance;
     return FutureBuilder(
         future: controller.getBrandForCategory(category.id),
         builder: (context, snapshot) {
+
           const loader = Column(
             children: [
               TListTileShimmer(),
@@ -41,27 +42,32 @@ class CategoryBrands extends StatelessWidget {
           final brands = snapshot.data!;
 
           return Expanded(
-            child: ListView.builder(itemBuilder: (_, index){
-              final brand = brands[index];
-              return  FutureBuilder(
-                future: controller.getBrandProducts(brandId: brand.id, limit: 3),
-                builder: (context, snapshot) {
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+                itemCount: brands.length,
+                itemBuilder: (_, index) {
+                  final brand = brands[index];
 
-                  // Handle loader
-                  final widget = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, loader: loader);
+                  return FutureBuilder(
+                      future: controller.getBrandProducts(brandId: '0', limit: 3),
+                      builder: (context, snapshot) {
+                        // Handle loader
+                        final widget =
+                            TCloudHelperFunctions.checkMultiRecordState(
+                                snapshot: snapshot, loader: loader);
 
-                  if (widget!=null) return widget;
+                        if (widget != null) return widget;
 
-                  // Found record
-                  final products = snapshot.data!;
+                        // Found record
+                        final products = snapshot.data!;
 
-                  return  TBrandShowcase(brand: brand, images: products.map((e) => e.thumbnail).toList());
-                }
-              );
-            }),
+                        return TBrandShowcase(
+                            brand: brand,
+                            images: products.map((e) => e.thumbnail).toList());
+                      });
+                }),
           );
-
-          
         });
   }
 }

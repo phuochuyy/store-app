@@ -78,4 +78,6 @@ class TImages {
 
   static const String successfullyRegisterAnimation =
       "assets/images/verify_email/succesfulluRegisterAnimation.gif";
+
+  static const String cartAnimation = "assets/images/cart/cart_animation.gif";
 }

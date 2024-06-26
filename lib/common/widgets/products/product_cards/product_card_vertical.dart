@@ -2,6 +2,7 @@ import 'package:TShop/common/styles/shadows.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:TShop/common/widgets/icons/t_circular_icon.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
+import 'package:TShop/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:TShop/common/widgets/texts/product_price_text.dart';
 import 'package:TShop/common/widgets/texts/product_title_text.dart';
 import 'package:TShop/common/widgets/texts/t_brand_title_with_verified_icon.dart';
@@ -126,20 +127,21 @@ class TProductCardVertical extends StatelessWidget {
               ),
 
               // Add to Cart Button
-              Container(
-                decoration: const BoxDecoration(
-                  color: TColors.dark,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(TSizes.cardRadiusMd),
-                    bottomRight: Radius.circular(TSizes.productImageRadius),
-                  ),
-                ),
-                child: const SizedBox(
-                    width: TSizes.iconLg * 1.2,
-                    height: TSizes.iconLg * 1.2,
-                    child:
-                        Center(child: Icon(Iconsax.add, color: TColors.white))),
-              )
+              ProductCartAddToCartButton(product: product)
+              // Container(
+              //   decoration: const BoxDecoration(
+              //     color: TColors.dark,
+              //     borderRadius: BorderRadius.only(
+              //       topLeft: Radius.circular(TSizes.cardRadiusMd),
+              //       bottomRight: Radius.circular(TSizes.productImageRadius),
+              //     ),
+              //   ),
+              //   child: const SizedBox(
+              //       width: TSizes.iconLg * 1.2,
+              //       height: TSizes.iconLg * 1.2,
+              //       child:
+              //           Center(child: Icon(Iconsax.add, color: TColors.white))),
+              // )
             ],
           ),
         ]),

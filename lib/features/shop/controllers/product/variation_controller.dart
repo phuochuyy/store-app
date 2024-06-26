@@ -56,7 +56,7 @@ class VariationController extends GetxController{
     return true;
   }
   // Check Attribute avaiability / Stock in Variation 
-  Set<dynamic?> getAttributesAvailabilityInVariation(List<ProductVariationModel> variations, String attributeName) {
+  Set<dynamic> getAttributesAvailabilityInVariation(List<ProductVariationModel> variations, String attributeName) {
     // Pass the variations to check which attributes are available and stock is not 0
     final availableVariationAttributeValues = variations
         .where((variation) => 

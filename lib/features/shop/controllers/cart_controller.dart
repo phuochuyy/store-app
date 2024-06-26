@@ -4,9 +4,12 @@ import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/utils/local_storage/storage_utility.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class CartController extends GetxController {
   static CartController get instance => Get.find();
+
+  // late final GetStorage _storage;
 
   RxInt noOfCartItems = 0.obs;
   RxDouble totalCartPrice = 0.0.obs;
@@ -80,8 +83,8 @@ class CartController extends GetxController {
   // remove one from cart
   void removeOneFromCart(CartItemModel item){
     int index = cartItems.indexWhere((cartItem) => cartItem.productId == item.productId && cartItem.variationId == item.variationId);
-
-    if(index >= 0){
+    // print(index);
+    if(index >= 0 && cartItems[index].quantity>1){
       cartItems[index].quantity-=1;
     } else {
       cartItems[index].quantity == 1 ? removeFromCartDialog(index) : cartItems.removeAt(index);
@@ -131,9 +134,9 @@ class CartController extends GetxController {
         ? variation.salePrice > 0
             ? variation.salePrice
             : variation.originalPrice
-        : variation.salePrice > 0
-            ? variation.salePrice
-            : variation.originalPrice;
+        : product.salePrice > 0
+            ? product.salePrice
+            : product.originalPrice;
 
     return CartItemModel(
         productId: product.id,
@@ -166,15 +169,17 @@ class CartController extends GetxController {
 
   void saveCartItems() {
     final cartItemStrings = cartItems.map((item) => item.toJson()).toList();
+    // TLocalStorage.init('cartItems');
     TLocalStorage.instance().writeData('cartItems', cartItemStrings);
   }
 
   void loadCartItems() {
     final cartItemStrings =
         TLocalStorage.instance().readData<List<dynamic>>('cartItems');
-
-    if (cartItems != null) {
-      cartItems.assignAll(cartItemStrings!
+        
+    // ignore: deprecated_member_use //// LỖI CHỖ NÀY
+    if (cartItemStrings != null) {
+      cartItems.assignAll(cartItemStrings
           .map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)));
       updateCartTotal();
     }

@@ -1,6 +1,7 @@
 
 
 
+import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:TShop/features/shop/controllers/product/variation_controller.dart';
 import 'package:TShop/utils/helpers/network_manager.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ class GeneralBindings extends Bindings {
   void dependencies() {
     Get.put(NetworkManager());
     Get.put(VariationController());
+
 
   }
 

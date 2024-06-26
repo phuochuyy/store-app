@@ -4,6 +4,7 @@ import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:TShop/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:TShop/features/shop/screens/checkout/checkout.dart';
 import 'package:TShop/navigation_menu.dart';
+import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
@@ -65,8 +66,12 @@ class CartScreen extends StatelessWidget {
           : Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: ElevatedButton(
-                child: Text('Checkout ${controller.totalCartPrice.value}đ'),
                 onPressed: () => Get.to(() => const CheckoutScreen()),
+                style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white, backgroundColor: TColors.primary,
+                    side: BorderSide.none, 
+  ),
+                child: Text('Thanh toán ${controller.totalCartPrice.value}đ'),
               ),
             ),
     );

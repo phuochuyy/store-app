@@ -110,6 +110,7 @@ class TProductCardVertical extends StatelessWidget {
                 child: Column(
                   children: [
                     if(product.productType == 'Single' && product.salePrice > 0)
+                    // if(product.salePrice > 0)
                       Padding(
                           padding: const EdgeInsets.only(left: TSizes.xs),
                           child: Text(
@@ -128,6 +129,7 @@ class TProductCardVertical extends StatelessWidget {
 
               // Add to Cart Button
               ProductCartAddToCartButton(product: product)
+
               // Container(
               //   decoration: const BoxDecoration(
               //     color: TColors.dark,

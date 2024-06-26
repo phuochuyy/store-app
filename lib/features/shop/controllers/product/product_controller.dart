@@ -54,7 +54,6 @@ class ProductController extends GetxController {
     if (product.productType == 'Single') {
       double priceToConsider =
           product.salePrice > 0 ? product.salePrice : product.originalPrice;
-      print( formatter.format(priceToConsider));
       return formatter.format(priceToConsider);
     } else {
       // Calculate the smallest and largest prices among variations
@@ -70,11 +69,14 @@ class ProductController extends GetxController {
         if (priceToConsider > largestPrice) {
           largestPrice = priceToConsider;
         }
+        // print('sale price: ${variation.salePrice}');
       }
 
       if (smallestPrice == largestPrice) {
+        // print(formatter.format(largestPrice));
         return formatter.format(largestPrice);
       } else {
+        // print('${formatter.format(smallestPrice)} - ${formatter.format(largestPrice)}');
         return '${formatter.format(smallestPrice)} - ${formatter.format(largestPrice)}';
       }
     }

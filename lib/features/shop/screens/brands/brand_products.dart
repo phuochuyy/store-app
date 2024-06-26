@@ -46,7 +46,7 @@ class BrandProducts extends StatelessWidget {
                 if(widget!=null) return widget;
 
                 final brandProducts  = snapshot.data!;
-
+                print(brandProducts);
                  return  TSortableProducts(products: brandProducts,);
                }
              )

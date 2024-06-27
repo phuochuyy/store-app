@@ -5,6 +5,7 @@ import 'package:TShop/utils/local_storage/storage_utility.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 
 class CartController extends GetxController {
   static CartController get instance => Get.find();
@@ -137,6 +138,8 @@ class CartController extends GetxController {
         : product.salePrice > 0
             ? product.salePrice
             : product.originalPrice;
+    
+    print(product.salePrice);
 
     return CartItemModel(
         productId: product.id,
@@ -206,4 +209,10 @@ class CartController extends GetxController {
     cartItems.clear();
     updateCart();
   }
+
+String formatPrice(double price) {
+  final formatter = NumberFormat('#,##0', 'vi_VN');
+  return formatter.format(price);
+}
+
 }

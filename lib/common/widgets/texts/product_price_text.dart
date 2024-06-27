@@ -1,3 +1,5 @@
+
+import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:flutter/material.dart';
 
 class TProductPriceText extends StatelessWidget {
@@ -16,7 +18,8 @@ class TProductPriceText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(currencySign + price,
+    final controller = CartController.instance;
+    return Text('${controller.formatPrice(double.parse(price.replaceAll('.', '').replaceAll('đ', '').trim()))}đ',
         maxLines: maxLines,
         overflow: TextOverflow.ellipsis,
         style: isLarge

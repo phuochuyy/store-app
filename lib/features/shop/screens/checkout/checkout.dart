@@ -11,6 +11,8 @@ import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
+import 'package:TShop/utils/helpers/pricing_calculator.dart';
+import 'package:TShop/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +21,12 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final cartcontroller = CartController.instance;
+    final subTotal = cartcontroller.totalCartPrice.value;
+    final ordercontroller =  Get.put(OrderController());
+    final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'US');
+
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: TAppBar(
@@ -67,14 +75,10 @@ class CheckoutScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(TSizes.defaultSpace),
         child: ElevatedButton(
-            onPressed: () => Get.to(
-                  () => SuccessScreen(
-                    image: TImages.successpayment,
-                    title: 'Payment Success!',
-                    subtTitle: 'Your item will be shipped soon',
-                    onPressed: () => Get.offAll(() => const NavigationMenu()),
-                  ),
-                ),
+            onPressed: subTotal > 0
+                ? () => orderController.processOrder(totalAmount)
+                : () => TLoaders.warningSnackBar(
+                    title: 'Giỏ hàng trống', message: 'Vui lòng thêm sản phẩm vào giỏ hàng'),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
                   const Color.fromARGB(255, 145, 14, 4)), // Thiết lập màu nền
@@ -84,7 +88,7 @@ class CheckoutScreen extends StatelessWidget {
                   color:
                       Color.fromARGB(255, 137, 13, 4))), // Thiết lập màu viền
             ),
-            child: const Text('Checkout \$590')),
+            child:  Text('Checkout \$$totalAmount')),
       ),
     );
   }

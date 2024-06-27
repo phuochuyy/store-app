@@ -10,6 +10,8 @@ class ProductController extends GetxController {
   final isLoading = false.obs;
   final productRepository = Get.put(ProductRepository());
   RxList<ProductModel> featureProducts = <ProductModel>[].obs;
+  RxList<ProductModel> searchedProducts = <ProductModel>[].obs;
+  final searchText = ''.obs;
 
   @override
   void onInit() {
@@ -44,6 +46,17 @@ class ProductController extends GetxController {
     }
   }
 
+  //Search product
+  void searchProducts(String query) {
+    searchText.value = query;
+    if (query.isEmpty) {
+      searchedProducts.assignAll(featureProducts);
+    } else {
+      searchedProducts.assignAll(
+        featureProducts.where((product) => product.title.toLowerCase().contains(query.toLowerCase())).toList(),
+      );
+    }
+  }
   // Get the product price or price range for variations
   String getProductPrice(ProductModel product) {
     double smallestPrice = double.infinity;

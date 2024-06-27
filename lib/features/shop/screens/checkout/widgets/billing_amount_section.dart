@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/pricing_calculator.dart';
 import 'package:flutter/material.dart';

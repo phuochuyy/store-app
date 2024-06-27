@@ -2,6 +2,8 @@ import 'package:TShop/common/widgets/appbar/appbar.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:TShop/common/widgets/products/cart/coupon_widget.dart';
 import 'package:TShop/common/widgets/success_screen/success_screen.dart';
+import 'package:TShop/features/shop/controllers/cart_controller.dart';
+import 'package:TShop/features/shop/controllers/product/order_controller.dart';
 import 'package:TShop/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:TShop/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:TShop/features/shop/screens/checkout/widgets/billing_amount_section.dart';
@@ -24,7 +26,7 @@ class CheckoutScreen extends StatelessWidget {
 
     final cartcontroller = CartController.instance;
     final subTotal = cartcontroller.totalCartPrice.value;
-    final ordercontroller =  Get.put(OrderController());
+    final orderController =  Get.put(OrderController());
     final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'US');
 
     final dark = THelperFunctions.isDarkMode(context);

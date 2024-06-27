@@ -211,7 +211,6 @@ class CartController extends GetxController {
   }
 
 String formatPrice(double price) {
-  print("hàm format:" + price.toString());
   final formatter = NumberFormat('#,###', 'vi_VN');
   return formatter.format(price);
 }

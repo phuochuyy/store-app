@@ -59,6 +59,7 @@ class ProductController extends GetxController {
   }
   // Get the product price or price range for variations
   String getProductPrice(ProductModel product) {
+
     double smallestPrice = double.infinity;
     double largestPrice = 0.0;
     final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'đ');
@@ -67,6 +68,7 @@ class ProductController extends GetxController {
     if (product.productType == 'Single') {
       double priceToConsider =
           product.salePrice > 0 ? product.salePrice : product.originalPrice;
+        
       return formatter.format(priceToConsider);
     } else {
       // Calculate the smallest and largest prices among variations

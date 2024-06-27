@@ -10,8 +10,8 @@ class TImages {
 
   // Checkout method Logos
   static const String paypal = "assets/logos/paypal_logo.png";
-  static const String momo = "asset/logos/momo.webp";
-  static const String visa = "asset/logos/visa.svg";
+  static const String momo = "assets/logos/momo.webp";
+  static const String visa = "assets/logos/visa.svg";
 
   // onboarding image
   static const String onBoardingImage3 =

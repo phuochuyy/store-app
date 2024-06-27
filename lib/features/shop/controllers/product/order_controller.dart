@@ -2,6 +2,7 @@ import 'package:TShop/common/widgets/success_screen/success_screen.dart';
 import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/data/repositories/orders/order_repository.dart';
 import 'package:TShop/features/personalization/controllers/address_controller.dart';
+import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:TShop/features/shop/controllers/product/checkout_controller.dart';
 import 'package:TShop/features/shop/models/order_model.dart';
 import 'package:TShop/navigation_menu.dart';
@@ -33,38 +34,36 @@ class OrderController extends GetxController {
       return [];
     }
   }
-
   /// add method for processing
   void processOrder(double totalAmount) async {
     try {
 // Start Loader
-      TFullScreenLoader.openLoadingDialog(
-          'Processing your order', TImages.pencilAnimation);
+      TFullScreenLoader.openLoadingDialog('Processing your order', TImages.pencilAnimation);
 
 // Get user authentication Id
-      final userId = AuthenticationRepository.instance.authUser.uid;
-      if (userId.isEmpty) return;
+    final userId = AuthenticationRepository.instance.authUser.uid;
+    if (userId.isEmpty) return;
 
 // Add Details
-      final order = OrderModel(
-        // Generate a unique ID for the order
-        id: UniqueKey().toString(),
-        userId: userId,
-        status: OrderStatus.pending,
-        totalAmount: totalAmount,
-        orderDate: DateTime.now(),
-        paymentMethod: checkoutController.selectedPaymentMethod.value.name,
-        address: addressController.selectedAddress.value,
-        // set date as need
-        deliveryDate: DateTime.now(),
-        items: cartController.cartItems.value,
-      );
+    final order = OrderModel(
+    // Generate a unique ID for the order
+    id:UniqueKey().toString(),
+    userId: userId,
+    status: OrderStatus.pending,
+    totalAmount: totalAmount,
+    orderDate: DateTime.now(),
+    paymentMethod: checkoutController.selectedPaymentMethod.value.name,
+    address: addressController.selectedAddress.value,
+    // set date as need
+    deliveryDate: DateTime.now(),
+    items: cartController.cartItems.value,
+    );
 
-      // Save order to the firestore
-      await orderRepository.saveOrder(order, userId);
+    // Save order to the firestore
+    await orderRepository.saveOrder(order, userId);
 
-      //update cart status
-      cartController.clearCart();
+    //update cart status
+    cartController.clearCart();
 
       //show success screen
       Get.off(() =>

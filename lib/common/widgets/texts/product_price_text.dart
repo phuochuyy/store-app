@@ -9,17 +9,18 @@ class TProductPriceText extends StatelessWidget {
       this.maxLines = 1,
       this.isLarge = false,
       this.lineThrough = false,
-      super.key});
+      super.key, this.priceTemp});
 
   final String currencySign, price;
   final int maxLines;
   final bool isLarge;
   final bool lineThrough;
+  final double? priceTemp;
 
   @override
   Widget build(BuildContext context) {
     final controller = CartController.instance;
-    return Text('${controller.formatPrice(double.parse(price.replaceAll('.', '').replaceAll('đ', '').trim()))}đ',
+    return Text(price == '' ? '${controller.formatPrice(priceTemp!)}đ' : '$priceđ',
         maxLines: maxLines,
         overflow: TextOverflow.ellipsis,
         style: isLarge

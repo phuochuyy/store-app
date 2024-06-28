@@ -16,6 +16,7 @@ import 'package:image_picker/image_picker.dart';
 class UserController extends GetxController {
   static UserController get instance => Get.find();
 
+  final isLoading = false.obs;
   final profileLoading = false.obs;
   Rx<UserModel> user = UserModel.empty().obs;
 
@@ -24,12 +25,14 @@ class UserController extends GetxController {
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final userRepository = Get.put(UserRepository());
+  RxList<UserModel> featureUsers = <UserModel>[].obs;
   GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
     super.onInit();
     fetchUserRecord();
+    fetchFeaturedUsers();
   }
 
   /// Fetch user record
@@ -44,6 +47,23 @@ class UserController extends GetxController {
       profileLoading.value = false;
     }
   }
+
+  // featch all users
+  void fetchFeaturedUsers() async {
+  try {
+    //Show loader while loading Products;
+    isLoading.value = true;
+
+    // Fetch Products
+    final users = await userRepository.getAllUsers();
+    //Assign Products
+    featureUsers.assignAll(users);
+  } catch (e) {
+    TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+  } finally {
+    isLoading.value = false;
+  }
+}
 
   // Save user Record from any Registration provider
   Future<void> saveUserRecord(UserCredential? userCredentials) async {

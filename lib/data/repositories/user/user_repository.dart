@@ -55,6 +55,23 @@ class UserRepository extends GetxController {
     }
   }
 
+  // Fetch all users
+    Future<List<UserModel>> getAllUsers() async {
+    try {
+      final snapshot = await _db
+          .collection('Users')
+          .limit(10)
+          .get();
+      return snapshot.docs.map((e) => UserModel.fromSnapShot(e)).toList();
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      print('$e');
+      throw 'Something went wrong. Please try again';
+    }
+  }
   /// Function to update user data in Firestore
   Future<void> updateUserDetails(UserModel updatedUser) async {
     try {

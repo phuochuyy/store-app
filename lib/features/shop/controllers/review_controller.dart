@@ -52,9 +52,12 @@ class ReviewController extends GetxController {
       String formattedTime = DateFormat('HH:mm:ss').format(now);
 
       if (currentUser != null) {
+        UserModel userModel = await reviewRepository.getUserById(currentUser.uid);
+
         ReviewModel newReview = ReviewModel(
           id: '', // Firestore will auto-generate the ID
           userId: currentUser.uid,
+          userFullName: userModel.fullName,
           review: review,
           rating: rating,
           reviewTime: '$formattedDate $formattedTime',
@@ -73,6 +76,25 @@ class ReviewController extends GetxController {
     }
   }
 
+
+  // Delete review
+  Future<void> deleteReview(ReviewModel review) async {
+    try {
+      isLoading.value = true;
+
+      // Xóa review khỏi Firestore
+      await reviewRepository.deleteReviewByUserId(FirebaseAuth.instance.currentUser!.uid);
+
+      // Xóa review khỏi danh sách allReviews
+      allReviews.remove(review);
+
+      TLoaders.successSnackBar(title: 'Thông báo', message: 'Xóa thành công!');
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'Error', message: e.toString());
+    } finally {
+      isLoading.value = false;
+    }
+  }
   // Fetch all reviews and corresponding users
   Future<void> fetchAllReviewsWithUsers() async {
     try {

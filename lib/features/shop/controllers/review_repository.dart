@@ -44,7 +44,15 @@ class ReviewRepository extends GetxController {
         .map((doc) => ReviewModel.fromSnapshot(doc))
         .toList();
   }
+  
+  // get user by id 
+  Future<UserModel> getUserById(String uid) async {
+    final docSnapshot = await _db.collection('Users').doc(uid).get();
+    return UserModel.fromSnapShot(docSnapshot);
+  }
 
+  // delete review
+  
 Future<List<UserModel>> getUsersByIds(Set<String> userIds) async {
   if (userIds.isEmpty) {
     return [];
@@ -65,5 +73,24 @@ Future<List<UserModel>> getUsersByIds(Set<String> userIds) async {
     return [];
   }
 }
+ Future<void> deleteReviewByUserId(String userId) async {
+    try {
+      // Truy vấn để tìm tài liệu với userId cụ thể
+      QuerySnapshot querySnapshot = await _db.collection('Reviews')
+        .where('UserId', isEqualTo: userId)
+        .get();
 
+      if (querySnapshot.docs.isNotEmpty) {
+        // Lấy ID của tài liệu đầu tiên (giả sử chỉ có một tài liệu với userId này)
+        String docId = querySnapshot.docs.first.id;
+
+        // Xóa tài liệu dựa trên ID
+        await _db.collection('Reviews').doc(docId).delete();
+      } else {
+        throw Exception('Review not found for userId: $userId');
+      }
+    } catch (e) {
+      throw Exception('Failed to delete review: $e');
+    }
+  }
 }

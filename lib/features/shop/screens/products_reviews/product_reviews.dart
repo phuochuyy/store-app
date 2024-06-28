@@ -34,7 +34,7 @@ class ProductReviewsScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                      "Ratings and reviews are verified and are from people who use the same type of same type of device that you use."),
+                      "Để lại bình luận và đánh giá của bạn có thể giúp cho chúng tôi cải thiện chất lượng sản phẩm và dịch vụ một cách tốt hơn."),
                   const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
@@ -93,10 +93,10 @@ class ProductReviewsScreen extends StatelessWidget {
                   /// Overall Product Ratings
                   const TOverallProductRating(),
                   const TRatingBarIndicator(
-                    rating: 3.5,
+                    rating: 4.2,
                   ),
                   Text(
-                    "12.61",
+                    "12",
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(
@@ -107,18 +107,19 @@ class ProductReviewsScreen extends StatelessWidget {
 
                   // const UserReviewCard(),
                   Obx(() {
-                    // final allUsers = controller.featureUsers;
-
                     final allReviews = controller.allReviews.reversed.toList();
-
                     return SingleChildScrollView(
                       child: Column(
-                        children: allReviews.map((review) {
-                          return UserReviewCard(review: review);
+                        children: allReviews.asMap().entries.map((entry) {
+                          final index = entry.key;
+                          final review = entry.value;
+                          final isLast = index == 0; 
+                          return UserReviewCard(review: review, isLast: isLast);
                         }).toList(),
                       ),
                     );
                   }),
+
                 ],
               ))),
     );

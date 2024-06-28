@@ -15,10 +15,10 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:readmore/readmore.dart';
 
 class UserReviewCard extends StatelessWidget {
-  const UserReviewCard({super.key, required this.review});
+  const UserReviewCard({super.key, required this.review, required this.isLast});
 
   final ReviewModel review;
-  
+  final bool isLast;
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
@@ -35,9 +35,30 @@ class UserReviewCard extends StatelessWidget {
             Row(children: [
               const CircleAvatar(backgroundImage: AssetImage(TImages.user)),
               const SizedBox(width: TSizes.spaceBtwItems),
-              Text(review.userId, style: Theme.of(context).textTheme.titleLarge)
+              Text(review.userFullName, style: Theme.of(context).textTheme.titleLarge)
             ]),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+            if (isLast)
+              PopupMenuButton<String>(
+                onSelected: (value) {
+                  if (value == 'delete') {
+                    controller.deleteReview(review);
+                  }
+                },
+                itemBuilder: (BuildContext context) {
+                  return [
+                    const PopupMenuItem<String>(
+                      value: 'delete',
+                      child: Text(
+                        'Xóa',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  ];
+                },
+                icon: const Icon(Icons.more_vert),
+              ),
+            // IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+
           ],
         ),
         const SizedBox(

@@ -4,6 +4,7 @@ import 'package:TShop/common/widgets/products/cart/coupon_widget.dart';
 import 'package:TShop/common/widgets/success_screen/success_screen.dart';
 import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:TShop/features/shop/controllers/product/order_controller.dart';
+import 'package:TShop/features/shop/controllers/product/payment_controller.dart';
 import 'package:TShop/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:TShop/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:TShop/features/shop/screens/checkout/widgets/billing_amount_section.dart';
@@ -28,6 +29,8 @@ class CheckoutScreen extends StatelessWidget {
     final subTotal = cartcontroller.totalCartPrice.value;
     final orderController =  Get.put(OrderController());
     final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'US');
+
+    final paymentController = Get.put(PaymentController());
 
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
@@ -78,7 +81,7 @@ class CheckoutScreen extends StatelessWidget {
         padding: const EdgeInsets.all(TSizes.defaultSpace),
         child: ElevatedButton(
             onPressed: subTotal > 0
-                ? () => orderController.processOrder(totalAmount)
+                ? () => paymentController.processPayment(totalAmount)
                 : () => TLoaders.warningSnackBar(
                     title: 'Giỏ hàng trống', message: 'Vui lòng thêm sản phẩm vào giỏ hàng'),
             style: ButtonStyle(

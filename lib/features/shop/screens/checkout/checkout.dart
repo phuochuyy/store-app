@@ -30,7 +30,7 @@ class CheckoutScreen extends StatelessWidget {
     final orderController =  Get.put(OrderController());
     final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'US');
 
-    final paymentController = Get.put(PaymentController());
+    final paymentController = Get.put(PaypalPaymentController());
 
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
@@ -81,7 +81,7 @@ class CheckoutScreen extends StatelessWidget {
         padding: const EdgeInsets.all(TSizes.defaultSpace),
         child: ElevatedButton(
             onPressed: subTotal > 0
-                ? () => paymentController.processPayment(totalAmount)
+                ? () => paymentController.processPaypalPayment(totalAmount)
                 : () => TLoaders.warningSnackBar(
                     title: 'Giỏ hàng trống', message: 'Vui lòng thêm sản phẩm vào giỏ hàng'),
             style: ButtonStyle(

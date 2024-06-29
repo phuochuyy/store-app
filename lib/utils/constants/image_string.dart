@@ -86,6 +86,8 @@ class TImages {
 
   static const String cartAnimation = "assets/images/cart/cart_animation.gif";
   // static const String cartAnimation = "assets/images/verify_email/succesfulluRegisterAnimation.gif";
-  static const String pencilAnimation = "assets/images/animation/pencil_drawing.json";
-  static const String orderCompletedAnimation = "assets/images/animation/order_completed.json";
+  // static const String pencilAnimation = "assets/images/animation/pencil_drawing.json";
+  static const String orderCompletedAnimation = "assets/images/animation/order_success.jpg";
+
+  static const String orderSuccess = "assets/images/animation/order_success.jpg";
 }

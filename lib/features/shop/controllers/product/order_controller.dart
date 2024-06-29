@@ -37,8 +37,8 @@ class OrderController extends GetxController {
   /// add method for processing
   void processOrder(double totalAmount) async {
     try {
-// Start Loader
-      TFullScreenLoader.openLoadingDialog('Processing your order', TImages.pencilAnimation);
+// // Start Loader
+//       TFullScreenLoader.openLoadingDialog('Processing your order', TImages.pencilAnimation);
 
 // Get user authentication Id
     final userId = AuthenticationRepository.instance.authUser.uid;
@@ -68,7 +68,7 @@ class OrderController extends GetxController {
       //show success screen
       Get.off(() =>
           SuccessScreen(
-              image: TImages.orderCompletedAnimation,
+              image: TImages.orderSuccess,
               title: 'Thanh toán thành công!',
               subtTitle: 'Đơn hàng của bạn sẽ được gửi đến sớm nhất!',
               onPressed: () => Get.offAll(() => const NavigationMenu())

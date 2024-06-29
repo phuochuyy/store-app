@@ -42,7 +42,12 @@ class THomeAppBar extends StatelessWidget {
           ],
         ),
         // actions: [Icon(Iconsax.shopping_bag, color: TColors.white)],
-        actions: [TCartCounterIcon( iconColor: TColors.white, onPressed: () {  },)],
+        actions: [
+          TCartCounterIcon(
+            iconColor: TColors.white,
+            onPressed: () {},
+          )
+        ],
       ),
     );
   }

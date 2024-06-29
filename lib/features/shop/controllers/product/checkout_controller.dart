@@ -54,5 +54,4 @@ class CheckoutController extends GetxController {
     );
 
 }
-
-
+}

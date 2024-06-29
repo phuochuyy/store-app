@@ -11,8 +11,9 @@ import '../../models/payment_method_model.dart';
 class CheckoutController extends GetxController {
   static CheckoutController get instance => Get.find();
 
-  final Rx<PaymentMethodModel> selectedPaymentMethod =
-      PaymentMethodModel.empty().obs;
+  final Rx<PaymentMethodModel> selectedPaymentMethod = PaymentMethodModel
+      .empty()
+      .obs;
 
   @override
   void onInit() {
@@ -24,36 +25,34 @@ class CheckoutController extends GetxController {
   Future<dynamic> selectPaymentMethod(BuildContext context) {
     return showModalBottomSheet(
       context: context,
-      builder: (_) => SingleChildScrollView(
-          child: Container(
-        padding: const EdgeInsets.all(TSizes.lg),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TSectionHeading(
-              title: 'Chọn phương thức thanh toán',
-              showActionButton: false,
-            ),
-            SizedBox(height: TSizes.spaceBtwSections),
-            TPaymentTile(
-                paymentMethod:
-                    PaymentMethodModel(name: 'Paypal', image: TImages.paypal)),
-            const SizedBox(height: TSizes.spaceBtwItems / 2),
-            TPaymentTile(
-                paymentMethod: PaymentMethodModel(
-                    name: 'Google Pay', image: TImages.google)),
-            const SizedBox(height: TSizes.spaceBtwItems / 2),
-            TPaymentTile(
-                paymentMethod:
-                    PaymentMethodModel(name: 'Mono', image: TImages.momo)),
-            const SizedBox(height: TSizes.spaceBtwItems / 2),
-            TPaymentTile(
-                paymentMethod:
-                    PaymentMethodModel(name: 'Visa', image: TImages.momo)),
-            const SizedBox(height: TSizes.spaceBtwItems / 2),
-          ],
-        ),
-      )),
+      builder: (_) =>
+          SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.all(TSizes.lg),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TSectionHeading(title: 'Chọn phương thức thanh toán',
+                      showActionButton: false,),
+                    SizedBox(height: TSizes.spaceBtwSections),
+                    TPaymentTile(paymentMethod: PaymentMethodModel(
+                        name: 'Paypal', image: TImages.paypal)),
+                    const SizedBox(height: TSizes.spaceBtwItems / 2),
+                    TPaymentTile(paymentMethod: PaymentMethodModel(
+                        name: 'Google Pay', image: TImages.google)),
+                    const SizedBox(height: TSizes.spaceBtwItems / 2),
+                    TPaymentTile(paymentMethod: PaymentMethodModel(
+                        name: 'Mono', image: TImages.momo)),
+                    const SizedBox(height: TSizes.spaceBtwItems / 2),
+                    TPaymentTile(paymentMethod: PaymentMethodModel(
+                        name: 'Visa', image: TImages.momo)),
+                    const SizedBox(height: TSizes.spaceBtwItems / 2),
+                  ],
+                ),
+              )
+          ),
     );
-  }
+
 }
+
+

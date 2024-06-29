@@ -11,11 +11,16 @@ import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TProductMetaData extends StatelessWidget {
   const TProductMetaData({super.key, required this.product});
 
   final ProductModel product;
+  String formatCurrency(double amount) {
+    final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'đ');
+    return formatter.format(amount);
+  }
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
@@ -43,7 +48,8 @@ class TProductMetaData extends StatelessWidget {
 
           ///price
           if(product.productType == 'Single' && product.salePrice > 0)
-             Text('\$${product.originalPrice}',
+             Text('\$${formatCurrency(product.originalPrice)}',
+              
               style: Theme.of(context)
                   .textTheme
                   .titleSmall!

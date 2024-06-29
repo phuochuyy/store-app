@@ -10,10 +10,11 @@ import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:TShop/features/shop/screens/order/order_detail_screen.dart';
 
 class TOrderListItems extends StatelessWidget {
   const TOrderListItems({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(OrderController());
@@ -72,7 +73,12 @@ class TOrderListItems extends StatelessWidget {
                           ),
                         ),
                         // 3. Icon
-                        IconButton(onPressed: (){}, icon: const Icon(Iconsax.arrow_right_34, size: TSizes.iconSm)),
+                        IconButton(
+                        onPressed: () {
+                          Get.to(() => OrderDetailScreen(order: order));
+                        },
+                        icon: const Icon(Iconsax.arrow_right_34, size: TSizes.iconSm),
+                      ),
                       ],
                     ),
 
@@ -93,7 +99,7 @@ class TOrderListItems extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Order',
+                                    Text('Mã hóa đơn',
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: Theme.of(context).textTheme.labelMedium,
@@ -123,7 +129,7 @@ class TOrderListItems extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Shipping Date',
+                                    Text('Ngày vận chuyển',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: Theme.of(context).textTheme.labelMedium,

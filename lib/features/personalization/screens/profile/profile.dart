@@ -49,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
                         TextButton(
                             onPressed: () =>
                                 controller.uploadUserProfilePicture(),
-                            child: const Text('Change Profile Picture'))
+                            child: const Text('Thay đổi ảnh'))
                       ],
                     ),
                   ),
@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
 
                   /// Heading Profile Info
                   const TSectionHeading(
-                    title: 'Profile Information',
+                    title: 'Thông tin hồ sơ',
                     showActionButton: false,
                   ),
                   const SizedBox(
@@ -73,7 +73,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
 
                   TProfileMenu(
-                    title: 'Name',
+                    title: 'Họ tên',
                     value: controller.user.value.fullName,
                     onPressed: () => Get.to(() => const ChangeName()),
                   ),
@@ -93,7 +93,7 @@ class ProfileScreen extends StatelessWidget {
 
                   /// Heading Personal Info
                   const TSectionHeading(
-                    title: 'Personal Information',
+                    title: 'Thông tin cá nhân',
                     showActionButton: false,
                   ),
                   const SizedBox(
@@ -112,17 +112,17 @@ class ProfileScreen extends StatelessWidget {
                     onPressed: () {},
                   ),
                   TProfileMenu(
-                    title: 'Phone Number',
+                    title: 'SDT',
                     value: controller.user.value.phoneNumber,
                     onPressed: () {},
                   ),
                   TProfileMenu(
-                    title: 'Gender',
-                    value: 'Male',
+                    title: 'Giới tính',
+                    value: 'Nam',
                     onPressed: () {},
                   ),
                   TProfileMenu(
-                    title: 'Date of Birth',
+                    title: 'Ngày sinh',
                     value: '10 Oct, 1994',
                     onPressed: () {},
                   ),
@@ -135,7 +135,7 @@ class ProfileScreen extends StatelessWidget {
                       child: TextButton(
                           onPressed: () =>
                               controller.deleteAccountWarningPopup(),
-                          child: const Text('Close Account',
+                          child: const Text('Xóa tài khoản',
                               style: TextStyle(color: Colors.red))))
                 ],
               ))),

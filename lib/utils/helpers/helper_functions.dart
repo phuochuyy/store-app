@@ -54,27 +54,30 @@ class THelperFunctions {
     'Đen': 'Black',
     'Đỏ': 'Red',
     'Hồng': 'Pink',
-    'Xanh': 'Blue', // Có thể điều chỉnh nếu cần thiết cho các sắc thái khác nhau
+    'Xanh':
+        'Blue', // Có thể điều chỉnh nếu cần thiết cho các sắc thái khác nhau
     'Tím': 'Purple',
     'Vàng': 'Yellow',
     'Cam': 'Orange',
     'Nâu': 'Brown',
     'Xám': 'Grey',
     'Xanh lá': 'Green',
-    'Xanh dương': 'Blue', // Có thể điều chỉnh nếu cần thiết cho các sắc thái khác nhau
+    'Xanh dương':
+        'Blue', // Có thể điều chỉnh nếu cần thiết cho các sắc thái khác nhau
   };
 
   // static Color? getColor(String value) {
   //   return basicColors[value];
   // }
   static Color? getColor(String colorName) {
-    String? englishColorName = vietnameseToEnglishColors[colorName.toLowerCase()];
+    String? englishColorName =
+        vietnameseToEnglishColors[colorName.toLowerCase()];
     if (englishColorName == null) {
       return null;
     }
     return basicColors[englishColorName];
   }
-  
+
   static void showSnackBar(String message) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
       content: Text(message),
@@ -118,35 +121,44 @@ class THelperFunctions {
     return Theme.of(context).brightness == Brightness.dark;
   }
 
-  static Size screenSize(){
+  static Size screenSize() {
     return MediaQuery.of(Get.context!).size;
   }
 
   static double screenHeight() {
-  return MediaQuery.of(Get.context!).size.height;
-}
-
-static double screenWidth() {
-  return MediaQuery.of(Get.context!).size.width;
-}
-
-static String getFormattedDate(DateTime date, {String format = 'dd MMM yyyy'}) {
-  return DateFormat(format).format(date);
-}
-
-static List<T> removeDuplicates<T>(List<T> list) {
-  return list.toSet().toList();
-}
-
-static List<Widget> wrapWidgets(List<Widget> widgets, int rowSize) {
-  final wrappedList = <Widget>[];
-
-  for (var i = 0; i < widgets.length; i += rowSize) {
-    final rowChildren = widgets.sublist(i, i + rowSize < widgets.length ? i + rowSize : widgets.length);
-    wrappedList.add(Row(children: rowChildren));
+    return MediaQuery.of(Get.context!).size.height;
   }
 
-  return wrappedList;
-}
+  static double screenWidth() {
+    return MediaQuery.of(Get.context!).size.width;
+  }
 
+  static String getFormattedDate(DateTime date,
+      {String format = 'dd MMM yyyy '}) {
+    return DateFormat(format).format(date);
+  }
+
+  static List<T> removeDuplicates<T>(List<T> list) {
+    return list.toSet().toList();
+  }
+
+  static List<Widget> wrapWidgets(List<Widget> widgets, int rowSize) {
+    final wrappedList = <Widget>[];
+
+    for (var i = 0; i < widgets.length; i += rowSize) {
+      final rowChildren = widgets.sublist(
+          i, i + rowSize < widgets.length ? i + rowSize : widgets.length);
+      wrappedList.add(Row(children: rowChildren));
+    }
+
+    return wrappedList;
+  }
+
+  static String generateOrderId() {
+    // Tạo UniqueKey và chuyển nó thành chuỗi
+    final orderId = UniqueKey().toString();
+
+    return orderId.replaceAll('[', '').replaceAll(']', '').replaceAll('#', '');
+    
+  }
 }

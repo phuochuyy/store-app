@@ -15,12 +15,16 @@ import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class TProductCardVertical extends StatelessWidget {
   const TProductCardVertical({super.key, required this.product});
 
   final ProductModel product;
-
+  String formatCurrency(double amount) {
+  final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'đ');
+  return formatter.format(amount);
+  }
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
@@ -114,7 +118,8 @@ class TProductCardVertical extends StatelessWidget {
                       Padding(
                           padding: const EdgeInsets.only(left: TSizes.xs),
                           child: Text(
-                            product.originalPrice.toString(),
+                            formatCurrency(product.originalPrice),
+                            // product.originalPrice.toString(),
                             style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                           )
                       ),

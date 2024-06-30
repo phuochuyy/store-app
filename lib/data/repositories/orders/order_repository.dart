@@ -4,7 +4,6 @@ import 'package:TShop/data/repositories/authentication/authentication_repository
 import 'package:TShop/features/shop/models/order_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class OrderRepository extends GetxController {
   static OrderRepository get instance => Get.find();

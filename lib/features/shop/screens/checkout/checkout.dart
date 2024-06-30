@@ -1,16 +1,14 @@
 import 'package:TShop/common/widgets/appbar/appbar.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:TShop/common/widgets/products/cart/coupon_widget.dart';
-import 'package:TShop/common/widgets/success_screen/success_screen.dart';
 import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:TShop/features/shop/controllers/product/order_controller.dart';
+import 'package:TShop/features/shop/controllers/product/payment_controller.dart';
 import 'package:TShop/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:TShop/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:TShop/features/shop/screens/checkout/widgets/billing_amount_section.dart';
 import 'package:TShop/features/shop/screens/checkout/widgets/billing_payment_section.dart';
-import 'package:TShop/navigation_menu.dart';
 import 'package:TShop/utils/constants/colors.dart';
-import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:TShop/utils/helpers/pricing_calculator.dart';
@@ -28,6 +26,8 @@ class CheckoutScreen extends StatelessWidget {
     final subTotal = cartcontroller.totalCartPrice.value;
     final orderController =  Get.put(OrderController());
     final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'vi_VN');
+
+    final paymentController = Get.put(PaypalPaymentController());
 
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
@@ -78,19 +78,19 @@ class CheckoutScreen extends StatelessWidget {
         padding: const EdgeInsets.all(TSizes.defaultSpace),
         child: ElevatedButton(
             onPressed: subTotal > 0
-                ? () => orderController.processOrder(totalAmount)
+                ? () => paymentController.payment(totalAmount)
                 : () => TLoaders.warningSnackBar(
                     title: 'Giỏ hàng trống', message: 'Vui lòng thêm sản phẩm vào giỏ hàng'),
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
+              backgroundColor: WidgetStateProperty.all<Color>(
                   const Color.fromARGB(255, 145, 14, 4)), // Thiết lập màu nền
-              overlayColor: MaterialStateProperty.all<Color>(
+              overlayColor: WidgetStateProperty.all<Color>(
                   Colors.red.shade200), // Thiết lập màu overlay khi nhấn
-              side: MaterialStateProperty.all<BorderSide>(const BorderSide(
+              side: WidgetStateProperty.all<BorderSide>(const BorderSide(
                   color:
                       Color.fromARGB(255, 137, 13, 4))), // Thiết lập màu viền
             ),
-            child:  Text('Checkout \$$totalAmount')),
+            child:  Text('Checkout ${cartcontroller.formatPrice(totalAmount)}đ')),
       ),
     );
   }

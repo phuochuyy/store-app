@@ -1,7 +1,5 @@
 import 'package:TShop/common/widgets/appbar/appbar.dart';
-import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/ratings/rating_indicator.dart';
-import 'package:TShop/features/personalization/controllers/user_controller.dart';
 import 'package:TShop/features/shop/controllers/review_controller.dart';
 import 'package:TShop/features/shop/screens/products_reviews/widgets/rating_progress_indicator.dart';
 import 'package:TShop/features/shop/screens/products_reviews/widgets/user_review_card.dart';
@@ -9,7 +7,6 @@ import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class ProductReviewsScreen extends StatelessWidget {
   const ProductReviewsScreen({super.key});

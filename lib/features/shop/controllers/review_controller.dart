@@ -108,7 +108,7 @@ class ReviewController extends GetxController {
       final userIds = reviews.map((review) => review.userId).toSet();
       if (userIds.isNotEmpty) {
         final users = await reviewRepository.getUsersByIds(userIds);
-        userMap.assignAll(Map.fromIterable(users, key: (user) => user.id, value: (user) => user));
+        userMap.assignAll({ for (var user in users) user.id : user });
       }
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());

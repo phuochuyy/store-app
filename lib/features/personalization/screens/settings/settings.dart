@@ -6,7 +6,6 @@ import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/features/personalization/screens/address/address.dart';
 import 'package:TShop/features/personalization/screens/profile/profile.dart';
-import 'package:TShop/features/shop/screens/cart/cart.dart';
 import 'package:TShop/features/shop/screens/order/order.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
@@ -54,7 +53,7 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 ///Account settings
                 const TSectionHeading(
-                  title: "Account Settings",
+                  title: "Cài đặt tài khoản",
                   showActionButton: false,
                 ),
                 const SizedBox(
@@ -63,42 +62,42 @@ class SettingsScreen extends StatelessWidget {
 
                 TSettingsMenuTile(
                   icon: Iconsax.safe_home,
-                  title: "My Addresss",
+                  title: "Địa chỉ",
                   subTitle: "Set shopping delivery address",
                   onTap: () => Get.to(() => const UserAddressScreen()),
                 ),
                 TSettingsMenuTile(
                   icon: Iconsax.shopping_cart,
-                  title: "My Cart",
+                  title: "Giỏ hàng",
                   subTitle: "Add, remove products and move to checkout",
                   onTap: (){},
                 ),
                 TSettingsMenuTile(
                     icon: Iconsax.bag_tick,
-                    title: "My Orders",
+                    title: "Hóa đơn",
                     subTitle: "In-process and Completed Orders",
                     onTap: () => Get.to(() => const OrderScreen())),
                 TSettingsMenuTile(
                   icon: Iconsax.bank,
-                  title: "Bank Account",
+                  title: "Tài khoản ngân hàng",
                   subTitle: "Withdraw balance to registerd bank account",
                   onTap: () {},
                 ),
                 TSettingsMenuTile(
                   icon: Iconsax.discount_shape,
-                  title: "My Coupons",
+                  title: "Ưu đãi của tôi",
                   subTitle: "List of all the discounted coupons",
                   onTap: () {},
                 ),
                 TSettingsMenuTile(
                   icon: Iconsax.notification,
-                  title: "Notifications",
+                  title: "Thông báo",
                   subTitle: "Set any kind of notification message",
                   onTap: () {},
                 ),
                 TSettingsMenuTile(
                   icon: Iconsax.security_card,
-                  title: "Account Privacy",
+                  title: "Chính sách tài khoản",
                   subTitle: "Manage data usage and connected accounts",
                   onTap: () {},
                 ),
@@ -108,7 +107,7 @@ class SettingsScreen extends StatelessWidget {
                   height: TSizes.spaceBtwSections,
                 ),
                 const TSectionHeading(
-                  title: "App Settings",
+                  title: "Cài đặt ứng dụng",
                   showActionButton: false,
                 ),
                 const SizedBox(
@@ -150,7 +149,7 @@ class SettingsScreen extends StatelessWidget {
                             color: Color.fromARGB(255, 148, 12,
                                 2)), // Thiết lập màu của đường viền
                       ),
-                      child: const Text("Logout"),
+                      child: const Text("Đăng xuất"),
                     )),
                 const SizedBox(height: TSizes.spaceBtwSections * 2.5),
               ],

@@ -27,7 +27,7 @@ class CheckoutScreen extends StatelessWidget {
     final cartcontroller = CartController.instance;
     final subTotal = cartcontroller.totalCartPrice.value;
     final orderController =  Get.put(OrderController());
-    final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'US');
+    final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'vi_VN');
 
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(

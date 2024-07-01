@@ -1,5 +1,10 @@
+import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
+import 'package:TShop/data/repositories/orders/order_repository.dart';
 import 'package:TShop/data/repositories/product/product_repository.dart';
+import 'package:TShop/features/personalization/controllers/user_controller.dart';
+import 'package:TShop/features/shop/controllers/product/order_controller.dart';
 import 'package:TShop/features/shop/models/product_model.dart';
+import 'package:TShop/features/shop/service/rs_service.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -11,12 +16,29 @@ class ProductController extends GetxController {
   final productRepository = Get.put(ProductRepository());
   RxList<ProductModel> featureProducts = <ProductModel>[].obs;
   RxList<ProductModel> searchedProducts = <ProductModel>[].obs;
+  RxList<ProductModel> searchedRecommendProducts = <ProductModel>[].obs;
+  RxList<ProductModel> recommendProducts = <ProductModel>[].obs;
+
   final searchText = ''.obs;
+
+  final rsService = Get.put(RsService());
+  // final orderController = OrderController.instance;
+  final orderRepository = OrderRepository.instance;
+  bool checkIsBought = false;
 
   @override
   void onInit() {
-    fetchFeaturedProducts();
+    // fetchFeaturedProducts();
+    // fetchRecommendationProducts();
     super.onInit();
+  }
+
+  void checkBought() async {
+    final orders = await orderRepository.fetchUserOrders();
+    if (orders.isNotEmpty) {
+      print("Khong rong");
+      checkIsBought = true;
+    }
   }
 
   void fetchFeaturedProducts() async {
@@ -46,20 +68,56 @@ class ProductController extends GetxController {
     }
   }
 
+  void fetchRecommendationProducts() async {
+    try {
+      isLoading.value = true;
+
+      final userId = AuthenticationRepository.instance.authUser.uid;
+      final ids = await rsService.fetchProductIds(userId);
+      // Fetch Products
+      final products = await productRepository.getProductsByIds(ids);
+      recommendProducts.assignAll(products);
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
   //Search product
   void searchProducts(String query) {
     searchText.value = query;
     if (query.isEmpty) {
-      searchedProducts.assignAll(featureProducts);
+      if (checkIsBought) {
+        searchedProducts.assignAll(recommendProducts);
+      } else {
+        searchedProducts.assignAll(featureProducts);
+      }
     } else {
       searchedProducts.assignAll(
-        featureProducts.where((product) => product.title.toLowerCase().contains(query.toLowerCase())).toList(),
+        featureProducts
+            .where((product) =>
+                product.title.toLowerCase().contains(query.toLowerCase()))
+            .toList(),
       );
     }
   }
+  // void searchRecommendProducts(String query) {
+  //   searchText.value = query;
+  //   if (query.isEmpty) {
+  //     searchedRecommendProducts.assignAll(recommendProducts);
+  //   } else {
+  //     searchedRecommendProducts.assignAll(
+  //       recommendProducts
+  //           .where((product) =>
+  //               product.title.toLowerCase().contains(query.toLowerCase()))
+  //           .toList(),
+  //     );
+  //   }
+  // }
+
   // Get the product price or price range for variations
   String getProductPrice(ProductModel product) {
-
     double smallestPrice = double.infinity;
     double largestPrice = 0.0;
     final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: '');
@@ -68,7 +126,7 @@ class ProductController extends GetxController {
     if (product.productType == 'Single') {
       double priceToConsider =
           product.salePrice > 0 ? product.salePrice : product.originalPrice;
-        
+
       return formatter.format(priceToConsider);
     } else {
       // Calculate the smallest and largest prices among variations

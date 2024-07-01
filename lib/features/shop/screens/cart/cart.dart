@@ -63,17 +63,19 @@ class CartScreen extends StatelessWidget {
       //Checkout Button
       bottomNavigationBar: controller.cartItems.isEmpty
           ? const SizedBox()
-          : Padding(
-              padding: const EdgeInsets.all(TSizes.defaultSpace),
-              child: ElevatedButton(
-                onPressed: () => Get.to(() => const CheckoutScreen()),
-                style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white, backgroundColor: TColors.primary,
-                    side: BorderSide.none, 
-  ),
-                child: Text('Thanh toán ${controller.formatPrice(controller.totalCartPrice.value)}đ'),
+          : Obx(
+            () =>  Padding(
+                padding: const EdgeInsets.all(TSizes.defaultSpace),
+                child: ElevatedButton(
+                  onPressed: () => Get.to(() => const CheckoutScreen()),
+                  style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white, backgroundColor: TColors.primary,
+                      side: BorderSide.none, 
               ),
-            ),
+                  child: Text('Thanh toán ${controller.formatPrice(controller.totalCartPrice.value)}đ'),
+                ),
+              ),
+          ),
     );
   }
 }

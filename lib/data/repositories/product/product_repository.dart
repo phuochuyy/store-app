@@ -33,6 +33,34 @@ class ProductRepository extends GetxController {
   }
 
 
+  /// Get products by list of Document IDs
+  Future<List<ProductModel>> getProductsByIds(List<dynamic> ids) async {
+    try {
+
+      List<ProductModel> products = [];
+      print(ids.length);
+
+      for (int id in ids) {
+             
+        final doc = await _db.collection('Products').doc(id.toString()).get();
+        if (doc.exists) {
+          // print(ProductModel.fromSnapshot(doc).id);
+          products.add(ProductModel.fromSnapshot(doc));
+        }
+      }
+      // print("------------------");
+      // print(products.length);
+
+      return products;
+    } on FirebaseException catch (e) {
+      throw Exception(e.message);
+    } catch (e) {
+      print('$e');
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+
     /// Get limited featured products
   
   Future<List<ProductModel>> getAllFeaturedProducts() async {

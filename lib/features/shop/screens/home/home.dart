@@ -4,7 +4,9 @@ import 'package:TShop/common/widgets/custom_shapes/containers/search_product_pag
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/personalization/controllers/user_controller.dart';
 import 'package:TShop/features/shop/controllers/product/product_controller.dart';
+import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/screens/all_products/all_products.dart';
 import 'package:TShop/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:TShop/features/shop/screens/home/widgets/home_categories.dart';
@@ -18,7 +20,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ProductController());
+    final controller = ProductController.instance;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -89,15 +91,49 @@ class HomeScreen extends StatelessWidget {
                       return const TVerticalProductShimmer();
                     }
 
-                    final productsToShow = controller.searchedProducts.isEmpty
+                    RxList<ProductModel> productsToShow;
+
+                    controller.checkBought();
+                    if(controller.checkIsBought==true) {
+                      controller.fetchRecommendationProducts();
+                      productsToShow = controller.searchedProducts.isEmpty
+                        ? controller.recommendProducts
+                        : controller.searchedProducts;
+                      print("-----------------------");
+                      print(controller.checkIsBought);
+                      print(productsToShow.length);
+                      print('A');
+                      // productsToShow = controller.searchedProducts.isEmpty
+                      //   ? controller.featureProducts
+                      //   : controller.searchedProducts;
+                      
+                    } 
+                    else {
+                        controller.fetchFeaturedProducts();
+                         productsToShow = controller.searchedProducts.isEmpty
                         ? controller.featureProducts
                         : controller.searchedProducts;
-
-                    if (productsToShow.isEmpty) {
-                      return Center(
-                          child: Text('Không có sản phẩm nào!',
-                              style: Theme.of(context).textTheme.bodyMedium));
+                        print("-----------------------");
+                        print(controller.checkIsBought);
+                        print('B');
                     }
+
+                   
+                    
+                    
+
+                    // final productsToShow = controller.searchedProducts.isEmpty
+                    //     ? controller.fetchRecommendationProducts(userController.user.value.id)
+                    //     : controller.searchedProducts;
+
+                    // if (productsToShow.isEmpty) {
+                    //   print("-----------------------");
+                    //   print(controller.checkIsBought);
+                    //   print('C');
+                    //   return Center(
+                    //       child: Text('Không có sản phẩm nào!',
+                    //           style: Theme.of(context).textTheme.bodyMedium));
+                    // }
                     return TGridLayout(
                         itemCount: productsToShow.length,
                         itemBuilder: (_, index) => TProductCardVertical(

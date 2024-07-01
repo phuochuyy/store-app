@@ -41,8 +41,8 @@ class TPromoSlider extends StatelessWidget {
                       imageUrl: banner.imageUrl,
                       isNetworkImage: true,
                       applyImageRadius: true,
-                      padding: const EdgeInsets.all(TSizes.sm),
-                      onPressed: () => Get.toNamed(banner.targetScreen),
+                      padding: const EdgeInsets.all(1.5),
+                      onPressed: () {},
                     )).toList(),
                     options: CarouselOptions(
                       viewportFraction: 1,

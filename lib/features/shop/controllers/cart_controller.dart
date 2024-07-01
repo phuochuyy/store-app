@@ -14,6 +14,8 @@ class CartController extends GetxController {
   RxInt noOfCartItems = 0.obs;
   RxDouble totalCartPrice = 0.0.obs;
   RxInt productQuantityInCart = 0.obs;
+  final RxDouble discount = 0.0.obs;
+  final RxString couponCode = ''.obs;
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
   final variationController = VariationController.instance;
 
@@ -209,9 +211,40 @@ class CartController extends GetxController {
     updateCart();
   }
 
-String formatPrice(double price) {
+  String formatPrice(double price) {
   final formatter = NumberFormat('#,###', 'vi_VN');
   return formatter.format(price);
 }
+
+  void applyDiscount(double discountAmount, String code) {
+    discount.value = discountAmount;
+    couponCode.value = code;
+    if(code != '')
+    TLoaders.successSnackBar(title: 'Thành công',message: 'Áp dụng mã giảm giá thành công');
+  }
+  void resetDiscount() {
+    discount.value = 0.0;
+  }
+  double calculateDiscount(String coupon, double amount) {
+    // map coupon code to discount amount
+    Map<String,double> map = {
+      'CAMONQUYKHACH': 0.05,
+      'TSHOP2024': 0.1,
+      'SALE2024': 0.15,
+    };
+    if(map.containsKey(coupon)){
+      return amount * map[coupon]!;
+    }
+    else {
+      if(coupon != '') {
+        TLoaders.customToast(message: 'Mã giảm giá không hợp lệ');
+        return 0.0;
+      }
+      else{
+        TLoaders.customToast(message: 'Vui lòng nhập mã giảm giá');
+        return 0.0;
+    }
+    }
+  }
 
 }

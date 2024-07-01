@@ -30,7 +30,7 @@ class TCloudHelperFunctions {
     }
 
      if(!(snapshot.hasData) || snapshot.data==null || snapshot.data!.isEmpty){
-      return const Center(child: Text('Không có dữ liệu'),);
+      return nothingFound ?? const Center(child: Text('Không có dữ liệu'),);
 
     }
 

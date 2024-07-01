@@ -24,32 +24,38 @@ class UserAddressScreen extends StatelessWidget {
           ),
           child: const Icon(Iconsax.add, color: TColors.white),
         ),
-        appBar: TAppBar(showBackArrow: true, title: Text( 'Addresses', style: Theme.of(context).textTheme.headlineSmall,),),
+        appBar: TAppBar(
+          showBackArrow: true,
+          title: Text(
+            'Địa chỉ',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+        ),
         body: SingleChildScrollView(
           child: Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Obx(
                 () => FutureBuilder(
-                  // Use key to trigger refresh
-                  key: Key(controller.refreshData.value.toString()),
-                  future: controller.getAllUserAddresses(),
-                  builder: (context, snapshot) {
-                
-                    // Helper Function: Handle Loader, No Record, OR Error Message
-                    final response = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
-                    if(response != null) return response;
-                
-                    final addresses = snapshot.data!;
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: addresses.length,
-                      itemBuilder: (_, index) => TSingleAddress(
-                        address: addresses[index],
-                        onTap: () => controller.selectAddress(addresses[index]),
-                        )
-                      );
-                  }
-                ),
+                    // Use key to trigger refresh
+                    key: Key(controller.refreshData.value.toString()),
+                    future: controller.getAllUserAddresses(),
+                    builder: (context, snapshot) {
+                      // Helper Function: Handle Loader, No Record, OR Error Message
+                      final response =
+                          TCloudHelperFunctions.checkMultiRecordState(
+                              snapshot: snapshot);
+                      if (response != null) return response;
+
+                      final addresses = snapshot.data!;
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: addresses.length,
+                          itemBuilder: (_, index) => TSingleAddress(
+                                address: addresses[index],
+                                onTap: () =>
+                                    controller.selectAddress(addresses[index]),
+                              ));
+                    }),
               )),
         ));
   }

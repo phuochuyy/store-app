@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
 
                   ///Heading
                   TSectionHeading(
-                    title: "Popular Products",
+                    title: "Sản phẩm phổ biến",
                     onPressed: () => Get.to(() => AllProducts(
                           title: 'Sản phẩm phổ biến',
                           futureMethod: controller.fetchAllFeaturedProducts(),

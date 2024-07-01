@@ -19,8 +19,8 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: TAppBar(
           showBackArrow: true,
-          title:
-              Text('Cart', style: Theme.of(context).textTheme.headlineSmall)),
+          title: Text('Giỏ hàng',
+              style: Theme.of(context).textTheme.headlineSmall)),
       body: Obx(() {
         // Nothing found widget
         final emptyWidget = TAnimationLoaderWidget(
@@ -68,10 +68,12 @@ class CartScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () => Get.to(() => const CheckoutScreen()),
                 style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white, backgroundColor: TColors.primary,
-                    side: BorderSide.none, 
-  ),
-                child: Text('Thanh toán ${controller.formatPrice(controller.totalCartPrice.value)}đ'),
+                  foregroundColor: Colors.white,
+                  backgroundColor: TColors.primary,
+                  side: BorderSide.none,
+                ),
+                child: Text(
+                    'Thanh toán ${controller.formatPrice(controller.totalCartPrice.value)}đ'),
               ),
             ),
     );

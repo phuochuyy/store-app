@@ -48,7 +48,7 @@ class TProductMetaData extends StatelessWidget {
 
           ///price
           if(product.productType == 'Single' && product.salePrice > 0)
-             Text('\$${formatCurrency(product.originalPrice)}',
+             Text(formatCurrency(product.originalPrice),
               
               style: Theme.of(context)
                   .textTheme

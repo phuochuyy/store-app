@@ -28,6 +28,6 @@ class TPricingCalculator {
   }
 
   static double getShippingCost(String location) {
-    return 5.0;
+    return 30000;
   }
 }

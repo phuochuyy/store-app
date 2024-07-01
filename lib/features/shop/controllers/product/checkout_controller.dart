@@ -1,7 +1,6 @@
 import 'package:TShop/common/widgets/list_tiles/payment_tile.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/utils/constants/size.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,20 +31,20 @@ class CheckoutController extends GetxController {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TSectionHeading(title: 'Chọn phương thức thanh toán',
+                    const TSectionHeading(title: 'Chọn phương thức thanh toán',
                       showActionButton: false,),
-                    SizedBox(height: TSizes.spaceBtwSections),
+                    const SizedBox(height: TSizes.spaceBtwSections),
                     TPaymentTile(paymentMethod: PaymentMethodModel(
                         name: 'Paypal', image: TImages.paypal)),
                     const SizedBox(height: TSizes.spaceBtwItems / 2),
                     TPaymentTile(paymentMethod: PaymentMethodModel(
-                        name: 'Google Pay', image: TImages.google)),
+                        name: 'Trực tiếp', image: TImages.trucTiep)),
                     const SizedBox(height: TSizes.spaceBtwItems / 2),
                     TPaymentTile(paymentMethod: PaymentMethodModel(
-                        name: 'Mono', image: TImages.momo)),
+                        name: 'Momo', image: TImages.momo)),
                     const SizedBox(height: TSizes.spaceBtwItems / 2),
                     TPaymentTile(paymentMethod: PaymentMethodModel(
-                        name: 'Visa', image: TImages.momo)),
+                        name: 'Visa', image: TImages.visa)),
                     const SizedBox(height: TSizes.spaceBtwItems / 2),
                   ],
                 ),

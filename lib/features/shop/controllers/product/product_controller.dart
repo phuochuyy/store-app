@@ -62,7 +62,7 @@ class ProductController extends GetxController {
 
     double smallestPrice = double.infinity;
     double largestPrice = 0.0;
-    final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'đ');
+    final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: '');
 
     // If no variations exist, return the simple price or sale price
     if (product.productType == 'Single') {

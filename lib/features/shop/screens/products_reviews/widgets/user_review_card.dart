@@ -1,8 +1,5 @@
 import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:TShop/common/widgets/products/ratings/rating_indicator.dart';
-import 'package:TShop/features/personalization/controllers/user_controller.dart';
-import 'package:TShop/features/personalization/models/user_model.dart';
-import 'package:TShop/features/shop/controllers/product/product_controller.dart';
 import 'package:TShop/features/shop/controllers/review_controller.dart';
 import 'package:TShop/features/shop/models/review_model.dart';
 import 'package:TShop/utils/constants/colors.dart';
@@ -10,8 +7,6 @@ import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:readmore/readmore.dart';
 
 class UserReviewCard extends StatelessWidget {
@@ -96,11 +91,11 @@ class UserReviewCard extends StatelessWidget {
                   trimMode: TrimMode.Line,
                   trimExpandedText: ' show less',
                   trimCollapsedText: ' show more',
-                  moreStyle: TextStyle(
+                  moreStyle: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: TColors.primary),
-                  lessStyle: TextStyle(
+                  lessStyle: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: TColors.primary),

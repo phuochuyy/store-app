@@ -1,11 +1,9 @@
 import 'package:TShop/common/shimmer/vertical_product_shimmer.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/primary_header_container.dart';
-import 'package:TShop/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/search_product_page.dart';
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
-import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:TShop/features/shop/controllers/product/product_controller.dart';
 import 'package:TShop/features/shop/screens/all_products/all_products.dart';
 import 'package:TShop/features/shop/screens/home/widgets/home_appbar.dart';
@@ -77,7 +75,7 @@ class HomeScreen extends StatelessWidget {
 
                   ///Heading
                   TSectionHeading(
-                    title: "Popular Products",
+                    title: "Sản phẩm phổ biến",
                     onPressed: () => Get.to(() => AllProducts(
                           title: 'Sản phẩm phổ biến',
                           futureMethod: controller.fetchAllFeaturedProducts(),

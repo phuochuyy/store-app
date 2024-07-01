@@ -1,16 +1,11 @@
-import 'dart:io';
 
-import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/features/personalization/models/user_model.dart';
 import 'package:TShop/features/shop/models/review_model.dart';
 import 'package:TShop/utils/exceptions/firebase_exceptions.dart';
-import 'package:TShop/utils/exceptions/format_exceptions.dart';
 import 'package:TShop/utils/exceptions/platform_exceptions.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:image_picker/image_picker.dart';
 
 /// Repository class for user-related operations.
 class ReviewRepository extends GetxController {

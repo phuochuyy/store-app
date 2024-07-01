@@ -8,13 +8,9 @@ import 'package:TShop/features/shop/models/order_model.dart';
 import 'package:TShop/navigation_menu.dart';
 import 'package:TShop/utils/constants/enums.dart';
 import 'package:TShop/utils/constants/image_string.dart';
-import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-
-import '';
 
 class OrderController extends GetxController {
   static OrderController get instance => Get.find();
@@ -37,11 +33,10 @@ class OrderController extends GetxController {
   }
 
   /// add method for processing
-  void processOrder(double totalAmount) async {
+  void processOrder(double totalAmount, {String orderId = ''}) async {
     try {
-// Start Loader
-      TFullScreenLoader.openLoadingDialog(
-          'Processing your order', TImages.pencilAnimation);
+// // Start Loader
+      // TFullScreenLoader.openLoadingDialog('Processing your order', TImages.pencilAnimation);
 
 // Get user authentication Id
       final userId = AuthenticationRepository.instance.authUser.uid;
@@ -50,7 +45,7 @@ class OrderController extends GetxController {
 // Add Details
       final order = OrderModel(
         // Generate a unique ID for the order
-        id: UniqueKey().toString(),
+        id: orderId == '' ? UniqueKey().toString() : orderId,
         userId: userId,
         status: OrderStatus.pending,
         totalAmount: totalAmount,
@@ -70,7 +65,7 @@ class OrderController extends GetxController {
 
       //show success screen
       Get.off(() => SuccessScreen(
-          image: TImages.orderCompletedAnimation,
+          image: TImages.orderSuccess,
           title: 'Thanh toán thành công!',
           subtTitle: 'Đơn hàng của bạn sẽ được gửi đến sớm nhất!',
           onPressed: () => Get.offAll(() => const NavigationMenu())));

@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:TShop/utils/constants/size.dart';
@@ -20,8 +19,8 @@ class TBillingAmountSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Subtotal', style: Theme.of(context).textTheme.bodyMedium),
-            Text('\$$subTotal', style: Theme.of(context).textTheme.bodyMedium)
+            Text('Tổng giá', style: Theme.of(context).textTheme.bodyMedium),
+            Text('${cartcontroller.formatPrice(subTotal)}đ', style: Theme.of(context).textTheme.bodyMedium)
           ],
         ),
         const SizedBox(height: TSizes.spaceBtwItems /2),
@@ -30,8 +29,8 @@ class TBillingAmountSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Shipping Fee', style: Theme.of(context).textTheme.bodyMedium),
-            Text('\$${TPricingCalculator.calculateShippingCost(subTotal, 'US')}', style: Theme.of(context).textTheme.labelLarge),
+            Text('Phí vận chuyển', style: Theme.of(context).textTheme.bodyMedium),
+            Text('${cartcontroller.formatPrice(double.parse(TPricingCalculator.calculateShippingCost(subTotal, 'US')))}đ', style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
 
@@ -41,7 +40,7 @@ class TBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Tax Fee', style: Theme.of(context).textTheme.bodyMedium),
-            Text('\$${TPricingCalculator.calculateTax(subTotal, 'US')}', style: Theme.of(context).textTheme.labelLarge),
+            Text('${cartcontroller.formatPrice(double.parse(TPricingCalculator.calculateTax(subTotal, 'US')))}đ', style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
 
@@ -51,8 +50,8 @@ class TBillingAmountSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Order Total', style: Theme.of(context).textTheme.bodyMedium),
-            Text('\$${TPricingCalculator.calculateTotalPrice(subTotal, 'US')}', style: Theme.of(context).textTheme.titleMedium),
+            Text('Tổng', style: Theme.of(context).textTheme.bodyMedium),
+            Text('${cartcontroller.formatPrice(TPricingCalculator.calculateTotalPrice(subTotal, 'US'))}đ', style: Theme.of(context).textTheme.titleMedium),
           ],
         ),
       ],

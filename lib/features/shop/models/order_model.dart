@@ -4,7 +4,6 @@ import 'package:TShop/features/shop/models/cart_item_model.dart';
 import 'package:TShop/utils/constants/enums.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 
 class OrderModel {
   final String id;

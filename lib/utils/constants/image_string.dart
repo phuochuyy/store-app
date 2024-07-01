@@ -11,7 +11,9 @@ class TImages {
   // Checkout method Logos
   static const String paypal = "assets/logos/paypal_logo.png";
   static const String momo = "assets/logos/momo.webp";
-  static const String visa = "assets/logos/visa.svg";
+  static const String visa = "assets/logos/visalogo.png";
+  static const String trucTiep = "assets/logos/tructiep.png";
+
 
   // onboarding image
   static const String onBoardingImage3 =
@@ -86,6 +88,8 @@ class TImages {
 
   static const String cartAnimation = "assets/images/cart/cart_animation.gif";
   // static const String cartAnimation = "assets/images/verify_email/succesfulluRegisterAnimation.gif";
-  static const String pencilAnimation = "assets/images/animation/pencil_drawing.json";
-  static const String orderCompletedAnimation = "assets/images/animation/order_completed.json";
+  // static const String pencilAnimation = "assets/images/animation/pencil_drawing.json";
+  static const String orderCompletedAnimation = "assets/images/animation/order_success.jpg";
+
+  static const String orderSuccess = "assets/images/animation/order_success.gif";
 }

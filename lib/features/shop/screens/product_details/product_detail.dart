@@ -1,4 +1,5 @@
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/shop/controllers/review_controller.dart';
 import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/screens/products_reviews/product_reviews.dart';
 import 'package:TShop/utils/constants/size.dart';
@@ -20,6 +21,7 @@ class ProductDetailScreen extends StatelessWidget {
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
+    final reviewController =  Get.find<ReviewController>();
     return Scaffold(
       bottomNavigationBar:  TBottomAddToCart(product: product),
       body: SingleChildScrollView(
@@ -73,22 +75,33 @@ class ProductDetailScreen extends StatelessWidget {
                   /// - Reviews
                   const Divider(),
                   const SizedBox(height: TSizes.spaceBtwItems),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TSectionHeading(
-                        title: 'Đánh giá(199)',
-                        onPressed: () {},
-                        showActionButton: false,
-                      ),
-                      IconButton(
-                          icon: const Icon(
-                            Iconsax.arrow_right_3,
-                            size: 18,
-                          ),
-                          onPressed: () =>
-                              Get.to(() => const ProductReviewsScreen())),
-                    ],
+                  FutureBuilder<int>(
+                    future: Get.find<ReviewController>().getReviewsCount(product.id),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TSectionHeading(
+                              title: 'Đánh giá(${reviewController.allReviews.length})',
+                              onPressed: () {},
+                              showActionButton: false,
+                            ),
+                            IconButton(
+                                icon: const Icon(
+                                  Iconsax.arrow_right_3,
+                                  size: 18,
+                                ),
+                                onPressed: () =>
+                                    Get.to(() => const ProductReviewsScreen())),
+                          ],
+                        );
+                      }
+                    },
                   ),
 
                   const SizedBox(height: TSizes.spaceBtwItems),

@@ -16,6 +16,7 @@ class ReviewModel {
     required this.review,
     required this.rating,
     required this.reviewTime,
+
   });
 
   Map<String, dynamic> toJson() {
@@ -28,6 +29,8 @@ class ReviewModel {
       'ReviewTime': reviewTime,
     };
   }
+
+
 
   factory ReviewModel.fromJson(Map<String, dynamic> document) {
     final data = document;
@@ -57,6 +60,8 @@ class ReviewModel {
       return ReviewModel.empty();
     }
   }
+
+
 
   static ReviewModel empty() => ReviewModel(
       id: '', userId: '', userFullName: '', review: '', rating: '', reviewTime: '');

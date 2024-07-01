@@ -3,6 +3,7 @@ import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/pricing_calculator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TBillingAmountSection extends StatelessWidget {
   const TBillingAmountSection({super.key});
@@ -12,6 +13,7 @@ class TBillingAmountSection extends StatelessWidget {
 
     final cartcontroller = CartController.instance;
     final subTotal = cartcontroller.totalCartPrice.value;
+
 
     return Column(
       children: [
@@ -39,21 +41,46 @@ class TBillingAmountSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Tax Fee', style: Theme.of(context).textTheme.bodyMedium),
+            Text('Thuế VAT', style: Theme.of(context).textTheme.bodyMedium),
             Text('${cartcontroller.formatPrice(double.parse(TPricingCalculator.calculateTax(subTotal, 'US')))}đ', style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
 
         const SizedBox(height: TSizes.spaceBtwItems /2),
+        Obx(() {
+        final discount_code = cartcontroller.couponCode.value;
+        final discount = cartcontroller.discount.value;
+        return discount_code != "" ? Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+        Text('Giảm giá', style: Theme.of(context).textTheme.bodyMedium),
+        Text('- ${cartcontroller.formatPrice(discount)}đ', style: Theme.of(context).textTheme.bodyMedium)
+        ],
+
+
+        ) : SizedBox.shrink();}),
+        const SizedBox(height: TSizes.spaceBtwItems /2),
 
         //Order Total
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Tổng', style: Theme.of(context).textTheme.bodyMedium),
-            Text('${cartcontroller.formatPrice(TPricingCalculator.calculateTotalPrice(subTotal, 'US'))}đ', style: Theme.of(context).textTheme.titleMedium),
-          ],
-        ),
+        Obx(
+          () {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Tổng', style: Theme
+                      .of(context)
+                      .textTheme
+                      .bodyMedium),
+                  Text('${cartcontroller.formatPrice(
+                      TPricingCalculator.calculateTotalPrice(
+                          subTotal, cartcontroller.discount.value, 'US'))}đ',
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .titleMedium),
+                ],
+              );
+            }),
       ],
     );
   }

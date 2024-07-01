@@ -17,12 +17,12 @@ class TBillingAddressSection extends StatelessWidget {
     Obx(() =>addressController.selectedAddress.value.id.isNotEmpty
             ? Column(
             children:[
-              Text("${addressController.selectedAddress.value.name}", style: Theme.of(context).textTheme.bodyLarge),
+              Text(addressController.selectedAddress.value.name, style: Theme.of(context).textTheme.bodyLarge),
               Row(
                 children: [
                   const Icon(Icons.phone, color: Colors.grey, size: 16),
                   const SizedBox(width: TSizes.spaceBtwItems),
-                  Text('${addressController.selectedAddress.value.phoneNumber}', style: Theme.of(context).textTheme.bodyMedium),
+                  Text(addressController.selectedAddress.value.phoneNumber, style: Theme.of(context).textTheme.bodyMedium),
             ],
               ),
               const SizedBox(width: TSizes.spaceBtwItems / 2),

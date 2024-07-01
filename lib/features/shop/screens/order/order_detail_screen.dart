@@ -1,7 +1,6 @@
 import 'package:TShop/features/shop/models/order_model.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:flutter/material.dart';
-import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:intl/intl.dart';
 
@@ -17,17 +16,17 @@ class OrderDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chi tiết hóa đơn'),
+        title: const Text('Chi tiết hóa đơn'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(TSizes.defaultSpace),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Mã hóa đơn: ${order.id}', style: Theme.of(context).textTheme.headline6),
-            Text('Ngày tạo hóa đơn: ${order.formattedOrderDate}', style: Theme.of(context).textTheme.subtitle1),
+            Text('Mã hóa đơn: ${order.id}', style: Theme.of(context).textTheme.titleLarge),
+            Text('Ngày tạo hóa đơn: ${order.formattedOrderDate}', style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: TSizes.spaceBtwItems),
-            Text('Danh sách sản phẩm:', style: Theme.of(context).textTheme.headline6),
+            Text('Danh sách sản phẩm:', style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: TSizes.spaceBtwItems),
             Expanded(
               child: ListView.builder(
@@ -57,7 +56,7 @@ class OrderDetailScreen extends StatelessWidget {
             Text.rich(
               TextSpan(
                 text: 'Thành tiền: ',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
                 children: [
                   TextSpan(
                     text: formatCurrency(order.totalAmount),

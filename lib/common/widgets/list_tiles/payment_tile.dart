@@ -3,7 +3,6 @@ import 'package:TShop/features/shop/controllers/product/checkout_controller.dart
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:TShop/features/shop/models/payment_method_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

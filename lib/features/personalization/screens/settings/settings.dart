@@ -6,7 +6,6 @@ import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/features/personalization/screens/address/address.dart';
 import 'package:TShop/features/personalization/screens/profile/profile.dart';
-import 'package:TShop/features/shop/screens/cart/cart.dart';
 import 'package:TShop/features/shop/screens/order/order.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';

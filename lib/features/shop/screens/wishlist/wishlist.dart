@@ -29,7 +29,7 @@ class FavouriteScreen extends StatelessWidget {
         actions: [
           TCircularIcon(
             icon: Iconsax.add,
-            onPressed: () => Get.to(() => const HomeScreen()),
+            onPressed: () => Get.to(const HomeScreen()),
           )
         ],
       ),
@@ -50,8 +50,7 @@ class FavouriteScreen extends StatelessWidget {
                       animation: TImages.cartAnimation,
                       showAction: true,
                       actionText: 'Hãy thêm một vài sản phẩm',
-                      onActionPressed: () =>
-                          Get.off(() => const NavigationMenu()));
+                      onActionPressed: () => Get.to(const HomeScreen()));
 
                   const loader = TVerticalProductShimmer(itemCount: 6);
                   final widget = TCloudHelperFunctions.checkMultiRecordState(

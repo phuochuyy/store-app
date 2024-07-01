@@ -57,11 +57,18 @@ class PaypalPaymentController extends GetxController {
       final orderId = THelperFunctions.generateOrderId();
       final paymentData =
           await momoService.fetchPaymentData(orderId, totalAmount);
-      final deeplink = paymentData['deeplink'] as String;
-      momoService.openMoMoApp(deeplink);
-      ordercontroller.processOrder(totalAmount);
+      final resultCode = paymentData['resultCode'];
+      if (resultCode == 0) {
+        final deeplink = paymentData['deeplink'] as String;
+        await momoService.openMoMoApp(deeplink);
+        ordercontroller.processOrder(totalAmount);
+      } else {
+        TLoaders.errorSnackBar(
+            title: "Lỗi!", message: "Hệ thống thanh toán visa tạm bảo trì!");
+      }
     } catch (e) {
-      TLoaders.errorSnackBar(title: "Lỗi!", message: "Hệ thống thanh toán Momo tạm bảo trì!");
+      TLoaders.errorSnackBar(
+          title: "Lỗi!", message: "Hệ thống thanh toán Momo tạm bảo trì!");
     }
   }
 
@@ -71,12 +78,18 @@ class PaypalPaymentController extends GetxController {
       final orderId = THelperFunctions.generateOrderId();
       final paymentData =
           await momoService.fetchPaymentDataVisa(orderId, totalAmount);
-      final deeplink = paymentData['payUrl'] as String;
-      momoService.openMoMoApp(deeplink);
-      ordercontroller.processOrder(totalAmount);
+      final resultCode = paymentData['resultCode'];
+      if (resultCode == 0) {
+        final deeplink = paymentData['payUrl'] as String;
+        await momoService.openMoMoApp(deeplink);
+        ordercontroller.processOrder(totalAmount);
+      } else {
+        TLoaders.errorSnackBar(
+            title: "Lỗi!", message: "Hệ thống thanh toán visa tạm bảo trì!");
+      }
     } catch (e) {
-      print(e.toString());
-      TLoaders.errorSnackBar(title: "Lỗi!", message: "Hệ thống thanh toán visa tạm bảo trì!");
+      TLoaders.errorSnackBar(
+          title: "Lỗi!", message: "Hệ thống thanh toán visa tạm bảo trì!");
     }
   }
 
@@ -123,8 +136,8 @@ class PaypalPaymentController extends GetxController {
       ));
     } catch (e) {
       debugPrint('Error vl: $e');
-      TLoaders.errorSnackBar(title: "Lỗi!", message: "Hệ thống thanh toán paypal tạm bảo trì!");
-
+      TLoaders.errorSnackBar(
+          title: "Lỗi!", message: "Hệ thống thanh toán paypal tạm bảo trì!");
     }
   }
 }

@@ -44,7 +44,7 @@ class CheckoutController extends GetxController {
                         name: 'Momo', image: TImages.momo)),
                     const SizedBox(height: TSizes.spaceBtwItems / 2),
                     TPaymentTile(paymentMethod: PaymentMethodModel(
-                        name: 'Visa', image: TImages.momo)),
+                        name: 'Visa', image: TImages.visa)),
                     const SizedBox(height: TSizes.spaceBtwItems / 2),
                   ],
                 ),

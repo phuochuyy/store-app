@@ -34,8 +34,6 @@ class MomoService extends GetxController {
         .toString()
         .substring(0, amount.toString().length - 1)
         .replaceAll('.', '');
-      print(orderId);
-      print(amountTemp);
     final response = await http.post(
       Uri.parse('http://192.168.0.102:5000/paymentWithCC'),
       headers: {"Content-Type": "application/json"},
@@ -66,13 +64,11 @@ class MomoService extends GetxController {
   }
 
   // Mo app momo va tien hanh thanh toan
-  void openMoMoApp(String deeplink) async {
+  Future<void> openMoMoApp(String deeplink) async {
     if (await canLaunchUrl(Uri.parse(deeplink))) {
       await launchUrl(Uri.parse(deeplink));
     } else {
       throw Exception('Could not launch $deeplink');
     }
   }
-
-
 }

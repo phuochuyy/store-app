@@ -17,7 +17,7 @@ class App extends StatelessWidget {
       darkTheme: TAppTheme.darkTheme,
       initialBinding: GeneralBindings(),
       home: const OnBoardingScreen(),
-      getPages:AppRoutes.pages,
+      getPages: AppRoutes.pages,
       // home: const HomeScreen(),
       // home: const SubCategoriesScreen(),
       // home: const AllProducts(),

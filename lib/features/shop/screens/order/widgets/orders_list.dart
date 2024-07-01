@@ -1,6 +1,7 @@
 import 'package:TShop/common/widgets/Loaders/animation_loader.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:TShop/features/shop/controllers/product/order_controller.dart';
+import 'package:TShop/features/shop/screens/home/home.dart';
 import 'package:TShop/navigation_menu.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
@@ -23,16 +24,16 @@ class TOrderListItems extends StatelessWidget {
       future: controller.fetchUserOrders(),
       builder: (_, snapshot){
         //Nothing found widget
-        final emtyWidget = TAnimationLoaderWidget(
+        final emptyWidget = TAnimationLoaderWidget(
             text: 'Bạn chưa có đơn hàng nào!',
             animation: TImages.orderCompletedAnimation,
             showAction: true,
             actionText: 'Hãy mua sắm nào!',
-            onActionPressed: () => Get.off(()=>const NavigationMenu()),
+            onActionPressed: () => Get.offAll(()=>const NavigationMenu()),
         );
 
         //Helper function loader , no record, error message
-        final response = TCloudHelperFunctions.checkMultiRecordState(snapshot:snapshot, nothingFound: emtyWidget);
+        final response = TCloudHelperFunctions.checkMultiRecordState(snapshot:snapshot, nothingFound: emptyWidget);
         if(response != null) return response;
 
 

@@ -5,6 +5,7 @@ import 'package:TShop/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/features/personalization/screens/address/address.dart';
+import 'package:TShop/features/shop/screens/cart/cart.dart';
 import 'package:TShop/features/personalization/screens/profile/profile.dart';
 import 'package:TShop/features/shop/screens/order/order.dart';
 import 'package:TShop/utils/constants/colors.dart';
@@ -29,7 +30,7 @@ class SettingsScreen extends StatelessWidget {
               /// AppBar
               TAppBar(
                 title: Text(
-                  'Account',
+                  'Tài khoản',
                   style: Theme.of(context)
                       .textTheme
                       .headlineMedium!
@@ -70,7 +71,7 @@ class SettingsScreen extends StatelessWidget {
                   icon: Iconsax.shopping_cart,
                   title: "Giỏ hàng",
                   subTitle: "Add, remove products and move to checkout",
-                  onTap: (){},
+                  onTap: () => Get.to(() => const CartScreen()),
                 ),
                 TSettingsMenuTile(
                     icon: Iconsax.bag_tick,

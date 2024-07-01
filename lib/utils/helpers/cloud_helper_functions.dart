@@ -37,7 +37,7 @@ class TCloudHelperFunctions {
       );
     }
 
-    if (!snapshot.hasData ||
+    if (!(snapshot.hasData) ||
         snapshot.data == null ||
         snapshot.data!.isEmpty) {
       if (nothingFound != null) return nothingFound;

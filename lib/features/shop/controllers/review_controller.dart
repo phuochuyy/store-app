@@ -2,6 +2,7 @@ import 'package:TShop/features/personalization/models/user_model.dart';
 import 'package:TShop/features/shop/controllers/review_repository.dart';
 import 'package:TShop/features/shop/models/review_model.dart'; // Import ReviewModel
 import 'package:TShop/utils/popups/loaders.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // Import FirebaseAuth
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -116,4 +117,14 @@ class ReviewController extends GetxController {
       isLoading.value = false;
     }
   }
+  Future<int> getReviewsCount(String productId) async {
+    // Replace with your actual Firestore collection name
+    final reviewsCollection = FirebaseFirestore.instance.collection('reviews');
+
+    final querySnapshot = await reviewsCollection
+        .get();
+
+    return querySnapshot.docs.length;
+  }
+
 }

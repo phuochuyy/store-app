@@ -80,10 +80,12 @@ class UserReviewCard extends StatelessWidget {
 
         /// Company Review
         TRoundedContainer(
+          width: double.infinity,
           backgroundColor: dark ? TColors.darkGrey : TColors.grey,
           child: Padding(
             padding: const EdgeInsets.all(TSizes.md),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ReadMoreText(
                   review.review,

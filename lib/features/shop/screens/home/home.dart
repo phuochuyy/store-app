@@ -79,7 +79,7 @@ class HomeScreen extends StatelessWidget {
 
                   ///Heading
                   TSectionHeading(
-                    title: "Popular Products",
+                    title: "Sản phẩm phổ biến",
                     onPressed: () => Get.to(() => AllProducts(
                           title: 'Sản phẩm phổ biến',
                           futureMethod: controller.fetchAllFeaturedProducts(),
@@ -95,30 +95,17 @@ class HomeScreen extends StatelessWidget {
 
                     RxList<ProductModel> productsToShow;
 
-                    // controller.checkBought();
                     if (controller.checkIsBoughtOrSearch.value == true) {
-                      // controller.fetchRecommendationProducts();
                       productsToShow = controller.searchedProducts.isEmpty
                           ? controller.recommendProducts
                           : controller.searchedProducts;
-                      print("-----------------------");
-                      print(controller.checkIsBoughtOrSearch.value);
-                      print(productsToShow.length);
-                      print('A');
                     } else {
-                      // controller.fetchFeaturedProducts();
                       productsToShow = controller.searchedProducts.isEmpty
                           ? controller.featureProducts
                           : controller.searchedProducts;
-                      print("-----------------------");
-                      print(controller.checkIsBoughtOrSearch.value);
-                      print('B');
                     }
 
                     if (productsToShow.isEmpty) {
-                      print("-----------------------");
-                      print(controller.checkIsBoughtOrSearch.value);
-                      print('C');
                       return Center(
                           child: Text('Không có sản phẩm nào!',
                               style: Theme.of(context).textTheme.bodyMedium));

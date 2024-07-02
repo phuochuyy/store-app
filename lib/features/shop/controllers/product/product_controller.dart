@@ -18,7 +18,7 @@ class ProductController extends GetxController {
   final productRepository = Get.put(ProductRepository());
   RxList<ProductModel> featureProducts = <ProductModel>[].obs;
   RxList<ProductModel> searchedProducts = <ProductModel>[].obs;
-  RxList<ProductModel> searchedRecommendProducts = <ProductModel>[].obs;
+  // RxList<ProductModel> searchedRecommendProducts = <ProductModel>[].obs;
   RxList<ProductModel> recommendProducts = <ProductModel>[].obs;
 
   final searchText = ''.obs;
@@ -35,14 +35,15 @@ class ProductController extends GetxController {
   }
 
   void loadData() async {
-    await checkBought();
     await fetchRecommendationProducts();
     await fetchFeaturedProducts();
+    await checkBought();
   }
 
   Future<void> checkBought() async {
     final orders = await orderRepository.fetchUserOrders();
-    if (orders.isNotEmpty) {
+    if (orders.isNotEmpty && recommendProducts.isNotEmpty) {
+      print(recommendProducts.length);
       print("Khong rong");
       checkIsBoughtOrSearch.value = true;
     }
@@ -95,11 +96,7 @@ class ProductController extends GetxController {
   void searchProducts(String query) {
     searchText.value = query;
     if (query.isEmpty) {
-      if (checkIsBoughtOrSearch.value==true) {
-        searchedProducts.assignAll(recommendProducts);
-      } else {
-        searchedProducts.assignAll(featureProducts);
-      }
+      searchedProducts.assignAll(featureProducts);
     } else {
       searchedProducts.assignAll(
         featureProducts

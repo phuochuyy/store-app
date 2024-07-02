@@ -25,7 +25,7 @@ class CheckoutScreen extends StatelessWidget {
     final cartcontroller = CartController.instance;
     final subTotal = cartcontroller.totalCartPrice.value;
     final orderController =  Get.put(OrderController());
-    final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'vi_VN');
+    final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal,cartcontroller.discount.value, 'vi_VN');
 
     final paymentController = Get.put(PaypalPaymentController());
 
@@ -45,7 +45,7 @@ class CheckoutScreen extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwSections),
 
               // Coupon TextFeild
-              const TCouponCode(),
+              TCouponCode(amount: subTotal),
               const SizedBox(height: TSizes.spaceBtwSections),
 
               // Billing Section

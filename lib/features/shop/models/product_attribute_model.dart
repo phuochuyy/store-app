@@ -1,7 +1,7 @@
 
 class ProductAttributeModel {
   String? name;
-  final List<String>? values;
+  final List<dynamic>? values;
   ProductAttributeModel({this.name, this.values});
 
   // Json Format
@@ -15,7 +15,7 @@ class ProductAttributeModel {
 
     return ProductAttributeModel(
         name: data.containsKey('Name') ? data['Name'] : '',
-        values: List<String>.from(data['Values']),
+        values: List<dynamic>.from(data['Values']),
     ); 
   }
 }

@@ -5,6 +5,7 @@ import 'package:TShop/features/shop/controllers/product/checkout_controller.dart
 import 'package:TShop/features/shop/controllers/product/order_controller.dart';
 import 'package:TShop/features/shop/controllers/product/product_controller.dart';
 import 'package:TShop/features/shop/controllers/product/variation_controller.dart';
+import 'package:TShop/features/shop/controllers/review_controller.dart';
 import 'package:TShop/utils/helpers/network_manager.dart';
 import 'package:get/get.dart';
 
@@ -21,5 +22,6 @@ class GeneralBindings extends Bindings {
     // Get.put(OrderController());
 
 
+    Get.put(ReviewController());
   }
 }

@@ -97,6 +97,12 @@ class PaypalPaymentController extends GetxController {
 // Thanh toan voi paypal
   Future<void> processPaypalPayment(double totalAmount) async {
     try {
+      debugPrint('Total amount: $totalAmount');
+      //đôi đơn vị tiền tệ
+      totalAmount = totalAmount / 23000;
+      // bỏ các số thập phân
+      totalAmount = double.parse(totalAmount.toStringAsFixed(2));
+      debugPrint('Total amount: $totalAmount');
       bool paymentSuccess =
           await Navigator.of(Get.context!).push(MaterialPageRoute(
         builder: (BuildContext context) => PaypalCheckout(
@@ -136,9 +142,9 @@ class PaypalPaymentController extends GetxController {
         ),
       ));
     } catch (e) {
-      debugPrint('Error vl: $e');
-      TLoaders.errorSnackBar(
-          title: "Lỗi!", message: "Hệ thống thanh toán paypal tạm bảo trì!");
+      // debugPrint('Error vl: $e');
+      // TLoaders.errorSnackBar(
+      //     title: "Lỗi!", message: "Hệ thống thanh toán paypal tạm bảo trì!");
     }
   }
 }

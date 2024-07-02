@@ -19,8 +19,8 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: TAppBar(
           showBackArrow: true,
-          title:
-              Text('Cart', style: Theme.of(context).textTheme.headlineSmall)),
+          title: Text('Giỏ hàng',
+              style: Theme.of(context).textTheme.headlineSmall)),
       body: Obx(() {
         // Nothing found widget
         final emptyWidget = TAnimationLoaderWidget(

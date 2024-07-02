@@ -1,12 +1,12 @@
 class TPricingCalculator {
   /// Calculate Price based on tax and shipping
-  static double calculateTotalPrice(double productPrice, String location) {
+  static double calculateTotalPrice(double productPrice, double discount , String location) {
     double taxRate = getTaxRateForLocation(location);
     double taxAmount = productPrice * taxRate;
 
     double shippingCost = getShippingCost(location);
 
-    double totalPrice = productPrice + taxAmount + shippingCost;
+    double totalPrice = productPrice + taxAmount + shippingCost - discount;
     return totalPrice;
   }
 

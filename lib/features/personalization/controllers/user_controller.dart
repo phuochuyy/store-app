@@ -50,20 +50,20 @@ class UserController extends GetxController {
 
   // featch all users
   void fetchFeaturedUsers() async {
-  try {
-    //Show loader while loading Products;
-    isLoading.value = true;
+    try {
+      //Show loader while loading Products;
+      isLoading.value = true;
 
-    // Fetch Products
-    final users = await userRepository.getAllUsers();
-    //Assign Products
-    featureUsers.assignAll(users);
-  } catch (e) {
-    TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
-  } finally {
-    isLoading.value = false;
+      // Fetch Products
+      final users = await userRepository.getAllUsers();
+      //Assign Products
+      featureUsers.assignAll(users);
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    } finally {
+      isLoading.value = false;
+    }
   }
-}
 
   // Save user Record from any Registration provider
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
@@ -106,9 +106,9 @@ class UserController extends GetxController {
   void deleteAccountWarningPopup() {
     Get.defaultDialog(
       contentPadding: const EdgeInsets.all(TSizes.md),
-      title: 'Delete Account',
+      title: 'Xóa tài khoản',
       middleText:
-          'Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.',
+          'Bạn có chắc chắn muốn xóa tài khoản của mình vĩnh viễn không? Hành động này không thể đảo ngược và tất cả dữ liệu của bạn sẽ bị xóa vĩnh viễn.',
       confirm: ElevatedButton(
         onPressed: () async => deleteUserAccount(),
         style: ElevatedButton.styleFrom(
@@ -116,11 +116,11 @@ class UserController extends GetxController {
             side: const BorderSide(color: Colors.red)),
         child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
-            child: Text('Delete')),
+            child: Text('Xóa')),
       ),
       cancel: OutlinedButton(
           onPressed: () => Navigator.of(Get.overlayContext!).pop(),
-          child: const Text('Cancel')),
+          child: const Text('Hủy')),
     );
   }
 

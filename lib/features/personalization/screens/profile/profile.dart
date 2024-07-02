@@ -18,7 +18,8 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = UserController.instance;
     return Scaffold(
-      appBar: const TAppBar(showBackArrow: true, title: Text('Profile')),
+      appBar:
+          const TAppBar(showBackArrow: true, title: Text('Chi tiết tài khoản')),
 
       /// -- Body
       body: SingleChildScrollView(
@@ -112,7 +113,7 @@ class ProfileScreen extends StatelessWidget {
                     onPressed: () {},
                   ),
                   TProfileMenu(
-                    title: 'SDT',
+                    title: 'Số điện thoại',
                     value: controller.user.value.phoneNumber,
                     onPressed: () {},
                   ),

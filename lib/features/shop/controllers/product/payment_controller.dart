@@ -32,7 +32,6 @@ class PaypalPaymentController extends GetxController {
           break;
         case 'Visa':
           visaPayment(totalAmount);
-          print('Bạn đã chọn Visa.');
           break;
         default:
           directPayment(totalAmount);
@@ -61,6 +60,7 @@ class PaypalPaymentController extends GetxController {
       if (resultCode == 0) {
         final deeplink = paymentData['deeplink'] as String;
         await momoService.openMoMoApp(deeplink);
+        await Future.delayed(const Duration(seconds: 5));
         ordercontroller.processOrder(totalAmount);
       } else {
         TLoaders.errorSnackBar(
@@ -68,7 +68,7 @@ class PaypalPaymentController extends GetxController {
       }
     } catch (e) {
       TLoaders.errorSnackBar(
-          title: "Lỗi!", message: "Hệ thống thanh toán Momo tạm bảo trì!");
+          title: "Lỗi!", message: "Hệ thống thanh toán Momo tạm bảo trì! ");
     }
   }
 
@@ -82,6 +82,7 @@ class PaypalPaymentController extends GetxController {
       if (resultCode == 0) {
         final deeplink = paymentData['payUrl'] as String;
         await momoService.openMoMoApp(deeplink);
+        await Future.delayed(const Duration(seconds: 5));
         ordercontroller.processOrder(totalAmount);
       } else {
         TLoaders.errorSnackBar(

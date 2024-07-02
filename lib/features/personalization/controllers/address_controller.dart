@@ -151,23 +151,33 @@ class AddressController extends GetxController {
                     if (response != null) return response;
 
                     return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index) => TSingleAddress(
-                          address: snapshot.data![index],
-                          onTap: () async {
-                            await selectAddress(snapshot.data![index]);
-                            Get.back();
-                          }
-                      )
-                    );
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (_, index) => TSingleAddress(
+                            address: snapshot.data![index],
+                            onTap: () async {
+                              await selectAddress(snapshot.data![index]);
+                              Get.back();
+                            }));
                   }),
-              const SizedBox(height: TSizes.defaultSpace*2),
+              const SizedBox(height: TSizes.defaultSpace * 2),
               SizedBox(
-                width:double.infinity,
+                width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => Get.to(() => const AddNewAddressScreen()),child:const Text('Thêm địa chỉ mới')),
-                )
+                    onPressed: () => Get.to(() => const AddNewAddressScreen()),
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all<Color>(
+                          const Color.fromARGB(
+                              255, 145, 14, 4)), // Thiết lập màu nền
+                      overlayColor: WidgetStateProperty.all<Color>(Colors
+                          .red.shade200), // Thiết lập màu overlay khi nhấn
+                      side: WidgetStateProperty.all<BorderSide>(
+                          const BorderSide(
+                              color: Color.fromARGB(
+                                  255, 137, 13, 4))), // Thiết lập màu viền
+                    ),
+                    child: const Text('Thêm địa chỉ mới')),
+              )
             ],
           ),
         ),

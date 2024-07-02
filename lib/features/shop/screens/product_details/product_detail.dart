@@ -1,6 +1,7 @@
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/features/shop/controllers/review_controller.dart';
 import 'package:TShop/features/shop/models/product_model.dart';
+import 'package:TShop/features/shop/screens/cart/cart.dart';
 import 'package:TShop/features/shop/screens/products_reviews/product_reviews.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
@@ -15,15 +16,16 @@ import 'widgets/rating_share_widget.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({
-    super.key, required this.product,
+    super.key,
+    required this.product,
   });
 
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
-    final reviewController =  Get.find<ReviewController>();
+    final reviewController = Get.find<ReviewController>();
     return Scaffold(
-      bottomNavigationBar:  TBottomAddToCart(product: product),
+      bottomNavigationBar: TBottomAddToCart(product: product),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -47,39 +49,54 @@ class ProductDetailScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwItems),
 
                   /// -- Attributes
-                  if(product.productType == 'Variable') TProductAttributes(product: product),
-                  if(product.productType == 'Variable') const SizedBox(height: TSizes.spaceBtwSections),
+                  if (product.productType == 'Variable')
+                    TProductAttributes(product: product),
+                  if (product.productType == 'Variable')
+                    const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// -- Checkout Button
                   SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                          onPressed: () {}, child: const Text('Thanh toán'))),
+                          onPressed: () => Get.to(() => const CartScreen()),
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                const Color.fromARGB(
+                                    255, 145, 14, 4)), // Thiết lập màu nền
+                            overlayColor: WidgetStateProperty.all<Color>(Colors
+                                .red
+                                .shade200), // Thiết lập màu overlay khi nhấn
+                            side: WidgetStateProperty.all<BorderSide>(
+                                const BorderSide(
+                                    color: Color.fromARGB(255, 137, 13,
+                                        4))), // Thiết lập màu viền
+                          ),
+                          child: const Text('Thanh toán'))),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// - Description
                   const TSectionHeading(
                       title: 'Description', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwItems),
-                  ReadMoreText(
-                      product.description ?? '',
+                  ReadMoreText(product.description ?? '',
                       trimLines: 3,
                       trimMode: TrimMode.Line,
                       trimCollapsedText: 'Xem thêm',
                       trimExpandedText: 'Rút gọn',
-                      moreStyle:
-                          const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                      lessStyle:
-                          const TextStyle(fontSize: 14, fontWeight: FontWeight.w800)),
+                      moreStyle: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w800),
+                      lessStyle: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w800)),
 
                   /// - Reviews
                   const Divider(),
                   const SizedBox(height: TSizes.spaceBtwItems),
                   FutureBuilder<int>(
-                    future: Get.find<ReviewController>().getReviewsCount(product.id),
+                    future: Get.find<ReviewController>()
+                        .getReviewsCount(product.id),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       } else if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}');
                       } else {
@@ -87,7 +104,8 @@ class ProductDetailScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             TSectionHeading(
-                              title: 'Đánh giá(${reviewController.allReviews.length})',
+                              title:
+                                  'Đánh giá(${reviewController.allReviews.length})',
                               onPressed: () {},
                               showActionButton: false,
                             ),

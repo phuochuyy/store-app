@@ -15,7 +15,7 @@ class MomoService extends GetxController {
         .substring(0, amount.toString().length - 1)
         .replaceAll('.', '');
     final response = await http.post(
-      Uri.parse('http://192.168.0.102:5000/payment'),
+      Uri.parse('http://192.168.0.102:5001/payment'),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({"orderId": orderId, "amount": amountTemp}),
     );

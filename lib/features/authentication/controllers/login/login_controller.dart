@@ -1,8 +1,10 @@
 import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/features/personalization/controllers/user_controller.dart';
+import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/helpers/network_manager.dart';
 import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -28,13 +30,14 @@ class LoginController extends GetxController {
   Future<void> emailAndPasswordSignIn() async {
     try {
       // Start Loading
-      // TFullScreenLoader.openLoadingDialog(
-      //     'Logging you in...', TImages.docerAnimation);
+      TFullScreenLoader.openLoadingDialog(
+          'Đang đăng nhập...', TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
         TFullScreenLoader.stopLoading();
+        TLoaders.errorSnackBar(title: 'Mất kết nối Internet');
         return;
       }
 
@@ -54,13 +57,36 @@ class LoginController extends GetxController {
           .loginWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       // Remove Loader
-      // TFullScreenLoader.stopLoading();
+      TFullScreenLoader.stopLoading();
 
       // Redirect
       AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
-      // TFullScreenLoader.stopLoading();
-      TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+      TFullScreenLoader.stopLoading();
+
+      // Handle specific authentication errors
+      if (e is FirebaseAuthException) {
+        String errorMessage;
+        switch (e.code) {
+          case 'user-not-found':
+            errorMessage = 'Không tìm thấy người dùng với email này.';
+            break;
+          case 'wrong-password':
+            errorMessage = 'Mật khẩu không chính xác.';
+            break;
+          case 'invalid-email':
+            errorMessage = 'Email không hợp lệ.';
+            break;
+          case 'user-disabled':
+            errorMessage = 'Tài khoản đã bị vô hiệu hóa.';
+            break;
+          default:
+            errorMessage = 'Đã xảy ra lỗi. Vui lòng thử lại.';
+        }
+        TLoaders.errorSnackBar(title: 'Lỗi đăng nhập', message: errorMessage);
+      } else {
+        TLoaders.errorSnackBar(title: 'Lỗi đăng nhập', message:"Sai mật khẩu hoặc email!");
+      }
     }
   }
 
@@ -68,8 +94,8 @@ class LoginController extends GetxController {
   Future<void> googleSignIn() async {
     try {
       // Start Loading
-      // TFullScreenLoader.openLoadingDialog(
-      //     'Logging you in...', TImages.docerAnimation);
+      TFullScreenLoader.openLoadingDialog(
+          'Logging you in...', TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -86,25 +112,23 @@ class LoginController extends GetxController {
       await userController.saveUserRecord(userCredentials);
 
       // Remove Loader
-      // TFullScreenLoader.stopLoading();
+      TFullScreenLoader.stopLoading();
 
       // Redirect
       AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
       // Remove Loader
-      // TFullScreenLoader.stopLoading();
+      TFullScreenLoader.stopLoading();
 
       TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
     }
   }
 
-
-
   Future<void> facebookSignIn() async {
     try {
       // Start Loading
-      // TFullScreenLoader.openLoadingDialog(
-      //     'Logging you in...', TImages.docerAnimation);
+      TFullScreenLoader.openLoadingDialog(
+          'Logging you in...', TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -121,13 +145,13 @@ class LoginController extends GetxController {
       await userController.saveUserRecord(userCredentials);
 
       // Remove Loader
-      // TFullScreenLoader.stopLoading();
+      TFullScreenLoader.stopLoading();
 
       // Redirect
       AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
       // Remove Loader
-      // TFullScreenLoader.stopLoading();
+      TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
     }
   }

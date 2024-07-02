@@ -39,6 +39,7 @@ class TChoiceChip extends StatelessWidget {
             : null,
         padding: isColor ? const EdgeInsets.all(0) : null,
         backgroundColor: isColor ? THelperFunctions.getColor(text)! : null,
+        selectedColor: TColors.primary,
       ),
     );
   }

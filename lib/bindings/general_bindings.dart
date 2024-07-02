@@ -15,8 +15,8 @@ class GeneralBindings extends Bindings {
     Get.put(AddressController());
     Get.put(CheckoutController());
     Get.put(VariationController());
-    Get.lazyPut(()=>OrderRepository());
-    Get.put(ProductController());
+    Get.put(OrderRepository());
+    // Get.put(ProductController());
     // Get.put(CartController());
     // Get.put(OrderController());
 

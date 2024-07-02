@@ -20,7 +20,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = ProductController.instance;
+    // final controller = ProductController.instance;
+    final controller = Get.put(ProductController());
+
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -93,52 +95,38 @@ class HomeScreen extends StatelessWidget {
 
                     RxList<ProductModel> productsToShow;
 
-                    controller.checkBought();
-                    if(controller.checkIsBought==true) {
-                      controller.fetchRecommendationProducts();
+                    // controller.checkBought();
+                    if (controller.checkIsBoughtOrSearch.value == true) {
+                      // controller.fetchRecommendationProducts();
                       productsToShow = controller.searchedProducts.isEmpty
-                        ? controller.recommendProducts
-                        : controller.searchedProducts;
+                          ? controller.recommendProducts
+                          : controller.searchedProducts;
                       print("-----------------------");
-                      print(controller.checkIsBought);
+                      print(controller.checkIsBoughtOrSearch.value);
                       print(productsToShow.length);
                       print('A');
-                      // productsToShow = controller.searchedProducts.isEmpty
-                      //   ? controller.featureProducts
-                      //   : controller.searchedProducts;
-                      
-                    } 
-                    else {
-                        controller.fetchFeaturedProducts();
-                         productsToShow = controller.searchedProducts.isEmpty
-                        ? controller.featureProducts
-                        : controller.searchedProducts;
-                        print("-----------------------");
-                        print(controller.checkIsBought);
-                        print('B');
+                    } else {
+                      // controller.fetchFeaturedProducts();
+                      productsToShow = controller.searchedProducts.isEmpty
+                          ? controller.featureProducts
+                          : controller.searchedProducts;
+                      print("-----------------------");
+                      print(controller.checkIsBoughtOrSearch.value);
+                      print('B');
                     }
 
-                   
-                    
-                    
-
-                    // final productsToShow = controller.searchedProducts.isEmpty
-                    //     ? controller.fetchRecommendationProducts(userController.user.value.id)
-                    //     : controller.searchedProducts;
-
-                    // if (productsToShow.isEmpty) {
-                    //   print("-----------------------");
-                    //   print(controller.checkIsBought);
-                    //   print('C');
-                    //   return Center(
-                    //       child: Text('Không có sản phẩm nào!',
-                    //           style: Theme.of(context).textTheme.bodyMedium));
-                    // }
+                    if (productsToShow.isEmpty) {
+                      print("-----------------------");
+                      print(controller.checkIsBoughtOrSearch.value);
+                      print('C');
+                      return Center(
+                          child: Text('Không có sản phẩm nào!',
+                              style: Theme.of(context).textTheme.bodyMedium));
+                    }
                     return TGridLayout(
                         itemCount: productsToShow.length,
                         itemBuilder: (_, index) => TProductCardVertical(
-                            product: productsToShow[index])
-                            );
+                            product: productsToShow[index]));
                   }),
                 ],
               ),

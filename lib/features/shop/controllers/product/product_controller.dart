@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/data/repositories/orders/order_repository.dart';
 import 'package:TShop/data/repositories/product/product_repository.dart';
@@ -24,24 +26,29 @@ class ProductController extends GetxController {
   final rsService = Get.put(RsService());
   // final orderController = OrderController.instance;
   final orderRepository = OrderRepository.instance;
-  bool checkIsBought = false;
+  RxBool checkIsBoughtOrSearch = false.obs;
 
   @override
   void onInit() {
-    // fetchFeaturedProducts();
-    // fetchRecommendationProducts();
     super.onInit();
+    loadData();
   }
 
-  void checkBought() async {
+  void loadData() async {
+    await checkBought();
+    await fetchRecommendationProducts();
+    await fetchFeaturedProducts();
+  }
+
+  Future<void> checkBought() async {
     final orders = await orderRepository.fetchUserOrders();
     if (orders.isNotEmpty) {
       print("Khong rong");
-      checkIsBought = true;
+      checkIsBoughtOrSearch.value = true;
     }
   }
 
-  void fetchFeaturedProducts() async {
+  Future<void> fetchFeaturedProducts() async {
     try {
       //Show loader while loading Products;
       isLoading.value = true;
@@ -68,7 +75,7 @@ class ProductController extends GetxController {
     }
   }
 
-  void fetchRecommendationProducts() async {
+  Future<void> fetchRecommendationProducts() async {
     try {
       isLoading.value = true;
 
@@ -88,7 +95,7 @@ class ProductController extends GetxController {
   void searchProducts(String query) {
     searchText.value = query;
     if (query.isEmpty) {
-      if (checkIsBought) {
+      if (checkIsBoughtOrSearch.value==true) {
         searchedProducts.assignAll(recommendProducts);
       } else {
         searchedProducts.assignAll(featureProducts);
@@ -102,19 +109,6 @@ class ProductController extends GetxController {
       );
     }
   }
-  // void searchRecommendProducts(String query) {
-  //   searchText.value = query;
-  //   if (query.isEmpty) {
-  //     searchedRecommendProducts.assignAll(recommendProducts);
-  //   } else {
-  //     searchedRecommendProducts.assignAll(
-  //       recommendProducts
-  //           .where((product) =>
-  //               product.title.toLowerCase().contains(query.toLowerCase()))
-  //           .toList(),
-  //     );
-  //   }
-  // }
 
   // Get the product price or price range for variations
   String getProductPrice(ProductModel product) {

@@ -31,16 +31,12 @@ class ProductRepository extends GetxController {
     }
   }
 
-
   /// Get products by list of Document IDs
   Future<List<ProductModel>> getProductsByIds(List<dynamic> ids) async {
     try {
-
       List<ProductModel> products = [];
-      print(ids.length);
 
       for (int id in ids) {
-             
         final doc = await _db.collection('Products').doc(id.toString()).get();
         if (doc.exists) {
           // print(ProductModel.fromSnapshot(doc).id);
@@ -59,14 +55,14 @@ class ProductRepository extends GetxController {
     }
   }
 
+  /// Get limited featured products
 
-    /// Get limited featured products
-  
   Future<List<ProductModel>> getAllFeaturedProducts() async {
     try {
       final snapshot = await _db
           .collection('Products')
-          .where('IsFeatured', isEqualTo: true).limit(40)
+          .where('IsFeatured', isEqualTo: true)
+          .limit(40)
           .get();
       // final lastProduct = snapshot.docs.last;
       //  print('DocId của sản phẩm cuối cùng: ${lastProduct.id}');

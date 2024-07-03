@@ -4,7 +4,6 @@ import 'package:TShop/common/widgets/custom_shapes/containers/search_product_pag
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
-import 'package:TShop/features/personalization/controllers/user_controller.dart';
 import 'package:TShop/features/shop/controllers/product/product_controller.dart';
 import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/screens/all_products/all_products.dart';

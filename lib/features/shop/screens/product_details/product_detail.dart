@@ -1,4 +1,5 @@
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/shop/controllers/product/product_controller.dart';
 import 'package:TShop/features/shop/controllers/review_controller.dart';
 import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/screens/cart/cart.dart';
@@ -24,6 +25,8 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final reviewController = Get.find<ReviewController>();
+    final productController = Get.find<ProductController>();
+    productController.fetchRecommendProductById(product.id);
     return Scaffold(
       bottomNavigationBar: TBottomAddToCart(product: product),
       body: SingleChildScrollView(

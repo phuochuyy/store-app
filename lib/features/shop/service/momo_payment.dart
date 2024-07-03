@@ -15,7 +15,7 @@ class MomoService extends GetxController {
         .substring(0, amount.toString().length - 1)
         .replaceAll('.', '');
     final response = await http.post(
-      Uri.parse('http://192.168.0.102:5001/payment'),
+      Uri.parse('http://192.168.100.66:5000/payment'),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({"orderId": orderId, "amount": amountTemp}),
     );
@@ -35,7 +35,7 @@ class MomoService extends GetxController {
         .substring(0, amount.toString().length - 1)
         .replaceAll('.', '');
     final response = await http.post(
-      Uri.parse('http://192.168.0.102:5000/paymentWithCC'),
+      Uri.parse('http://192.168.100.66:5000/paymentWithCC'),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({"orderId": orderId, "amount": amountTemp}),
     );
@@ -50,7 +50,7 @@ class MomoService extends GetxController {
   // Hàm gọi API để kiểm tra trạng thái giao dịch
   Future<Map<String, dynamic>> checkTransactionStatus(String orderId) async {
     final response = await http.post(
-      Uri.parse('http://192.168.0.102:5000/momo_ipn'),
+      Uri.parse('http://192.168.100.66:5000/momo_ipn'),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({"orderId": orderId}),
     );

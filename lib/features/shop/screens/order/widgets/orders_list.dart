@@ -1,7 +1,6 @@
 import 'package:TShop/common/widgets/Loaders/animation_loader.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:TShop/features/shop/controllers/product/order_controller.dart';
-import 'package:TShop/features/shop/screens/home/home.dart';
 import 'package:TShop/navigation_menu.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';

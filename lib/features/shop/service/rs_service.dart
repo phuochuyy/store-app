@@ -10,7 +10,7 @@ class RsService extends GetxController {
  Future<List<dynamic>> fetchProductIds(String userId) async {
 
     final response = await http.get(
-      Uri.parse('http://192.168.0.102:5000/recommend/$userId'),
+      Uri.parse('http://192.168.100.66:5000/recommend/$userId'),
     );
 
     if (response.statusCode == 200) {

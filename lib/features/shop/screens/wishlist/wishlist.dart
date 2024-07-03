@@ -51,7 +51,6 @@ class FavouriteScreen extends StatelessWidget {
                       showAction: true,
                       actionText: 'Hãy thêm một vài sản phẩm',
                       onActionPressed: () => Get.to(const HomeScreen()));
-
                   const loader = TVerticalProductShimmer(itemCount: 6);
                   final widget = TCloudHelperFunctions.checkMultiRecordState(
                       snapshot: snapshot,

@@ -219,8 +219,9 @@ class CartController extends GetxController {
   void applyDiscount(double discountAmount, String code) {
     discount.value = discountAmount;
     couponCode.value = code;
-    if(code != '')
-    TLoaders.successSnackBar(title: 'Thành công',message: 'Áp dụng mã giảm giá thành công');
+    if(code != '') {
+      TLoaders.successSnackBar(title: 'Thành công',message: 'Áp dụng mã giảm giá thành công');
+    }
   }
   void resetDiscount() {
     discount.value = 0.0;

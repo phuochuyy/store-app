@@ -48,9 +48,9 @@ class TBillingAmountSection extends StatelessWidget {
 
         const SizedBox(height: TSizes.spaceBtwItems /2),
         Obx(() {
-        final discount_code = cartcontroller.couponCode.value;
+        final discountCode = cartcontroller.couponCode.value;
         final discount = cartcontroller.discount.value;
-        return discount_code != "" ? Row(
+        return discountCode != "" ? Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
         Text('Giảm giá', style: Theme.of(context).textTheme.bodyMedium),
@@ -58,7 +58,7 @@ class TBillingAmountSection extends StatelessWidget {
         ],
 
 
-        ) : SizedBox.shrink();}),
+        ) : const SizedBox.shrink();}),
         const SizedBox(height: TSizes.spaceBtwItems /2),
 
         //Order Total

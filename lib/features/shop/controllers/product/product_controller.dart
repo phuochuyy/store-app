@@ -1,10 +1,7 @@
-import 'dart:ffi';
 
 import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/data/repositories/orders/order_repository.dart';
 import 'package:TShop/data/repositories/product/product_repository.dart';
-import 'package:TShop/features/personalization/controllers/user_controller.dart';
-import 'package:TShop/features/shop/controllers/product/order_controller.dart';
 import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/service/rs_service.dart';
 import 'package:TShop/utils/popups/loaders.dart';
@@ -35,6 +32,7 @@ class ProductController extends GetxController {
   }
 
   void loadData() async {
+    print("loadData");
     await fetchRecommendationProducts();
     await fetchFeaturedProducts();
     await checkBought();
@@ -43,8 +41,6 @@ class ProductController extends GetxController {
   Future<void> checkBought() async {
     final orders = await orderRepository.fetchUserOrders();
     if (orders.isNotEmpty && recommendProducts.isNotEmpty) {
-      print(recommendProducts.length);
-      print("Khong rong");
       checkIsBoughtOrSearch.value = true;
     }
   }
@@ -79,21 +75,24 @@ class ProductController extends GetxController {
   Future<void> fetchRecommendationProducts() async {
     try {
       isLoading.value = true;
+      print("fetchRecommend");
 
       final userId = AuthenticationRepository.instance.authUser.uid;
       final ids = await rsService.fetchProductIds(userId);
+
       // Fetch Products
       final products = await productRepository.getProductsByIds(ids);
       recommendProducts.assignAll(products);
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+      TLoaders.errorSnackBar(
+          title: 'Oh Snap fetchrecommend!', message: e.toString());
     } finally {
       isLoading.value = false;
     }
   }
 
   //Search product
-  void searchProducts(String query) {
+  Future<void> searchProducts(String query) async {
     searchText.value = query;
     if (query.isEmpty) {
       searchedProducts.assignAll(featureProducts);
@@ -104,6 +103,21 @@ class ProductController extends GetxController {
                 product.title.toLowerCase().contains(query.toLowerCase()))
             .toList(),
       );
+      if (query.length >= 5) {
+        fetchRecommendProductById(searchedProducts[0].id);
+      }
+    }
+  }
+
+  Future<void> fetchRecommendProductById(String productId) async {
+    try {
+      final ids = await rsService.fetchProductIdsSearch(productId);
+      // print(ids.length);
+      final recommendSearchProducts =
+          await productRepository.getProductsByIds(ids);
+      featureProducts.assignAll(recommendSearchProducts);
+    } catch (e) {
+      print(e);
     }
   }
 

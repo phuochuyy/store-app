@@ -31,7 +31,7 @@ class BrandModel {
     return BrandModel(
         id: data['Id'].toString(),
         name: data['Name'] ?? '',
-        image: data['Image'] ?? '',
+        image: (data['Image'] ?? '').toString(),
         productsCount: data['ProductsCount'] ?? 0,
         isFeatured: data['IsFeatured'] ?? false,
       );

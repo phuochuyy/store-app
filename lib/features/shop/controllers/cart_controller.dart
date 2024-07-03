@@ -19,7 +19,7 @@ class CartController extends GetxController {
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
   final variationController = VariationController.instance;
 
-  CartController(){
+  CartController() {
     loadCartItems();
   }
 
@@ -70,12 +70,13 @@ class CartController extends GetxController {
   }
 
   // Add one to cart
-  void addOneToCart(CartItemModel item){
-    int index = cartItems.indexWhere((cartItem) => cartItem.productId == item.productId && cartItem.variationId == item.variationId);
+  void addOneToCart(CartItemModel item) {
+    int index = cartItems.indexWhere((cartItem) =>
+        cartItem.productId == item.productId &&
+        cartItem.variationId == item.variationId);
 
-    if(index >=0){
+    if (index >= 0) {
       cartItems[index].quantity += 1;
-
     } else {
       cartItems.add(item);
     }
@@ -83,40 +84,44 @@ class CartController extends GetxController {
   }
 
   // remove one from cart
-  void removeOneFromCart(CartItemModel item){
-    int index = cartItems.indexWhere((cartItem) => cartItem.productId == item.productId && cartItem.variationId == item.variationId);
+  void removeOneFromCart(CartItemModel item) {
+    int index = cartItems.indexWhere((cartItem) =>
+        cartItem.productId == item.productId &&
+        cartItem.variationId == item.variationId);
     // print(index);
-    if(index >= 0 && cartItems[index].quantity>1){
-      cartItems[index].quantity-=1;
+    if (index >= 0 && cartItems[index].quantity > 1) {
+      cartItems[index].quantity -= 1;
     } else {
-      cartItems[index].quantity == 1 ? removeFromCartDialog(index) : cartItems.removeAt(index);
+      cartItems[index].quantity == 1
+          ? removeFromCartDialog(index)
+          : cartItems.removeAt(index);
     }
     updateCart();
   }
 
-
-  void removeFromCartDialog(int index){
+  void removeFromCartDialog(int index) {
     Get.defaultDialog(
-      title: 'Xóa sản phẩm',middleText: 'Bạn có chắc muốn xóa sản phẩm?', onConfirm: () {
-        cartItems.removeAt(index);
-        updateCart();
-        TLoaders.customToast(message: "Đã xóa sản phẩm khỏi giỏ hàng");
-        Get.back();
-      },
-      onCancel:  () => () =>  Get.back()
-    );
-  
+        title: 'Xóa sản phẩm',
+        middleText: 'Bạn có chắc muốn xóa sản phẩm?',
+        onConfirm: () {
+          cartItems.removeAt(index);
+          updateCart();
+          TLoaders.customToast(message: "Đã xóa sản phẩm khỏi giỏ hàng");
+          Get.back();
+        },
+        onCancel: () => () => Get.back());
   }
 
-  void updateAlreadyAddedProductCount(ProductModel product){
-    if(product.productType == 'Single'){
+  void updateAlreadyAddedProductCount(ProductModel product) {
+    if (product.productType == 'Single') {
       productQuantityInCart.value = getProductQuantityInCart(product.id);
     } else {
       // get selected variation if any ...
       final variationId = variationController.selectedVariation.value.id;
 
-      if(variationId.isNotEmpty){
-        productQuantityInCart.value = getVariationQuantityInCart(product.id,  variationId);
+      if (variationId.isNotEmpty) {
+        productQuantityInCart.value =
+            getVariationQuantityInCart(product.id, variationId);
       } else {
         productQuantityInCart.value = 0;
       }
@@ -139,7 +144,7 @@ class CartController extends GetxController {
         : product.salePrice > 0
             ? product.salePrice
             : product.originalPrice;
-    
+
     print(product.salePrice);
 
     return CartItemModel(
@@ -180,7 +185,7 @@ class CartController extends GetxController {
   void loadCartItems() {
     final cartItemStrings =
         TLocalStorage.instance().readData<List<dynamic>>('cartItems');
-        
+
     // ignore: deprecated_member_use //// LỖI CHỖ NÀY
     if (cartItemStrings != null) {
       cartItems.assignAll(cartItemStrings
@@ -204,48 +209,48 @@ class CartController extends GetxController {
     return foundItem.quantity;
   }
 
-
-  void clearCart(){
+  void clearCart() {
     productQuantityInCart.value = 0;
     cartItems.clear();
     updateCart();
   }
 
   String formatPrice(double price) {
-  final formatter = NumberFormat('#,###', 'vi_VN');
-  return formatter.format(price);
-}
+    final formatter = NumberFormat('#,###', 'vi_VN');
+    return formatter.format(price);
+  }
 
   void applyDiscount(double discountAmount, String code) {
+    List<String> coupons = ['CAMONQUYKHACH', 'TSHOP2024', 'SALE2024'];
     discount.value = discountAmount;
     couponCode.value = code;
-    if(code != '') {
-      TLoaders.successSnackBar(title: 'Thành công',message: 'Áp dụng mã giảm giá thành công');
+    if (coupons.contains(code)) {
+      TLoaders.successSnackBar(
+          title: 'Thành công', message: 'Áp dụng mã giảm giá thành công');
     }
   }
+
   void resetDiscount() {
     discount.value = 0.0;
   }
+
   double calculateDiscount(String coupon, double amount) {
     // map coupon code to discount amount
-    Map<String,double> map = {
+    Map<String, double> map = {
       'CAMONQUYKHACH': 0.05,
       'TSHOP2024': 0.1,
       'SALE2024': 0.15,
     };
-    if(map.containsKey(coupon)){
+    if (map.containsKey(coupon)) {
       return amount * map[coupon]!;
-    }
-    else {
-      if(coupon != '') {
+    } else {
+      if (coupon != '') {
         TLoaders.customToast(message: 'Mã giảm giá không hợp lệ');
         return 0.0;
-      }
-      else{
+      } else {
         TLoaders.customToast(message: 'Vui lòng nhập mã giảm giá');
         return 0.0;
-    }
+      }
     }
   }
-
 }

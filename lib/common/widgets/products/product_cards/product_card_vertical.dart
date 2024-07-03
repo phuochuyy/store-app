@@ -122,7 +122,7 @@ class TProductCardVertical extends StatelessWidget {
                       Padding(
                           padding: const EdgeInsets.only(left: TSizes.xs),
                           child: Text(
-                            product.originalPrice.toString(),
+                            formatCurrency(product.originalPrice),
                             style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                           )
                       ),

@@ -15,7 +15,7 @@ class MomoService extends GetxController {
         .substring(0, amount.toString().length - 1)
         .replaceAll('.', '');
     final response = await http.post(
-      Uri.parse('http://192.168.100.66:5000/payment'),
+      Uri.parse('https://be-recommendanhpaymentserver.onrender.com/payment'),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({"orderId": orderId, "amount": amountTemp}),
     );
@@ -30,12 +30,14 @@ class MomoService extends GetxController {
   // goi api yeu cau thanh toan momo visa
   Future<Map<String, dynamic>> fetchPaymentDataVisa(
       String orderId, double amount) async {
+
+
     String amountTemp = amount
         .toString()
         .substring(0, amount.toString().length - 1)
         .replaceAll('.', '');
     final response = await http.post(
-      Uri.parse('http://192.168.100.66:5000/paymentWithCC'),
+      Uri.parse('https://be-recommendanhpaymentserver.onrender.com/paymentWithCC'),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({"orderId": orderId, "amount": amountTemp}),
     );
@@ -50,7 +52,7 @@ class MomoService extends GetxController {
   // Hàm gọi API để kiểm tra trạng thái giao dịch
   Future<Map<String, dynamic>> checkTransactionStatus(String orderId) async {
     final response = await http.post(
-      Uri.parse('http://192.168.100.66:5000/momo_ipn'),
+      Uri.parse('https://be-recommendanhpaymentserver.onrender.com/tshop/momo_ipn'),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({"orderId": orderId}),
     );

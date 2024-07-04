@@ -33,8 +33,8 @@ class ProductController extends GetxController {
 
   void loadData() async {
     print("loadData");
-    await fetchRecommendationProducts();
     await fetchFeaturedProducts();
+    await fetchRecommendationProducts();
     await checkBought();
   }
 

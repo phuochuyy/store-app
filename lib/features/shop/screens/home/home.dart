@@ -94,17 +94,22 @@ class HomeScreen extends StatelessWidget {
 
                     RxList<ProductModel> productsToShow;
 
+                    //  Future.delayed(const Duration(seconds: 5));
+                    
                     if (controller.checkIsBoughtOrSearch.value == true) {
+                      print("A");
                       productsToShow = controller.searchedProducts.isEmpty
                           ? controller.recommendProducts
                           : controller.searchedProducts;
                     } else {
+                      print("B");
                       productsToShow = controller.searchedProducts.isEmpty
                           ? controller.featureProducts
                           : controller.searchedProducts;
                     }
 
                     if (productsToShow.isEmpty) {
+                      print("C");
                       return Center(
                           child: Text('Không có sản phẩm nào!',
                               style: Theme.of(context).textTheme.bodyMedium));

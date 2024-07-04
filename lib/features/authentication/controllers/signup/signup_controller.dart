@@ -2,7 +2,9 @@ import 'package:TShop/data/repositories/authentication/authentication_repository
 import 'package:TShop/data/repositories/user/user_repository.dart';
 import 'package:TShop/features/authentication/screens/signup/verify_email.dart';
 import 'package:TShop/features/personalization/models/user_model.dart';
+import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/helpers/network_manager.dart';
+import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 
@@ -26,8 +28,8 @@ class SignupController extends GetxController {
   Future<void> signup() async {
     try {
       //Start loading
-      // TFullScreenLoader.openLoadingDialog(
-      //     "Đang lấy dữ liệu...", TImages.successfullyRegisterAnimation);
+      TFullScreenLoader.openLoadingDialog(
+          "Đang lấy dữ liệu...", TImages.successfullyRegisterAnimation);
       // !! Dang loi FullLoader
 
       // Check internet connection (chưa bắt đc)
@@ -36,7 +38,7 @@ class SignupController extends GetxController {
 
       //Form Validation
       if (!signupFormKey.currentState!.validate()) {
-        // TFullScreenLoader.stopLoading();
+        TFullScreenLoader.stopLoading();
         return;
       }
 
@@ -67,7 +69,7 @@ class SignupController extends GetxController {
       await userRepository.saveUserRecord(newUser);
 
       //Remove loader
-      // TFullScreenLoader.stopLoading();
+      TFullScreenLoader.stopLoading();
 
       //show success screen
       TLoaders.successSnackBar(
@@ -78,7 +80,7 @@ class SignupController extends GetxController {
       Get.to(VerifyEmailScreen(email: email.text.trim()));
     } catch (e) {
       //Remove loader
-      // TFullScreenLoader.stopLoading();
+      TFullScreenLoader.stopLoading();
       //show some generic error to the user
       TLoaders.errorSnackBar(
           title: "Hệ thống đã xảy ra gì đó! ", message: e.toString());

@@ -2,7 +2,9 @@
 import 'package:TShop/features/shop/controllers/product/checkout_controller.dart';
 import 'package:TShop/features/shop/controllers/product/order_controller.dart';
 import 'package:TShop/features/shop/service/momo_payment.dart';
+import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
+import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal_checkout/flutter_paypal_checkout.dart';
@@ -60,7 +62,12 @@ class PaypalPaymentController extends GetxController {
       if (resultCode == 0) {
         final deeplink = paymentData['deeplink'] as String;
         await momoService.openMoMoApp(deeplink);
+
+        TFullScreenLoader.openLoadingDialog(
+            'Đang xử lý thanh toán', TImages.docerAnimation);
+
         await Future.delayed(const Duration(seconds: 5));
+        TFullScreenLoader.stopLoading();
         ordercontroller.processOrder(totalAmount);
       } else {
         TLoaders.errorSnackBar(
@@ -76,13 +83,18 @@ class PaypalPaymentController extends GetxController {
   Future<void> visaPayment(double totalAmount) async {
     try {
       final orderId = THelperFunctions.generateOrderId();
+
       final paymentData =
           await momoService.fetchPaymentDataVisa(orderId, totalAmount);
       final resultCode = paymentData['resultCode'];
       if (resultCode == 0) {
         final deeplink = paymentData['payUrl'] as String;
         await momoService.openMoMoApp(deeplink);
+        TFullScreenLoader.openLoadingDialog(
+            'Đang xử lý thanh toán', TImages.docerAnimation);
+
         await Future.delayed(const Duration(seconds: 5));
+        TFullScreenLoader.stopLoading();
         ordercontroller.processOrder(totalAmount);
       } else {
         TLoaders.errorSnackBar(

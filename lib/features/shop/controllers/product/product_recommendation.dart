@@ -4,7 +4,7 @@ import 'dart:convert';
 
 class ProductRecommendations extends StatefulWidget {
   final int userId;
-  ProductRecommendations({required this.userId});
+  const ProductRecommendations({super.key, required this.userId});
 
   @override
   _ProductRecommendationsState createState() => _ProductRecommendationsState();

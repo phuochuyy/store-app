@@ -10,7 +10,7 @@ class RsService extends GetxController {
  Future<List<dynamic>> fetchProductIds(String userId) async {
 
     final response = await http.get(
-      Uri.parse('http://192.168.100.66:5000/recommend/$userId'),
+      Uri.parse('https://be-recommendanhpaymentserver.onrender.com/recommend/$userId'),
     );
 
 
@@ -25,7 +25,7 @@ class RsService extends GetxController {
  Future<List<dynamic>> fetchProductIdsSearch(String productId) async {
 
     final response = await http.get(
-      Uri.parse('http://192.168.100.66:5000/recommend/product/$productId'),
+      Uri.parse('https://be-recommendanhpaymentserver.onrender.com/product/$productId'),
     );
 
 

@@ -8,6 +8,7 @@ import 'package:TShop/features/shop/models/order_model.dart';
 import 'package:TShop/navigation_menu.dart';
 import 'package:TShop/utils/constants/enums.dart';
 import 'package:TShop/utils/constants/image_string.dart';
+import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -36,7 +37,7 @@ class OrderController extends GetxController {
   void processOrder(double totalAmount, {String orderId = ''}) async {
     try {
 // // Start Loader
-      // TFullScreenLoader.openLoadingDialog('Processing your order', TImages.pencilAnimation);
+      TFullScreenLoader.openLoadingDialog('Processing your order', TImages.docerAnimation);
 
 // Get user authentication Id
       final userId = AuthenticationRepository.instance.authUser.uid;

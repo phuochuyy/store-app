@@ -21,10 +21,10 @@ class GeneralBindings extends Bindings {
     // Get.put(CartController());
     // Get.put(OrderController());
 
-    Get.put(FavouritesController());
+    // Get.put(FavouritesController());
 
     Get.put(ReviewController());
-    Get.put(FavouritesController());
+    // Get.put(FavouritesController());
 
   }
 }

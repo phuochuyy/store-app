@@ -95,16 +95,22 @@ class ProductController extends GetxController {
   Future<void> searchProducts(String query) async {
     searchText.value = query;
     if (query.isEmpty) {
-      searchedProducts.assignAll(featureProducts);
+      if(recommendProducts.isEmpty) {
+        searchedProducts.assignAll(featureProducts);
+      }
+      else{
+        searchedProducts.assignAll(recommendProducts);
+      }
     } else {
-      searchedProducts.assignAll(
-        featureProducts
-            .where((product) =>
-                product.title.toLowerCase().contains(query.toLowerCase()))
-            .toList(),
+
+      if (query.length >= 4) {
+        // fetchRecommendProductById(searchedProducts[0].id);
+        searchedProducts.assignAll(
+          featureProducts
+              .where((product) =>
+                  product.title.toLowerCase().contains(query.toLowerCase()))
+              .toList(),
       );
-      if (query.length >= 5) {
-        fetchRecommendProductById(searchedProducts[0].id);
       }
     }
   }

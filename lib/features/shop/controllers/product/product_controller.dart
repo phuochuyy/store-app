@@ -1,4 +1,3 @@
-
 import 'package:TShop/data/repositories/authentication/authentication_repository.dart';
 import 'package:TShop/data/repositories/orders/order_repository.dart';
 import 'package:TShop/data/repositories/product/product_repository.dart';
@@ -95,22 +94,20 @@ class ProductController extends GetxController {
   Future<void> searchProducts(String query) async {
     searchText.value = query;
     if (query.isEmpty) {
-      if(recommendProducts.isEmpty) {
+      if (recommendProducts.isEmpty) {
         searchedProducts.assignAll(featureProducts);
-      }
-      else{
+      } else {
         searchedProducts.assignAll(recommendProducts);
       }
     } else {
-
       if (query.length >= 4) {
-        // fetchRecommendProductById(searchedProducts[0].id);
         searchedProducts.assignAll(
           featureProducts
               .where((product) =>
                   product.title.toLowerCase().contains(query.toLowerCase()))
               .toList(),
-      );
+        );
+        fetchRecommendProductById(searchedProducts[0].id);
       }
     }
   }
@@ -121,7 +118,11 @@ class ProductController extends GetxController {
       // print(ids.length);
       final recommendSearchProducts =
           await productRepository.getProductsByIds(ids);
-      featureProducts.assignAll(recommendSearchProducts);
+      if (checkIsBoughtOrSearch.value == true) {
+        recommendProducts.assignAll(recommendSearchProducts);
+      } else {
+        featureProducts.assignAll(recommendSearchProducts);
+      }
     } catch (e) {
       print(e);
     }

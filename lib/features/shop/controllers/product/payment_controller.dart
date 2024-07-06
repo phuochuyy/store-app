@@ -66,12 +66,27 @@ class PaypalPaymentController extends GetxController {
         TFullScreenLoader.openLoadingDialog(
             'Đang xử lý thanh toán', TImages.docerAnimation);
 
-        await Future.delayed(const Duration(seconds: 5));
-        TFullScreenLoader.stopLoading();
-        ordercontroller.processOrder(totalAmount);
+        while (true) {
+          await Future.delayed(const Duration(seconds: 3));
+          final queryData = await momoService.checkTransactionStatus(orderId);
+          final resultCodeQuery = queryData['resultCode'].toString();
+          final mess = queryData['message'];
+          if (resultCodeQuery == '0') {
+            TFullScreenLoader.stopLoading();
+            ordercontroller.processOrder(totalAmount);
+            break;
+          } else if (resultCodeQuery == '1000') {
+            continue;
+          } else {
+            TFullScreenLoader.stopLoading();
+            TLoaders.errorSnackBar(
+                title: "Lỗi thanh toán momo!", message: mess);
+            break;
+          }
+        }
       } else {
         TLoaders.errorSnackBar(
-            title: "Lỗi!", message: "Hệ thống thanh toán visa tạm bảo trì!");
+            title: "Lỗi!", message: "Hệ thống thanh toán momo tạm bảo trì!");
       }
     } catch (e) {
       TLoaders.errorSnackBar(
@@ -93,9 +108,26 @@ class PaypalPaymentController extends GetxController {
         TFullScreenLoader.openLoadingDialog(
             'Đang xử lý thanh toán', TImages.docerAnimation);
 
-        await Future.delayed(const Duration(seconds: 5));
-        TFullScreenLoader.stopLoading();
-        ordercontroller.processOrder(totalAmount);
+        while (true) {
+          await Future.delayed(const Duration(seconds: 3));
+          final queryData = await momoService.checkTransactionStatus(orderId);
+          final resultCodeQuery = queryData['resultCode'].toString();
+          final mess = queryData['message'];
+          if (resultCodeQuery == '0') {
+            TFullScreenLoader.stopLoading();
+            ordercontroller.processOrder(totalAmount);
+            break;
+          } else if (resultCodeQuery == '1000') {
+            continue;
+          } else {
+            TFullScreenLoader.stopLoading();
+            TLoaders.errorSnackBar(
+                title: "Lỗi thanh toán momo!", message: mess);
+            break;
+          }
+
+          
+        }
       } else {
         TLoaders.errorSnackBar(
             title: "Lỗi!", message: "Hệ thống thanh toán visa tạm bảo trì!");

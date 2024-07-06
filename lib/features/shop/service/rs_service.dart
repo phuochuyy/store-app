@@ -25,7 +25,7 @@ class RsService extends GetxController {
  Future<List<dynamic>> fetchProductIdsSearch(String productId) async {
 
     final response = await http.get(
-      Uri.parse('https://be-recommendanhpaymentserver.onrender.com/product/$productId'),
+      Uri.parse('https://be-recommendanhpaymentserver.onrender.com/recommend/product/$productId'),
     );
 
 

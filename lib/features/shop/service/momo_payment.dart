@@ -48,11 +48,10 @@ class MomoService extends GetxController {
       throw Exception('Failed to load payment data${response.statusCode}');
     }
   }
-
-  // Hàm gọi API để kiểm tra trạng thái giao dịch
+    // Hàm gọi API để kiểm tra trạng thái giao dịch
   Future<Map<String, dynamic>> checkTransactionStatus(String orderId) async {
     final response = await http.post(
-      Uri.parse('https://be-recommendanhpaymentserver.onrender.com/tshop/momo_ipn'),
+      Uri.parse('https://be-recommendanhpaymentserver.onrender.com/queryOrder'),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({"orderId": orderId}),
     );

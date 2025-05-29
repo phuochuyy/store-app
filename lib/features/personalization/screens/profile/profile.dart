@@ -18,8 +18,8 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = UserController.instance;
     return Scaffold(
-      appBar:
-          const TAppBar(showBackArrow: true, title: Text('Chi tiết tài khoản')),
+      appBar: const TAppBar(
+          showBackArrow: true, title: Text('Chi tiết tài khoảnn')),
 
       /// -- Body
       body: SingleChildScrollView(

@@ -11,7 +11,7 @@ import 'package:TShop/utils/local_storage/storage_utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -199,15 +199,17 @@ class AuthenticationRepository extends GetxController {
 // [FacebookAuthentication] - FACEBOOK
   Future<UserCredential?> signInWithFacebook() async {
     try {
+      // TODO: Implement Facebook login later
       // // Trigger the authentication flow
-      final LoginResult loginResult = await FacebookAuth.instance.login();
+      // final LoginResult loginResult = await FacebookAuth.instance.login();
 
       // // Create a new credential
-      final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      // final OAuthCredential facebookAuthCredential =
+      //     FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
       // Once signed in, return the UserCredential
-      return await _auth.signInWithCredential(facebookAuthCredential);
+      // return await _auth.signInWithCredential(facebookAuthCredential);
+      throw 'Facebook login temporarily disabled';
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {

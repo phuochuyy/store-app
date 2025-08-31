@@ -19,7 +19,7 @@ class TSortableProducts extends StatelessWidget {
       children: [
         ///Drop down
         DropdownButtonFormField(
-          value: controller.selectedSortOption.value,
+          initialValue: controller.selectedSortOption.value,
           onChanged: (value) {
             controller.sortProducts(value!);
           },

@@ -7,7 +7,7 @@ import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:TShop/utils/popups/full_screen_loader.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_paypal_checkout/flutter_paypal_checkout.dart';
+// import 'package:flutter_paypal_checkout/flutter_paypal_checkout.dart';
 import 'package:get/get.dart';
 import 'package:TShop/features/shop/controllers/cart_controller.dart';
 
@@ -147,48 +147,19 @@ class PaypalPaymentController extends GetxController {
       // bỏ các số thập phân
       totalAmount = double.parse(totalAmount.toStringAsFixed(2));
       debugPrint('Total amount: $totalAmount');
-      bool paymentSuccess =
-          await Navigator.of(Get.context!).push(MaterialPageRoute(
-        builder: (BuildContext context) => PaypalCheckout(
-          sandboxMode: true,
-          clientId:
-              "ARV_kgT_1c48JjsqRm-p31X8P8BRVjG0OTT37VernZSEtewUJjH7eRjcxTWfIZN--HDvmDCIXMIYUeCo", // Replace with your client ID
-          secretKey:
-              "EJHmu168qmyN5MpFEvXOcj8z1ZW062iL0RSUyoCjPnI4b5zoVud8SbOGL43zCzwRA7LKw5BxpGc5dRlX", // Replace with your secret key
-          returnURL: "success.snippetcoder.com",
-          cancelURL: "cancel.snippetcoder.com",
-          transactions: [
-            {
-              "amount": {
-                "total": totalAmount.toString(),
-                "currency": "USD",
-              },
-              "description": "The payment transaction description.",
-            }
-          ],
-          note: "Contact us for any questions on your order.",
-          onSuccess: (Map params) async {
-            debugPrint("PayPal Success: $params");
-            Navigator.pop(context);
-            ordercontroller.processOrder(totalAmount);
-          },
-          onError: (error) {
-            TLoaders.errorSnackBar(
-                title: 'Payment fail!', message: error.toString());
-            debugPrint("onError: $error");
-            Navigator.pop(context);
-            return false;
-          },
-          onCancel: () {
-            debugPrint('cancelled:');
-            return false;
-          },
-        ),
-      ));
+      
+      // TODO: Implement PayPal checkout later
+      TLoaders.warningSnackBar(
+          title: "Tính năng tạm thời không khả dụng!", 
+          message: "PayPal checkout đang được cập nhật!");
+      
+      // bool paymentSuccess = false;
+      // PayPal integration code temporarily disabled
+      
     } catch (e) {
-      // debugPrint('Error vl: $e');
-      // TLoaders.errorSnackBar(
-      //     title: "Lỗi!", message: "Hệ thống thanh toán paypal tạm bảo trì!");
+      debugPrint('Error vl: $e');
+      TLoaders.errorSnackBar(
+          title: "Lỗi!", message: "Hệ thống thanh toán paypal tạm bảo trì!");
     }
   }
 }
